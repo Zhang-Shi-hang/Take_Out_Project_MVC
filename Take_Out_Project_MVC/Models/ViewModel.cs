@@ -34,6 +34,7 @@ namespace Take_Out_Project_MVC.Models
         public string GreensRemark { get; set; }//菜品备注
         public int GreensLikeNum { get; set; }//喜欢人数
         public string GreensType { get; set; }//菜品类型
+        public string GreenImgUrl { get; set; }//菜品图片
         //public Guid Sid { get; set; }//店铺外键
         /// <summary>
         /// 骑士表
