@@ -24,7 +24,6 @@ namespace Take_Out_Project_MVC.Models
         public Guid Oid { get; set; }//订单外键
         public decimal Gprice { get; set; }//菜品价格
         public int Gnum { get; set; }//菜品数量1
-        public int OenId { get; set; }//订单编号外键
         /// <summary>
         /// 菜品表
         /// </summary>
@@ -58,7 +57,8 @@ namespace Take_Out_Project_MVC.Models
         public DateTime OrderTime { get; set; }//订单时间
         public string OrderRemark { get; set; }//订单备注
         public decimal OrderPrice { get; set; }//订单价格
-        public bool RepastWay { get; set; }
+        public bool RepastWay { get; set; }//就餐方式
+
         //public Guid Uid { get; set; }//用户外键
         /// <summary>
         /// 店铺表
