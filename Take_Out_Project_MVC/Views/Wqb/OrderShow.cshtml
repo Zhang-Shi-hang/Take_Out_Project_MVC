@@ -1,0 +1,94 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <title>OrderShow</title>
+</head>
+<body>
+    <div> 
+        <table class="table-bordered table">
+            <thead>
+                <tr>
+                    <td>订单编号:</td>
+                    <td>订单状态:</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody id="tby">
+                
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+<script>
+    var id = "@Session["id"]";
+    $(function () {
+        Show();
+    })
+    function Show() {
+        $.ajax({
+            url: "http://localhost:50037/api/wqb/OrderShow?id=" + id,
+            Type: "get",
+            dataType: "json",
+            success: function (data) {
+                $("#tby").empty();
+                $(data).each(function () {
+                    if (this.OrderStatic == 3) {
+                        var obj = '<tr>'
+                            + '<td>' + this.Oen + '</td>'
+                            + '<td>' + this.OrderStatic + '</td>'
+                            + '<td><input id="Button1" type="button" value="再来一单" class="btn-danger btn" onclick="Again()"/></td>'
+                            + '</tr>'
+                        $("#tby").append(obj);
+                    }
+                    if (this.OrderStatic == 2) {
+                        var obj = '<tr>'
+                            + '<td>' + this.Oen + '</td>'
+                            + '<td>' + this.OrderStatic + '</td>'
+                            + '<td><input id="Button1" type="button" value="订单详情" class="btn-danger btn" onclick="Info(' + this.Uid + ',' + this.OrderId + ')"/>< input id = "Button1" type = "button" value = "取消订单" class="btn-danger btn" onclick = "Cancel(' + this.OrderId+')" /></td > '
+                            + '</tr>'
+                        $("#tby").append(obj);
+                    }
+                    if (this.OrderStatic == 1) {
+                        var obj = '<tr>'
+                            + '<td>' + this.Oen + '</td>'
+                            + '<td>' + this.OrderStatic + '</td>'
+                            + '<td><label>等待派送</label></td>'
+                            + '</tr>'
+                        $("#tby").append(obj);
+                    }
+                })
+            }
+        })
+    }
+    function Again() {
+        location.href = "再来一单";
+    }
+    function Cancel(id) {
+        $.ajax({
+            url: "http://localhost:50037/api/wqb/DelOrder?id=" + id,
+            Type: "get",
+            dataType: "json",
+            success: function (data) {
+                if (data > 0) {
+                    alert("取消成功");
+                    Show();
+                }
+                else {
+                    alert("取消失败");
+                }
+            }
+        })
+    }
+
+</script>

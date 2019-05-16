@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Comment</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <textarea id="TextArea1" rows="2" cols="20"></textarea>
+        <input id="Button1" type="button" value="提交" class="btn-danger btn" onclick="Add()"/>
+    </div>
+</body>
+</html>
+<script>
+    function Add() {
+        var obj = new Object();
+        obj.Oid = 0;
+        obj.Uid = 0;
+        obj.OrderId = 0;
+        obj.CommentContent = $("TextArea1").val();
+        $.ajax({
+            url: "http://localhost:50037/api/wqb/Comment?str=" + JSON.stringify(obj),
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                if (data > 0) {
+                    alert("添加成功");
+                    location.href = "CommentShow";
+                }
+                else {
+                    alert("添加失败");
+                }
+            }
+        })
+    }
+</script>
