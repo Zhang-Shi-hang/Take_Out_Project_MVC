@@ -1,0 +1,61 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Refund</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <div>
+            <table class="table-bordered table">
+                <thead>
+                    <tr>
+                        <td>订单编号:</td>
+                        <td>订单状态:</td>
+                        <td>操作</td>
+                    </tr>
+                </thead>
+                <tbody id="tby"></tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    var id = "@Session["id"]";
+    $(function () {
+        Show();
+    })
+    function Show() {
+        $.ajax({
+            url: "http://localhost:50037/api/wqb/OrderShow?id=" + id,
+            Type: "get",
+            dataType: "json",
+            success: function (data) {
+                $("#tby").empty();
+                $(data).each(function () {
+                    if (this.OrderStatic == 3) {
+                        var obj = '<tr>'
+                            + '<td>' + this.Oen + '</td>'
+                            + '<td>' + this.OrderStatic + '</td>'
+                            + '<td><input id="Button1" type="button" value="申请退款" class="btn-danger btn" onclick="refund(' + this.OrderId+')"/></td>'
+                            + '</tr>'
+                        $("#tby").append(obj);
+                    }
+                })
+            }
+        })
+    }
+    function refund(id) {
+
+    }
+</script>
