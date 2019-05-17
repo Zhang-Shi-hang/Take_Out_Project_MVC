@@ -1,0 +1,159 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/Vue-2.6.10.js"></script>
+    <script src="~/Scripts/slider.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <title>Index</title>
+
+    <style>
+        .aui-flexView {
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+        }
+
+        .m-slider {
+            width: 92%;
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+            border-radius: 5px;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="Box">
+        @*导航条*@
+        <header class="aui-navBar aui-navBar-fixed">
+            <a href="javascript:;" class="aui-navBar-item">
+                <i class="icon icon-return"></i>{{Name}}
+            </a>
+            <div class="aui-center">
+                <span class="aui-center-title"></span>
+            </div>
+            <a href="javascript:;" class="aui-navBar-item">
+                <i class="icon icon-news"></i>
+            </a>
+        </header>
+
+        @*店铺详情*@
+    <div>
+        <img src="~/images/banner.png" style="width:auto;height:auto;" />
+        <h4>{{Name}}欢迎您        <span style="margin-left: 50px;"> 联系我们:{{Phone}} </span>  </h4>
+        <h4>地址:{{Address}}      <span style="margin-left: 50px;">收藏人数:{{LikeNum}}</span></h4>
+    </div>
+        @*地图显示*@
+        <div>
+            <h1>地图待开发</h1>
+        </div>
+        @*菜品详情显示*@
+    <div class="aui-list-theme" id="Info" >
+        
+    </div>
+        <footer class="aui-footer aui-footer-fixed">
+            <a href="javascript:;" class="aui-tabBar-item aui-tabBar-item-active">
+                <span class="aui-tabBar-item-icon">
+                    <i class="icon icon-loan"></i>
+                </span>
+                <span class="aui-tabBar-item-text">首页</span>
+            </a>
+            <a href="javascript:;" class="aui-tabBar-item ">
+                <span class="aui-tabBar-item-icon">
+                    <i class="icon icon-credit"></i>
+                </span>
+                <span class="aui-tabBar-item-text">会员</span>
+            </a>
+            <a href="javascript:;" class="aui-tabBar-item ">
+                <span class="aui-tabBar-item-icon">
+                    <i class="icon icon-ions"></i>
+                </span>
+                <span class="aui-tabBar-item-text">订单</span>
+            </a>
+            <a href="Img" class="aui-tabBar-item ">
+                <span class="aui-tabBar-item-icon">
+                    <i class="icon icon-car"></i>
+                </span>
+                <span class="aui-tabBar-item-text">我的</span>
+            </a>
+        </footer>
+    </div>
+</body>
+</html>
+<script>
+    window.onload = function () {
+        //Vue数据赋值
+        var vm = new Vue({
+            el: '#Box',
+            data: {
+                Name: '',
+                Phone: '16621071524',
+                Address: '',
+                LikeNum: ''
+            },
+            //生命周期函数(渲染Html页面后执行)
+            mounted: function () {
+                this.GetShopTable();
+
+            },
+            //方法
+            methods: {
+
+                //获取店铺详情信息
+                GetShopTable: function () {
+                    //ajax调用
+                    $.ajax({
+                        url: "http://localhost:50037/api/Zrw/GetShopTable",
+                        type: 'get',
+                        dataType: "json",
+                        success: function (data) {
+                            $(data).each(function () {
+                                vm.Name = this.ShopName
+                                // vm.Phone = this.ShopPhone
+                                vm.Address = this.ShopAddress
+                                vm.LikeNum = this.ShopLikeNum
+                            })
+                            Info();
+                        }
+                    })
+                }
+            }
+        })
+
+    }
+
+    function Info() {
+        //查询菜品信息
+        $.ajax({
+            url: "http://localhost:50037/api/Zrw/GetGreens",
+            type: 'get',
+            dataType: "json",
+            success: function (data) {
+                $(data).each(function () {
+                    var obj = '<a href="javascript:;" class="aui-list-theme-item"><div class="aui-list-img"><img src="images/ad-001.png" alt=""></div><div class="aui-list-title"><h3>' + this.GreensName + '</h3> <div class="aui-list-spell"><span>根据你看过的店推荐</span></div></div></a>'
+                    $("#Info").append(obj);
+                })
+            }
+        })
+    }
+
+</script>

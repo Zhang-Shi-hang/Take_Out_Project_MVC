@@ -88,7 +88,54 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\style.css" />
     <Content Include="Global.asax" />
+    <Content Include="images\ad-001.png" />
+    <Content Include="images\ad-002.png" />
+    <Content Include="images\ad-003.png" />
+    <Content Include="images\ad-004.png" />
+    <Content Include="images\banner.png" />
+    <Content Include="images\down.png" />
+    <Content Include="images\icon-add.png" />
+    <Content Include="images\icon-food-001.png" />
+    <Content Include="images\icon-food-002.png" />
+    <Content Include="images\icon-food-003.png" />
+    <Content Include="images\icon-food-004.png" />
+    <Content Include="images\icon-food-005.png" />
+    <Content Include="images\icon-food-006.png" />
+    <Content Include="images\icon-food-007.png" />
+    <Content Include="images\icon-food-008.png" />
+    <Content Include="images\icon-food-009.png" />
+    <Content Include="images\icon-food-010.png" />
+    <Content Include="images\icon-food-011.png" />
+    <Content Include="images\icon-food-012.png" />
+    <Content Include="images\icon-food-013.png" />
+    <Content Include="images\icon-food-014.png" />
+    <Content Include="images\icon-food-015.png" />
+    <Content Include="images\news.png" />
+    <Content Include="images\pic.png" />
+    <Content Include="images\up.png" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="images\.DS_Store" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\slider.js" />
+    <Content Include="Scripts\Vue-2.6.10.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -102,7 +149,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
     <None Include="packages.config" />
+    <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Views\Default\PlanB.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -112,7 +167,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Default\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
