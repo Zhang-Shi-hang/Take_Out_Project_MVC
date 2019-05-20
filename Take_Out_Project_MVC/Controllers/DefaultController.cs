@@ -21,7 +21,7 @@ namespace Take_Out_Project_MVC.Controllers
         {
             return View();
         }
-        public ActionResult PlanC()
+        public ActionResult Map()
         {
             return View();
         }
