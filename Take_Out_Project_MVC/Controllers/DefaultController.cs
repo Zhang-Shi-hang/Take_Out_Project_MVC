@@ -12,23 +12,37 @@ namespace Take_Out_Project_MVC.Controllers
     {
         public string UserId = "";
         // GET: Default
-        public ActionResult Index()
+        public ActionResult Template()
+        {
+            return View();
+        }
+        //首页
+        public ActionResult Home()
+        {
+            return View();
+        }
+        //订单页面
+        public ActionResult Classify()
         {
             HttpCookie cookie = Request.Cookies["UserId"];
             UserId = Server.UrlDecode(cookie.Value);
             return View();
         }
-        public ActionResult Template()
+        //订单备注信息
+        public ActionResult Order_notes()
         {
             return View();
         }
         public ActionResult PlanB(string TypeName= "精选扒类")
+        //确认支付
+        public ActionResult Payment()
         {
             string json = HttpClientHelper.Sender("get", "Zrw/GetGreensInType?TypeName=" + TypeName);
             var list = JsonConvert.DeserializeObject<List<ViewModel>>(json);
             return View(list);
         }
-        public ActionResult Map()
+        //支付结果
+        public ActionResult Payment_results()
         {
             return View();
         }
