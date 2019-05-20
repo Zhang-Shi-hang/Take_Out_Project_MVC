@@ -1,0 +1,68 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>OrderParticulars</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <div>
+            @foreach (var i in Model)
+            {
+                <table>
+                    <tr>
+                        <td>订单编号:</td>
+                        <td>@i.Oen</td>
+                    </tr>
+                    <tr>
+                        <td>订单时间:</td>
+                        <td>@i.OrderTime</td>
+                    </tr>
+                    <tr>
+                        <td>以下菜品:</td>
+                        <td>
+                            <input id="orderid" type="hidden" value="@i.OrderId" />
+                            <table id="td"></table>
+                            <div>
+
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            }
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $(function () {
+        var OrderId = $("#orderid").val();
+        Menu(OrderId);
+    })
+    function Menu(OrderId) {
+        $.ajax({
+            url: "http://localhost:50037/api/wqb/ShowMenu?OrderId="+OrderId,
+            type: "get",
+            success: function (data) {
+                $(data).each(function () {
+                    var line = '<tr>'
+                        + '<td><img src="' + this.GreensImgUrl + '" alt="Alternate Text" /></td>'
+                        + '<td>' + this.GreensName + '</td>'
+                        + '<td>' + this.Gnum + '</td>'
+                        + '<td>' + this.GreensPrice + '</td>'
+                        + '</tr>'
+                    $("#td").append(line);
+                })
+            }
+        })
+    }
+</script>

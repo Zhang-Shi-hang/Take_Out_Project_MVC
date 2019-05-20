@@ -1,0 +1,117 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html style="width:100%;height:100%">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Refund</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <style>
+        .select {
+		display: inline-block;
+		width: 350px;
+		position: relative;
+		vertical-align: middle;
+		padding: 0;
+		overflow: hidden;
+		background-color: #fff;
+		color: #555;
+		border: 1px solid #aaa;
+		text-shadow: none;
+		border-radius: 4px;	
+		transition: box-shadow 0.25s ease;
+		z-index: 2;
+        margin-top:10px;
+	}
+ 
+	.select:hover {
+		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+	}
+ 
+	.select:before {
+		content: "";
+		position: absolute;
+		width: 0;
+		height: 0;
+		border: 10px solid transparent;
+		border-top-color: #ccc;
+		top: 14px;
+		right: 10px;
+		cursor: pointer;
+		z-index: -2;
+	}
+	.select select {
+		cursor: pointer;
+		padding: 10px;
+		width: 100%;
+		border: none;
+		background: transparent;
+		background-image: none;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+	}
+ 
+	.select select:focus {
+		outline: none;
+	}
+    </style>
+</head>
+<body style="width:100%;height:100%;background-color:#fbf7f7;margin-top:-40px;">
+    <div style="width:100%;height:100%;">
+        <h2 style="text-align:center;margin-top:40px;">
+            <img src="~/images/返回图片.jpg" style="width:25px;height:25px;float:left;margin-left:20px;margin-top:5px;cursor:pointer;" onclick="window.history.back(-1)"/>申请退款
+        </h2>
+        <div style="margin-left:40px;margin-top:10px;">
+            <h4>退款原因:</h4>
+            <div class="select">
+                <select name="cars">
+                    <option value="volvo">申请退款</option>
+                    <option value="saab">申请退款</option>
+                    <option value="opel" selected>申请退款</option>
+                    <option value="audi">申请退款</option>
+                </select>
+            </div>
+            <h4 style="margin-top:60px;">退款说明:</h4>
+            <div style="margin-top:30px;">
+                <textarea style="border:0;border-radius:5px;background-color:rgba(241,241,241,.98);width: 355px;height: 150px;padding: 10px;resize: none;" placeholder="请输入退款说明"></textarea>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    var id = "@Session["id"]";
+    $(function () {
+        Show();
+    })
+    function Show() {
+        $.ajax({
+            url: "http://localhost:50037/api/wqb/OrderShow?id=" + id,
+            Type: "get",
+            dataType: "json",
+            success: function (data) {
+                $("#tby").empty();
+                $(data).each(function () {
+                    if (this.OrderStatic == 3) {
+                        var obj = '<tr>'
+                            + '<td>' + this.Oen + '</td>'
+                            + '<td>' + this.OrderStatic + '</td>'
+                            + '<td><input id="Button1" type="button" value="申请退款" class="btn-danger btn" onclick="refund(' + this.OrderId+')"/></td>'
+                            + '</tr>'
+                        $("#tby").append(obj);
+                    }
+                })
+            }
+        })
+    }
+    function refund(id) {
+
+        }
+
+</script>

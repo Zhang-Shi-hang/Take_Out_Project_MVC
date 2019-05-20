@@ -13,5 +13,19 @@ namespace Take_Out_Project_MVC.Controllers
         {
             return View();
         }
+        public ActionResult Template()
+        {
+            return View();
+        }
+        public ActionResult PlanB()
+        {
+            return View();
+        }
+        public void Cookie()
+        {
+            HttpCookie httpCookie = new HttpCookie("UserName");
+            var Cook= httpCookie.Value;
+
+        }
     }
 }
