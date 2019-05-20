@@ -196,6 +196,7 @@
     <Content Include="Views\Default\Template.cshtml" />
     <Content Include="Views\Wqb\Main.cshtml" />
     <Content Include="Views\Wqb\RefundShow.cshtml" />
+    <Content Include="Views\Default\Map.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
