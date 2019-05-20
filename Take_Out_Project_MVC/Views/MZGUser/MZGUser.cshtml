@@ -88,8 +88,7 @@
 <script type="text/javascript">
     $(function () {
         var regconfig = [
-            { eleinput: "login_phone", eletext: "login_phone_text", rule: [{ reg: /^.+$/, text: "手机号不能为空" }, { reg: /^1[34578]\d{9}$/, text: "手机号格式错误" }] },
-            { eleinput: "login_password", eletext: "login_password_text", rule: [{ reg: /^.+$/, text: "验证码不能为空" }] }
+            { eleinput: "login_phone", eletext: "login_phone_text", rule: [{ reg: /^.+$/, text: "手机号不能为空" }, { reg: /^1[34578]\d{9}$/, text: "手机号格式错误" }] }
         ];
         tbdValidate(
             regconfig,

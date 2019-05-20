@@ -121,8 +121,8 @@ namespace Take_Out_Project_MVC.Models
         /// 优惠表
         /// </summary>
         public Guid DiscountsId { get; set; }//优惠主键
-        public int FavourablePrice { get; set; }//优惠价格
-        public int SustainDay { get; set; }//优惠券有效天数
+        public decimal FavourablePrice { get; set; }//优惠价格
+        public DateTime SustainDay { get; set; }//优惠券有效天数
         public int DiscountStatic { get; set; }//优惠券状态
         #endregion
         //外键
