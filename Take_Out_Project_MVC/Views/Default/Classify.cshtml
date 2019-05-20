@@ -7,9 +7,13 @@
 
 <html>
 <head>
+
+    <title>订单页面</title>
+
     <meta name="viewport" content="width=device-width" />
-    <title>PlanB</title>
     <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/lunbo.css" rel="stylesheet" />
     <style>
         html, body, div, p, form, label, ul, li, dl, dt, dd, ol, img, button, b, em, strong, small, h1, h2, h3, h4, h5, h6 {
             margin: 0;
@@ -233,22 +237,33 @@
                 color: #fff;
                 font-weight: bold;
             }
-        .say{
-            margin-top:10px;
+
+        .say {
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
+
     <div class="main">
+        <header class="aui-navBar aui-navBar-fixed">
+            <a href="javascript:;" class="aui-navBar-item">
+                <i class="icon icon-return"></i><span>枫叶餐厅</span>
+            </a>
+            <div class="aui-center">
+                <span class="aui-center-title"></span>
+            </div>
+            <a href="javascript:;" class="aui-navBar-item">
+                <i class="icon icon-news"></i>
+            </a>
+        </header>
         <div class="left-menu">
             <ul id="UlGreensType"></ul>
         </div>
         <div class="con">
             @*菜品显示*@
             <div class="right-con con-active" style="">
-                <ul id="UlGreensInType">
-                    
-                </ul> 
+                <ul id="UlGreensInType"></ul>
             </div>
         </div>
         <br />
@@ -264,7 +279,7 @@
                 </span>元
             </div>
             <div class="right">
-                <a id="btnselect" class="xhlbtn  disable" onclick="InsertOrderTable()" >去结算</a>
+                <a id="btnselect" class="xhlbtn  disable" onclick="InsertOrderTable()">去结算</a>
             </div>
         </div>
     </div>
@@ -361,7 +376,7 @@
             dataType: "json",
             success: function (data) {
                 //清除Ul的格式数据
-                $("#UlGreensInType").empty();                           
+                $("#UlGreensInType").empty();
                 $(data).each(function () {
                     //添加入UL尾部
                     var obj = '<li>'
@@ -425,7 +440,7 @@
 
     //生成明细表数据
     function InsertDetailTable() {
-        
+
     }
 </script>
 

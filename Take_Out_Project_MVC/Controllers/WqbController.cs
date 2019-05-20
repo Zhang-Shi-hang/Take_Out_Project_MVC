@@ -40,7 +40,7 @@ namespace Take_Out_Project_MVC.Controllers
         /// <param name="UserId"></param>
         /// <param name="OrderId"></param>
         /// <returns></returns>
-        public ActionResult OrderParticulars(Guid UserId)
+        public ActionResult OrderParticulars(string UserId=null)
         {
             string json = HttpClientHelper.Sender("get", "OrderManage/OrderParticulars?UserId=" + UserId);
             var list = JsonConvert.DeserializeObject<List<ViewModel>>(json);

@@ -9,22 +9,36 @@ namespace Take_Out_Project_MVC.Controllers
     public class DefaultController : Controller
     {
         // GET: Default
-        public ActionResult Index()
-        {
-            return View();
-        }
         public ActionResult Template()
         {
             return View();
         }
-        public ActionResult PlanB()
+        //首页
+        public ActionResult Home()
         {
             return View();
         }
-        public ActionResult Map()
+        //订单页面
+        public ActionResult Classify()
         {
             return View();
         }
+        //订单备注信息
+        public ActionResult Order_notes()
+        {
+            return View();
+        }
+        //确认支付
+        public ActionResult Payment()
+        {
+            return View();
+        }
+        //支付结果
+        public ActionResult Payment_results()
+        {
+            return View();
+        }
+
 
     }
 }
