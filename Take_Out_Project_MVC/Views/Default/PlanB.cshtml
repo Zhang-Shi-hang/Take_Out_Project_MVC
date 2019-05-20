@@ -233,8 +233,9 @@
                 color: #fff;
                 font-weight: bold;
             }
-        .say{
-            margin-top:10px;
+
+        .say {
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -246,89 +247,108 @@
         <div class="con">
             @*菜品显示*@
             <div class="right-con con-active" style="">
-                <ul id="UlGreensInType">
-                    
-                </ul> 
+                <ul>
+                    @foreach (var i in Model)
+                    {
+                        <li>
+                            <div class="menu-img">
+                                <img src="@i.GreensImgUrl" width="55" height="55" />
+                            </div>
+                            <div class="menu-txt">
+                                <h4 id="GreensName"@i.GreensId>@i.GreensName</h4>
+                                <p class="list1">@i.GreensRemark</p>
+                                <p class="list2">
+                                    <b>@i.GreensPrice</b>
+                                </p><div class="btn">
+                                    <button class="minus" >
+                                        <strong></strong>
+                                    </button>
+                                    <i id="ii"@i.GreensId>0</i>
+                                    <button class="add" name="add" value="@i.GreensId">
+                                        <strong></strong>
+                                    </button>
+                                    <i class="price">@i.GreensPrice</i>
+                                </div>
+                                <p></p>
+                            </div>
+                        </li>
+                    }
+                    </ul>
+                </div>
+            </div>
+            <br />
+            <div class="footer">
+                <div class="left">
+                    已选：
+                    <span id="cartN">
+                        <span id="totalcountshow">0</span>份　总计：￥<span id="totalpriceshow">0</span>
+                    </span>元
+                </div>
+                <div class="right">
+                    <a id="btnselect" class="xhlbtn  disable" onclick="InsertDetailTable()">去结算</a>
+                </div>
             </div>
         </div>
-        <br />
-        <div class="say">
-            <input id="Radio1" type="radio" name="a" />到店自取 <input id="Radio2" type="radio" name="a" />外卖派送   <br />
-            备注:<textarea id="txtSay" rows="5" cols="30"></textarea>
-        </div>
-        <div class="footer">
-            <div class="left">
-                已选：
-                <span id="cartN">
-                    <span id="totalcountshow">0</span>份　总计：￥<span id="totalpriceshow">0</span>
-                </span>元
-            </div>
-            <div class="right">
-                <a id="btnselect" class="xhlbtn  disable" onclick="InsertOrderTable()" >去结算</a>
-            </div>
-        </div>
-    </div>
-</body>
+    </body>
 </html>
 <script type="text/javascript">
+    var str = [];
     $(function () {
         //加的效果
-	$(".add").click(function () {
-		$(this).prevAll().css("display", "inline-block");
-		var n = $(this).prev().text();
-		var num = parseInt(n) + 1;
-		if (num == 0) { return; }
-		$(this).prev().text(num);
-		var danjia = $(this).next().text();//获取单价
-		var a = $("#totalpriceshow").html();//获取当前所选总价
-		$("#totalpriceshow").html((a * 1 + danjia * 1).toFixed(2));//计算当前所选总价
+        $(".add").click(function () {
+            str.push($(".add").val());
+            $(this).prevAll().css("display", "inline-block");
+            var n = $(this).prev().text();
+            var num = parseInt(n) + 1;
+            if (num == 0) { return; }
+            $(this).prev().text(num);
+            var danjia = $(this).next().text();//获取单价
+            var a = $("#totalpriceshow").html();//获取当前所选总价
+            $("#totalpriceshow").html((a * 1 + danjia * 1).toFixed(2));//计算当前所选总价
+            
+            var nm = $("#totalcountshow").html();//获取数量
+            $("#totalcountshow").html(nm * 1 + 1);
+            jss();//<span style='font-family: Arial, Helvetica, sans-serif;'></span>   改变按钮样式
+        });
+        //减的效果
+        $(".minus").click(function () {
+            var n = $(this).next().text();
+            var num = parseInt(n) - 1;
 
-		var nm = $("#totalcountshow").html();//获取数量
-		$("#totalcountshow").html(nm*1+1);
-		jss();//<span style='font-family: Arial, Helvetica, sans-serif;'></span>   改变按钮样式
-	});
-	//减的效果
-	$(".minus").click(function () {
-		var n = $(this).next().text();
-		var num = parseInt(n) - 1;
+            $(this).next().text(num);//减1
 
-		$(this).next().text(num);//减1
+            var danjia = $(this).nextAll(".price").text();//获取单价
+            var a = $("#totalpriceshow").html();//获取当前所选总价
+            $("#totalpriceshow").html((a * 1 - danjia * 1).toFixed(2));//计算当前所选总价
 
-		var danjia = $(this).nextAll(".price").text();//获取单价
-		var a = $("#totalpriceshow").html();//获取当前所选总价
-		$("#totalpriceshow").html((a * 1 - danjia * 1).toFixed(2));//计算当前所选总价
+            var nm = $("#totalcountshow").html();//获取数量
+            $("#totalcountshow").html(nm * 1 - 1);
+            //如果数量小于或等于0则隐藏减号和数量
+            if (num <= 0) {
+                $(this).next().css("display", "none");
+                $(this).css("display", "none");
+                jss();//改变按钮样式
+                return
+            }
+        });
+        var Greens = [];
+        function jss() {
+            var m = $("#totalcountshow").html();
+            if (m > 0) {
+                Greens.push($("#GreensId").val());
+                $(".right").find("a").removeClass("disable");
 
-		var nm = $("#totalcountshow").html();//获取数量
-		$("#totalcountshow").html(nm * 1 - 1);
-		//如果数量小于或等于0则隐藏减号和数量
-		if (num <= 0) {
-			$(this).next().css("display", "none");
-			$(this).css("display", "none");
-			jss();//改变按钮样式
-			 return
-		}
-	});
-	function jss() {
-		var m = $("#totalcountshow").html();
-		if (m > 0) {
-			$(".right").find("a").removeClass("disable");
-		} else {
-		   $(".right").find("a").addClass("disable");
-		}
-	};
-
+            } else {
+                $(".right").find("a").addClass("disable");
+            }
+        };
         //选项卡
         $(".con>div").hide();
         $(".con>div:eq(0)").show();
-
-
         //菜品分类加载
         GetGreenTypeName();
 
     });
-
-
-
     //菜品分类加载
     function GetGreenTypeName() {
         $.ajax({
@@ -345,87 +365,47 @@
             }
         })
     }
-
     //菜品分类点击事件
     function Types(name) {
-        alert(name);
-        GetGreensInType(name);
+        location.href = "/Default/PlanB?TypeName=" + name;
     }
-
-
-    //菜品信息加载
-    function GetGreensInType(Typename) {
-        $.ajax({
-            url: "http://localhost:50037/api/Zrw/GetGreensInType?TypeName=" + Typename,
-            type: "get",
-            dataType: "json",
-            success: function (data) {
-                //清除Ul的格式数据
-                $("#UlGreensInType").empty();                           
-                $(data).each(function () {
-                    //添加入UL尾部
-                    var obj = '<li>'
-                      +'  <div class="menu-img">'
-                      +'      <img src="/images/pic.png" width="55" height="55" />'
-                      +'  </div>'
-                      +'  <div class="menu-txt">'
-                      + '      <h4>' + this.GreensName + '</h4>'
-                      + '      <p class="list1">' + this.GreensRemark + '</p>'
-                      + '      <p class="list2">'
-                      + '          <b>￥' + this.GreensPrice + '</b>'
-                      +'      </p><div class="btn">'
-                      +'          <button class="minus">'
-                      +'              <strong></strong>'
-                      +'          </button>'
-                      +'          <i>0</i>'
-                      +'          <button class="add" name="add" >'
-                      +'              <strong></strong>'
-                      + '          </button>'
-                      + '          <i class="price">' + this.GreensPrice + '</i>'
-                      +'      </div>'
-                      +'      <p></p>'
-                      +'  </div>'
-                      +' </li>'
-                      $("#UlGreensInType").append(obj);
-                })
-            }
-        })
-    }
-
     //提交订单
     function InsertOrderTable() {
-
         //随机数
         var Num = "";
-        for(var i=0;i<6;i++)
-        {
-            Num+=Math.floor(Math.random()*10);
-         }
-
+        for (var i = 0; i < 6; i++) {
+            Num += Math.floor(Math.random() * 10);
+        }
         var obj = new Object();
         obj.Oen = Num                                          //订单编号
         obj.Uid = "283799B4-CA3A-44EC-8482-84B07A30A38F"       //用户ID
         obj.Hid = "A6839414-EBA8-47C7-8C7B-F5827335370A"       //骑手ID
         obj.OrderStatic = 1                                    //订单状态
-        obj.OrderRemark = $("#txtSay").val()                   //备注
-        obj.RepastWay = $("#Radio1").prop("checked")           //到店自取or外卖派送
+        //obj.OrderRemark = $("#txtSay").val()                   //备注
+        obj.OrderPrice = $("#totalpriceshow").val();           //订单价格
+        //obj.RepastWay = $("#Radio1").prop("checked")           //到店自取or外卖派送
         $.ajax({
             url: "http://localhost:50037/api/Zrw/InsertOrderTable?str=" + JSON.stringify(obj),
             type: "get",
             dataType: "json",
             success: function (data) {
                 if (data > 0) {
-
+                    
                     //生成明细表数据
-                    InsertDetailTable()
+                    InsertDetailTable();
                 }
             }
         })
     }
 
     //生成明细表数据
-    function InsertDetailTable() {
-        
+    function InsertDetailTable(ind, va) {
+       var s= str;
+        console.log(s);
+        $.ajax({
+            url: "",
+
+        })
     }
 </script>
 

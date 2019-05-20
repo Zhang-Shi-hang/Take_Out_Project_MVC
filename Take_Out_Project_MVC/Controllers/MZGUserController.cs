@@ -15,8 +15,12 @@ namespace Take_Out_Project_MVC.Controllers
     {
         public string yzm { get; set; }
         // GET: MZGUser
-        public ActionResult MZGUser()
+        public ActionResult MZGUser(string UserId="")
         {
+            HttpCookie cookie = new HttpCookie("UserId");
+            cookie.Value =Server.UrlEncode(UserId);
+            cookie.Expires = DateTime.MaxValue;
+            Request.Cookies.Add(cookie);
             return View();
         }
         public string YanZheng(string Phone)

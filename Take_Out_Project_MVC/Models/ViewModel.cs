@@ -123,7 +123,7 @@ namespace Take_Out_Project_MVC.Models
         public Guid DiscountsId { get; set; }//优惠主键
         public decimal FavourablePrice { get; set; }//优惠价格
         public DateTime SustainDay { get; set; }//优惠券有效天数
-        public int DiscountStatic { get; set; }//优惠券状态
+        public bool DiscountStatic { get; set; }//优惠券状态
         #endregion
         //外键
         public Guid Uid { get; set; }//用户外键          评价表 优惠表 订单表 

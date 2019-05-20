@@ -20,9 +20,11 @@ namespace Take_Out_Project_MVC.Controllers
         /// </summary>
         /// <param name="id">用户id</param>
         /// <returns></returns>
-        public ActionResult OrderShow(string id = "317C1E7F-24E5-479E-8B4E-57867ADC6757")
+        public ActionResult OrderShow()
         {
-            Session["id"] = id;
+            HttpCookie cookie = Request.Cookies["UserId"];
+            string UserId = Server.UrlDecode(cookie.Value);
+            Session["id"] = UserId;
             return View();
         }
         /// <summary>
@@ -40,8 +42,10 @@ namespace Take_Out_Project_MVC.Controllers
         /// <param name="UserId"></param>
         /// <param name="OrderId"></param>
         /// <returns></returns>
-        public ActionResult OrderParticulars(Guid UserId)
+        public ActionResult OrderParticulars()
         {
+            HttpCookie cookie = Request.Cookies["UserId"];
+            string UserId = Server.UrlDecode(cookie.Value);
             string json = HttpClientHelper.Sender("get", "OrderManage/OrderParticulars?UserId=" + UserId);
             var list = JsonConvert.DeserializeObject<List<ViewModel>>(json);
             return View(list);
@@ -51,9 +55,11 @@ namespace Take_Out_Project_MVC.Controllers
         /// </summary>
         /// <param name="id">用户id</param>
         /// <returns></returns>
-        public ActionResult CommentShow(string id = "283799B4-CA3A-44EC-8482-84B07A30A38F")
+        public ActionResult CommentShow()
         {
-            Session["id"] = id;
+            HttpCookie cookie = Request.Cookies["UserId"];
+            string UserId = Server.UrlDecode(cookie.Value);
+            Session["id"] = UserId;
             return View();
         }
         /// <summary>
@@ -61,9 +67,11 @@ namespace Take_Out_Project_MVC.Controllers
         /// </summary>
         /// <param name="id">用户id</param>
         /// <returns></returns>
-        public ActionResult RefundShow(string id = "283799B4-CA3A-44EC-8482-84B07A30A38F")
+        public ActionResult RefundShow()
         {
-            Session["id"] = id;
+            HttpCookie cookie = Request.Cookies["UserId"];
+            string UserId = Server.UrlDecode(cookie.Value);
+            Session["id"] = UserId;
             return View();
         }
         public ActionResult Refund()
