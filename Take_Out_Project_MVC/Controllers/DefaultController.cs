@@ -21,11 +21,10 @@ namespace Take_Out_Project_MVC.Controllers
         {
             return View();
         }
-        public void Cookie()
+        public ActionResult PlanC()
         {
-            HttpCookie httpCookie = new HttpCookie("UserName");
-            var Cook= httpCookie.Value;
-
+            return View();
         }
+
     }
 }
