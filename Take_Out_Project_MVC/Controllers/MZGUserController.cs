@@ -19,10 +19,6 @@ namespace Take_Out_Project_MVC.Controllers
         {
             return View();
         }
-        public ActionResult MZGShow()
-        {
-            return View();
-        }
         public string YanZheng(string Phone)
         {
             yzm = SJS();
