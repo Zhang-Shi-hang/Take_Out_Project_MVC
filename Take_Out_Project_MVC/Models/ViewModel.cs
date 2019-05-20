@@ -71,7 +71,6 @@ namespace Take_Out_Project_MVC.Models
         public string OrderRemark { get; set; }//订单备注
         public decimal OrderPrice { get; set; }//订单价格
         public bool RepastWay { get; set; }//就餐方式
-        public decimal OrderSum { get; set; }//订单总价
         #endregion
 
         #region 店铺表

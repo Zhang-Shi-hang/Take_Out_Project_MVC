@@ -1,0 +1,69 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/Vue-2.6.10.js"></script>
+    <script src="~/Scripts/slider.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <title>Index</title>
+    <style>
+        .aui-flexView {
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+        }
+
+        .m-slider {
+            width: 92%;
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+            border-radius: 5px;
+        }
+    </style>
+
+</head>
+<body style="height:100%;width:100%">
+    <div style="width:100%;height:92%">
+        @RenderBody();
+    </div>
+    <div id="Box">
+        <footer class="aui-footer aui-footer-fixed">
+            <a href="/Default/Index" class="aui-tabBar-item aui-tabBar-item-active">
+                <span class="aui-tabBar-item-icon">
+                    <i class="icon icon-loan"></i>
+                </span>
+                <span class="aui-tabBar-item-text">首页</span>
+            </a>
+            <a href="/Wqb/Main" class="aui-tabBar-item ">
+                <span class="aui-tabBar-item-icon">
+                    <i class="icon icon-ions"></i>
+                </span>
+                <span class="aui-tabBar-item-text">订单</span>
+            </a>
+            <a href="Img" class="aui-tabBar-item ">
+                <span class="aui-tabBar-item-icon">
+                    <i class="icon icon-car"></i>
+                </span>
+                <span class="aui-tabBar-item-text">我的</span>
+            </a>
+        </footer>
+    </div>
+</body>
+</html>
