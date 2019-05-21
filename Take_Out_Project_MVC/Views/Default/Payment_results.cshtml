@@ -6,6 +6,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
     <link href="~/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/css/base.css" rel="stylesheet" />
     <link href="~/css/payment_results.css" rel="stylesheet" />
@@ -13,21 +14,21 @@
 <body>
 <div class="incomplete_order">
 	<p>支付成功</p>
-    <p>60.40</p>
+    <p><span id="Price"></span></p>
     <a href="../Wqb/OrderParticulars">查看详情</a>
 </div>
 <div class="main_info">
     <div class="hang">
     	<span>门店名称</span>
-        <span>味千拉面（上海长寿路二分店）</span>
+        <span>枫叶餐厅</span>
     </div>
     <div class="hang">
     	<span>交易时间</span>
-        <span>2018-09-01 12:45:23</span>
+        <span id="Time"></span>
     </div>
     <div class="hang">
     	<span>交易订单</span>
-        <span>34324325675987076635</span>
+        <span id="Oen"></span>
     </div>
 </div>
 <div class="invoice">
@@ -36,3 +37,28 @@
 </div>
 </body>
 </html>
+<script>
+    //全局变量
+    var aaa=Session["bh"]
+
+    //初始化函数
+    $(function () {
+        //查询订单详情
+        GetOrder()
+    })
+    //查询订单详情
+    function GetOrder() {
+        $.ajax({
+            url: "http://localhost:50037/api/Zrw/GetOrder?Oen=" + aaa,
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                $(data).each(function () {
+                    $("#Price").text(this.OrderPrice);
+                    $("#Time").text(this.OrderTime);
+                    $("#Oen").text(aaa);
+                })
+            }
+        })
+    }
+</script>

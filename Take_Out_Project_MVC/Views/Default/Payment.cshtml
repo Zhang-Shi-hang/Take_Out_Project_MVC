@@ -6,6 +6,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <link href="~/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/css/base.css" rel="stylesheet" />
     <link href="~/css/payment.css" rel="stylesheet" />
@@ -13,11 +14,11 @@
 <body>
 <div class="pay_top">
     <p>实付金额</p>
-    <p>¥ 60.4</p>
+    <p>¥ <span id="Price"></span></p>
 </div>
 <div class="invoice">
     <div>店铺名称</div>
-    <span>味千拉面（上海长寿路二分店）</span>
+    <span>枫叶餐厅</span>
 </div>
 <div class="invoice" style="margin-bottom:0;">
     <div class="wxlogo">微信支付</div>
@@ -28,7 +29,35 @@
     <input type="radio" name="payment" class="payment">
 </div>
 <div class="paydiv">
-    <a href="Payment_results"><button class="paybtn">确定付款</button></a>
+    <a onclick="Jump()"><button class="paybtn">确定付款</button></a>
 </div>
 </body>
 </html>
+<script>
+    //全局变量
+    var aaa=Session["bh"]
+
+    //初始化函数
+    $(function () {
+        GetOrder()
+    })
+    //查询订单详情
+    function GetOrder() {
+        $.ajax({
+            url: "http://localhost:50037/api/Zrw/GetOrder?Oen=" + aaa,
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                $(data).each(function () {
+                    $("#Price").text(this.OrderPrice)
+                })
+            }
+        })
+    }
+
+    //跳转页面
+    function Jump() {
+        location.href = "Payment_results?oen=" + aaa;
+    }
+
+</script>
