@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Take_Out_Project_MVC.Models.ViewModel>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <title>ZQYH</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body style="width:100%;background-color:lavender">
+    <div>
+        <table style="width:100%;">
+            <tr style="background-color:#f9b82c;height 0:60px;text-align:center;color:white;">
+                <td style="text-align:left;color:white;">
+                    <img src="~/UserImg/fh.jpg" onclick="location.href='/ZQ/ZQIndex'" height="50" />
+                </td>
+                <td>
+                    <sapn style="height:30px"><b style="font-size:30px">优惠劵</b></sapn>
+                </td>
+                <td>　　　　</td>
+            </tr>
+        </table>
+   
+
+        @foreach (var item in Model)
+        {
+            <br />
+            <table style="width:92%;margin-left:4%;height:160px;">
+                <tr>
+                    <td style="width:64%;background-color:#f0aa2e;text-align:center;font-size:17px;height:30%">
+                        <b>优惠劵使用规则</b><br />
+                        1.在购买商品时使用 <br />
+                        2.一张优惠劵只有一次使用机会 <br />
+                        3.只能在规定时间内使用
+                    </td>
+                    <td style="background-color:#e56814;text-align:center;width:36%;">
+                        <span style="font-size:41px;color:white">@string.Format("{0:C0}", item.FavourablePrice)</span>
+                    </td>
+                </tr>
+            </table>
+        }
+
+    </div>
+</body>
+</html>

@@ -90,6 +90,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="aaa.png" />
     <Content Include="bootstrap-3.3.7\css\bootstrap-theme.css" />
     <Content Include="bootstrap-3.3.7\css\bootstrap-theme.min.css" />
     <Content Include="bootstrap-3.3.7\css\bootstrap.css" />
@@ -101,19 +102,38 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <None Include="Views\ZQ\UptShow.cshtml" />
+    <Content Include="css\style.css" />
+    <Content Include="js\cityPicker.js" />
+    <Content Include="js\framework7.min.js" />
+    <Content Include="js\jquery.min.js" />
+    <Content Include="js\regionsObject2.js" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="data\regionsArray.json" />
+    <Content Include="data\regionsObject.json" />
+    <Content Include="data\regionsObject2.json" />
+    <Content Include="data\regionsOriginal.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="UserImg\bj.jpg" />
+    <Content Include="UserImg\dd.jpg" />
+    <Content Include="UserImg\fh.jpg" />
+    <Content Include="UserImg\gr.jpg" />
+    <Content Include="UserImg\jf.jpg" />
+    <Content Include="UserImg\tc.jpg" />
+    <Content Include="UserImg\wf.jpg" />
+    <Content Include="UserImg\yh.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\WqbController.cs" />
+    <Compile Include="Controllers\ZQController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -138,6 +158,9 @@
     <Content Include="Views\Wqb\Comment.cshtml" />
     <Content Include="Views\Wqb\CommentShow.cshtml" />
     <Content Include="Views\Wqb\Refund.cshtml" />
+    <Content Include="Views\ZQ\ZQIndex.cshtml" />
+    <Content Include="Views\ZQ\ZQYH.cshtml" />
+    <Content Include="Views\ZQ\ZQJF.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
