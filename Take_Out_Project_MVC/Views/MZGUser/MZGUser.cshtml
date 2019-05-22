@@ -1,0 +1,209 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="~/js/jquery.js"></script>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="~/js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/js/form.js"></script>
+</head>
+<body>
+    <section class="aui-flexView">
+        <header class="aui-navBar aui-navBar-fixed">
+            <a href="javascript:;" class="aui-navBar-item">
+                <i class="icon icon-return"></i>
+            </a>
+            <div class="aui-center">
+                <span class="aui-center-title"></span>
+            </div>
+            <a href="javascript:;" class="aui-navBar-item">
+                <i class="icon icon-info"></i>
+            </a>
+        </header>
+        <section class="aui-scrollView">
+
+            <div class="aui-account-title">
+                <h1>账号登录</h1>
+            </div>
+
+            <div class="aui-account-input">
+                <div class="b-line">
+                    <input type="text" placeholder="请输入手机号码" id="login_phone">
+                    <label class="err err-top40" id="login_phone_text">手机号错误</label>
+                </div>
+                <div class="">
+                    <input class="password" type="password" style="float:left; width:300px;" placeholder="验证码 " id="login_password">
+                    <label class="err err-top40" id="login_password_text" style="width:20%">验证码</label>
+                    <button class="msgs" style="float:right;height:43px;width:20%;background-color:#c9e9ea;">获取验证码</button>
+                </div>
+            </div>
+            <div class="aui-account-button">
+                <button id="login_submit" style="cursor:pointer">登录</button>
+            </div>
+
+
+            <div class="aui-account-footer">
+                <div class="aui-account-footer-title">
+                    <h2>其它登录方式</h2>
+                </div>
+                <div class="aui-palace">
+                    <a href="javascript:;" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <img src="~/images/wx.png" alt="">
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>微信</h2>
+                        </div>
+                    </a>
+                    <a href="javascript:;" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <img src="~/images/wb.png" alt="">
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>微博</h2>
+                        </div>
+                    </a>
+                    <a href="javascript:;" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <img src="~/images/qq.png" alt="">
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>QQ</h2>
+                        </div>
+                        <input id="dd" type="hidden" />
+                    </a>
+                    <input id="sid" type="hidden" />
+                    <input id="uid" type="hidden" />
+                </div>
+            </div>
+        </section>
+    </section>
+</body>
+</html>
+<script type="text/javascript">
+    $(function () {
+        var regconfig = [
+            { eleinput: "login_phone", eletext: "login_phone_text", rule: [{ reg: /^.+$/, text: "手机号不能为空" }, { reg: /^1[34578]\d{9}$/, text: "手机号格式错误" }] }
+        ];
+        tbdValidate(
+            regconfig,
+            {
+                elesubmit: "login_submit",//提交按钮
+                funsubmit: function () {//验证通过可提交回调
+                    $.ajax({
+                        url: "http://localhost:50037/api/MZGUser/Show",
+                        type: "get",
+                        data: { UserPhone: $("#login_phone").val() },
+                        success: function (data) {
+                            if (data == true) {
+                                var date = $(".password").val();
+                                if (date == $("#dd").val()) {
+                                    alert("登陆成功");
+                                    location.href = "/MZGUser/Show";
+                                }
+                            }
+
+                            else {
+
+                                $.ajax({
+                                    url: "http://localhost:50037/api/MZGUser/UserAdd",
+                                    type: "post",
+                                    data: { UserPhone: $("#login_phone").val() },
+                                    success: function () {
+                                        var date = $(".password").val();
+                                        if (date == $("#dd").val()) {
+                                            alert("登陆成功");
+                                           
+                                            $.ajax({
+                                                url: "http://localhost:50037/api/MZGUser/UserInfoShow",
+                                                type: "get",
+                                                data: { UserPhone: $("#login_phone").val() },
+                                                success: function (data) {
+                                                    $("#uid").val(data);
+                                                    ShowSid();
+                                                }
+                                            });
+                                        }
+                                        else {
+                                            alert("登陆失败");
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    });
+                    //信息提交接口
+                },
+                funerr: function () {//不可提交回调
+                },
+                funerrlist: function (errlist) {
+                    $('#' + errlist[0]).focus();
+                }
+            }
+        );
+
+    });
+    function ShowSid() {
+        $.ajax({
+            url: "http://localhost:50037/api/MZGUser/ShopTableShow",
+            type: "get",
+            success: function (data) {
+                $("#sid").val(data);
+                AddDiscounts();
+            }
+        });
+    }
+    function AddDiscounts() {
+        if ($("#uid").val() != "" && $("#sid").val() != "") {
+            $.ajax({
+                url: "http://localhost:50037/api/MZGUser/DiscountsTableAdd",
+                type: "post",
+                data: { Sid: $("#sid").val(), Uid: $("#uid").val() },
+                success: function (data) {
+                    if (data > 0) {
+                        alert("已赠送您100元代金券");
+                    }
+
+                }
+            });
+        }
+    }
+</script>
+<script type="text/javascript" src="~/js/jquery.js"></script>
+<script type="text/javascript">
+    $(function () {
+        //获取短信验证码
+        var validCode = true;
+        $(".msgs").click(function () {
+            $.ajax({
+                        url: "/MZGUser/YanZheng?Phone=" + $("#login_phone").val(),
+                        type: "get",
+                success: function (date) {
+                    $("#dd").val(date)
+                        }
+                    });
+            var time = 60;
+            var code = $(this);
+            if (validCode) {
+                validCode = false;
+                code.addClass("msgs1");
+                var t = setInterval(function () {
+                    time--;
+                    code.html(time + "秒");
+                    if (time == 0) {
+                        clearInterval(t);
+                        code.html("重新获取");
+                        validCode = true;
+                        code.removeClass("msgs1");
+
+                    }
+                }, 1000)
+            }
+        })
+    })
+</script>

@@ -5,28 +5,121 @@
 
 <!DOCTYPE html>
 
-<html>
+<html style="        width: 100%;
+        height: 100%;">
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Comment</title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome core CSS -->
+    <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        .rating-stars {
+            width: 100%;
+            text-align: center;
+        }
+                .rating-stars .rating-stars-container .rating-star {
+                    display: inline-block;
+                    font-size: 32px;
+                    color: #555555;
+                    cursor: pointer;
+                    padding: 5px 10px;
+                }
+                    .rating-stars .rating-stars-container .rating-star.is--active,
+                    .rating-stars .rating-stars-container .rating-star.is--hover {
+                        color: #f1c40f;
+                    }
+                    .rating-stars .rating-stars-container .rating-star.is--no-hover {
+                        color: #555555;
+                    }
+    </style>
 </head>
-<body>
-    <div>
-        <textarea id="TextArea1" rows="2" cols="20"></textarea>
-        <input id="Button1" type="button" value="提交" class="btn-danger btn" onclick="Add()"/>
+<body style="        width: 100%;
+        height: 100%;
+        background-color: #f4f1f1;
+        margin-top: -70px;">
+    <a href="#" style="        font-size: 55px;
+        position: relative;
+        left: 3%;
+        top: 10px;
+        color: #cdc7c7;
+        text-decoration: none;"onclick="window.history.back(-1)">×</a>
+    <span style="        margin-left: 5%;
+        font-size: 30px;
+        position: relative;
+        color: #535050">评价</span>
+    <div style="        width: 94%;
+        height: 85%;
+        background-color: white;
+        margin-left: 3%;
+        clear: none;
+        padding-top: 230px;">
+        <div class="rating-stars block" style="margin-top:-160px;">
+            <div class="rating-stars-container">
+                <div class="rating-star">
+                    <i class="fa fa-star"></i>
+                </div>
+                <div class="rating-star">
+                    <i class="fa fa-star"></i>
+                </div>
+                <div class="rating-star">
+                    <i class="fa fa-star"></i>
+                </div>
+                <div class="rating-star">
+                    <i class="fa fa-star"></i>
+                </div>
+                <div class="rating-star">
+                    <i class="fa fa-star"></i>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top:150px;">
+            <textarea id="TextArea1" rows="6" cols="50" placeholder="商家的服务很棒,菜很好吃!" style="font-size:15px;background-color: #f4f1f1;width: 100%;display: block;margin: auto;vertical-align: middle;"></textarea>
+        </div>
+    </div>
+    <div style="position: relative;
+    top: 55px;width: 100%;
+        background-color: #fad32e;
+        height: 8%;">
+        <h3 onclick="Add()" style="cursor:pointer;text-align: center;
+        line-height: 55px">
+            提交
+        </h3>
     </div>
 </body>
 </html>
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/jquery.rating-stars.min.js"></script>
 <script>
+    var CommentScore = "";
+    var ratingOptions = {
+        selectors: {
+            starsSelector: '.rating-stars',
+            starSelector: '.rating-star',
+            starActiveClass: 'is--active',
+            starHoverClass: 'is--hover',
+            starNoHoverClass: 'is--no-hover',
+            targetFormElementSelector: '.rating-value'
+        }
+    };
+    $(".rating-stars").ratingStars(ratingOptions);
+
+    $(".rating-stars").on("ratingOnEnter", function (ev, data) {
+        CommentScore = data.ratingValue;
+    });
+    $(document.body).css({
+        "overflow-x": "hidden",
+        "overflow-y": "hidden"
+    });
     function Add() {
         var obj = new Object();
         obj.Oid = 0;
         obj.Uid = 0;
-        obj.OrderId = 0;
         obj.CommentContent = $("TextArea1").val();
+        obj.CommentScore = CommentScore;
         $.ajax({
             url: "http://localhost:50037/api/wqb/Comment?str=" + JSON.stringify(obj),
             type: "get",

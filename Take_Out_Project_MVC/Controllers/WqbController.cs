@@ -11,12 +11,16 @@ namespace Take_Out_Project_MVC.Controllers
     public class WqbController : Controller
     {
         // GET: Wqb
+        public ActionResult Main()
+        {
+            return View();
+        }
         /// <summary>
         /// 全部订单显示
         /// </summary>
         /// <param name="id">用户id</param>
         /// <returns></returns>
-        public ActionResult OrderShow(string id = "283799B4-CA3A-44EC-8482-84B07A30A38F")
+        public ActionResult OrderShow(string id = "317C1E7F-24E5-479E-8B4E-57867ADC6757")
         {
             Session["id"] = id;
             return View();
@@ -36,7 +40,7 @@ namespace Take_Out_Project_MVC.Controllers
         /// <param name="UserId"></param>
         /// <param name="OrderId"></param>
         /// <returns></returns>
-        public ActionResult OrderParticulars(Guid UserId)
+        public ActionResult OrderParticulars(string UserId=null)
         {
             string json = HttpClientHelper.Sender("get", "OrderManage/OrderParticulars?UserId=" + UserId);
             var list = JsonConvert.DeserializeObject<List<ViewModel>>(json);
@@ -57,9 +61,13 @@ namespace Take_Out_Project_MVC.Controllers
         /// </summary>
         /// <param name="id">用户id</param>
         /// <returns></returns>
-        public ActionResult Refund(string id = "283799B4-CA3A-44EC-8482-84B07A30A38F")
+        public ActionResult RefundShow(string id = "283799B4-CA3A-44EC-8482-84B07A30A38F")
         {
             Session["id"] = id;
+            return View();
+        }
+        public ActionResult Refund()
+        {
             return View();
         }
     }

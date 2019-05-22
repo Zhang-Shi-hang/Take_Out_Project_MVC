@@ -1,0 +1,184 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>订单备注页面</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/css/base.css" rel="stylesheet" />
+    <link href="~/css/order_notes.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="Box1">
+        <div class="incomplete_order">
+            <p>待付款</p>
+            <p>支付完成后订单才会下到厨房呦</p>
+        </div>
+        <div class="main">
+            <div class="invoice">
+                <div>已点<span id="Count"></span>个菜品</div>
+            </div>
+            <ul class="food_list" id="OrderUl">
+                
+            </ul>
+            <div class="invoice">
+                <div>
+                    <span>就餐方式：</span>
+                    <select id="GreensType" class="myselect">
+                        <option value="0">到店自取</option>
+                        <option value="1">外卖派送</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="invoice">
+                <div>备注</div>
+                <textarea id="GreensSay" class="remark" placeholder="请输入您想说的"></textarea>
+            </div>
+            <div class="invoice total">
+                <div>菜品小计：</div>
+                <div class="food_price">¥ <span id="Price"></span></div>
+            </div>
+            <div class="invoice">
+                <div>优惠券：</div>
+                <select id="Discounts" class="myselect">
+                    
+                </select>
+            </div>
+            <div class="total_price">合计：<span id="EndPrice">¥ </span></div>
+        </div>
+        <div class="pay_notice">15分钟内未支付系统将自动取消订单</div>
+        <div class="btn">
+            <button class="btn1">取消订单</button>
+            <a onclick="Payment()" ><button class="btn2"  >付款</button></a>
+        </div>
+
+    </div>
+
+
+
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+
+</body>
+</html>
+<script>
+    //全局变量
+    var CountNum = 0;    //份数
+    var PriceSum = 0;    //总价
+    var aaa = Session["bh"]  //订单编号
+    var Uid= Session["uid"]  //用户ID
+
+    //初始化函数
+    $(function () {
+        setInterval(function () {
+            $("#Price").text(parseInt(PriceSum));
+            var a = PriceSum
+            var b = $("#Discounts").text();
+            var c = parseFloat(a) - parseFloat(b);
+            $("#EndPrice").text(parseFloat(c))
+        }, 500)
+
+        //根据订单编号查询菜品明细
+        GetDetailInOen()
+    })
+
+    //根据订单编号查询菜品明细
+    function GetDetailInOen() {
+        $.ajax({
+            url: "http://localhost:50037/api/Zrw/GetDetailInOen?OenNum=" + aaa,
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                $("#OrderUl").empty();
+                $(data).each(function () {
+                    PriceSum += this.Gprice;
+                    var obj = '<li class="food_li">'
+                        + '     <img src="~/images/卡布奇诺咖啡.jpg"  class="food_li_left" />'
+                        + '     <div class="food_li_middle">'
+                        + '          <div>'
+                        + '            <p>' + this.GreensName + '</p>'
+                        + '          <p>' + this.GreensType + '</p>'
+                        + '        <p>' + this.Gnum + '</p>'
+                        + '      </div>'
+                        + '      <div class="food_li_price">¥' + this.Gprice + '</div>'
+                        + '     </div>'
+                        + ' </li>'
+                    $("#OrderUl").append(obj);
+                })
+                //根据订单编号查询菜品数量
+                GetCount();
+            }
+        })
+    }
+
+    //根据订单编号查询菜品数量
+    function GetCount() {
+        $.ajax({
+            url: "http://localhost:50037/api/Zrw/GetCount?OenNum=" + aaa,
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                a = data;
+                $("#Count").text(a);
+
+                //根据用户Id查询优惠券信息
+                GetDiscountsTable();
+            }
+        })
+    }
+
+    //根据用户Id查询优惠券信息
+    function GetDiscountsTable() {
+        $.ajax({
+            url: "http://localhost:50037/api/Zrw/GetDiscountsTable?Uid=" + Uid,
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                //清空下拉框
+                $("#Discounts").empty();
+                $(data).each(function () {
+                    var opt = '<option value="' + this.DiscountsId + '">' + this.FavourablePrice + '</option>'
+                    $("#Discounts").append(opt);
+                })
+
+                //根据用户Id查询优惠券信息
+                GetDiscountsTable();
+            }
+        })
+    }
+
+    //付款(修改优惠券状态并跳转页面)
+    function Payment() {
+        $.ajax({
+            url: "http://localhost:50037/api/Zrw/UpdateDiscounts?Uid=" + Uid,
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                if (data > 0) {
+                    //修改订单备注和就餐方式
+                    UpdateOrderInSay();
+                }
+            }
+        })
+    }
+
+    //修改订单备注和就餐方式
+    function UpdateOrderInSay() {
+        var obj = new Object();
+        obj.RepastWay = $("#GreensType").val();
+        obj.OrderRemark = $("#GreensSay").val();
+        obj.OrderPrice = $("#EndPrice").text();
+        obj.Oen=aaa
+        $.ajax({
+            url: "http://localhost:50037/api/Zrw/UpdateOrderInSay?str=" + JSON.stringify(obj),
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                if (data > 0) {
+                    location.href = "Payment?oen=" + aaa;
+                }
+            }
+        })
+    }
+
+</script>

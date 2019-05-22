@@ -45,11 +45,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\第三方控件\UseDll\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.6.9.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.6.9\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -101,6 +103,7 @@
     <Content Include="bootstrap-3.3.7\js\npm.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\lunbo.css" />
     <Content Include="Content\Site.css" />
     <None Include="Views\ZQ\UptShow.cshtml" />
     <Content Include="css\style.css" />
@@ -108,7 +111,87 @@
     <Content Include="js\framework7.min.js" />
     <Content Include="js\jquery.min.js" />
     <Content Include="js\regionsObject2.js" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="css\base.css" />
+    <Content Include="css\classify.css" />
+    <Content Include="css\evaluate.css" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="css\order_notes.css" />
+    <Content Include="css\payment.css" />
+    <Content Include="css\payment_results.css" />
+    <Content Include="css\style.css" />
+    <Content Include="css\weui.min.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
+    <Content Include="images\ad-001.png" />
+    <Content Include="images\ad-002.png" />
+    <Content Include="images\ad-003.png" />
+    <Content Include="images\ad-004.png" />
+    <Content Include="images\add.png" />
+    <Content Include="images\banner.png" />
+    <Content Include="images\cart.png" />
+    <Content Include="images\check.png" />
+    <Content Include="images\checkbox_n.png" />
+    <Content Include="images\checkbox_y.png" />
+    <Content Include="images\checke.png" />
+    <Content Include="images\close.png" />
+    <Content Include="images\demo.jpg" />
+    <Content Include="images\down.png" />
+    <Content Include="images\hua.png" />
+    <Content Include="images\huae.png" />
+    <Content Include="images\huah.png" />
+    <Content Include="images\icon-add.png" />
+    <Content Include="images\icon-food-001.png" />
+    <Content Include="images\icon-food-002.png" />
+    <Content Include="images\icon-food-003.png" />
+    <Content Include="images\icon-food-004.png" />
+    <Content Include="images\icon-food-005.png" />
+    <Content Include="images\icon-food-006.png" />
+    <Content Include="images\icon-food-007.png" />
+    <Content Include="images\icon-food-008.png" />
+    <Content Include="images\icon-food-009.png" />
+    <Content Include="images\icon-food-010.png" />
+    <Content Include="images\icon-food-011.png" />
+    <Content Include="images\icon-food-012.png" />
+    <Content Include="images\icon-food-013.png" />
+    <Content Include="images\icon-food-014.png" />
+    <Content Include="images\icon-food-015.png" />
+    <Content Include="images\invoice.png" />
+    <Content Include="images\jycg.png" />
+    <Content Include="images\left.png" />
+    <Content Include="images\minus.png" />
+    <Content Include="images\news.png" />
+    <Content Include="images\pic.png" />
+    <Content Include="images\seller_avatar_256px.jpg" />
+    <Content Include="images\sell_out.png" />
+    <Content Include="images\sell_out1.png" />
+    <Content Include="images\shalou.png" />
+    <Content Include="images\star_empty.png" />
+    <Content Include="images\star_full.png" />
+    <Content Include="images\success_icon.png" />
+    <Content Include="images\T骨牛排.png" />
+    <Content Include="images\up.png" />
+    <Content Include="images\wxlogo.png" />
+    <Content Include="images\zfblogo.png" />
+    <Content Include="images\卡布奇诺咖啡.jpg" />
+    <Content Include="images\威士忌.jpg" />
+    <Content Include="images\店铺头像.jpg" />
+    <Content Include="images\枫叶1.jpg" />
+    <Content Include="images\枫叶2.jpg" />
+    <Content Include="images\枫叶3.jpg" />
+    <Content Include="images\枫叶4.jpg" />
+    <Content Include="images\枫叶5.jpg" />
+    <Content Include="images\火腿芝士三明治.png" />
+    <Content Include="images\西冷牛排.png" />
+    <Content Include="images\返回图片.jpg" />
+    <Content Include="images\黑椒牛柳炒意粉.png" />
+    <Content Include="js\add.js" />
+    <Content Include="js\weui.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="data\regionsArray.json" />
@@ -127,11 +210,52 @@
     <Content Include="UserImg\tc.jpg" />
     <Content Include="UserImg\wf.jpg" />
     <Content Include="UserImg\yh.jpg" />
+    <Content Include="images\.DS_Store" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.rating-stars.js" />
+    <Content Include="Scripts\jquery.rating-stars.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\lunbo.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\slider.js" />
+    <Content Include="Scripts\Vue-2.6.10.js" />
+    <Content Include="images\bg.png" />
+    <Content Include="images\enter.png" />
+    <Content Include="images\grass.jpg" />
+    <Content Include="images\login_bg.png" />
+    <Content Include="images\password.png" />
+    <Content Include="images\qq.png" />
+    <Content Include="images\user.png" />
+    <Content Include="images\wb.png" />
+    <Content Include="images\wx.png" />
+    <Content Include="js\jquery.js" />
+    <Content Include="js\form.js" />
+    <Content Include="js\jquery.min.js" />
+    <Content Include="Views\Default\Classify.cshtml" />
+    <Content Include="Views\Default\Home.cshtml" />
+    <None Include="Views\Default\Order_notes.cshtml" />
+    <None Include="Views\Default\Payment.cshtml" />
+    <None Include="Views\Default\Payment_results.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\MZGUserController.cs" />
     <Compile Include="Controllers\WqbController.cs" />
     <Compile Include="Controllers\ZQController.cs" />
     <Compile Include="Global.asax.cs">
@@ -143,15 +267,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <Content Include="bootstrap-3.3.7\css\bootstrap-theme.css.map" />
-    <Content Include="bootstrap-3.3.7\css\bootstrap-theme.min.css.map" />
-    <Content Include="bootstrap-3.3.7\css\bootstrap.css.map" />
-    <Content Include="bootstrap-3.3.7\css\bootstrap.min.css.map" />
-    <Content Include="bootstrap-3.3.7\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="bootstrap-3.3.7\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="bootstrap-3.3.7\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="bootstrap-3.3.7\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="images\.DS_Store" />
     <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Views\Wqb\OrderShow.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Wqb\OrderParticulars.cshtml" />
@@ -161,6 +280,10 @@
     <Content Include="Views\ZQ\ZQIndex.cshtml" />
     <Content Include="Views\ZQ\ZQYH.cshtml" />
     <Content Include="Views\ZQ\ZQJF.cshtml" />
+    <Content Include="Views\Default\Template.cshtml" />
+    <Content Include="Views\Wqb\Main.cshtml" />
+    <Content Include="Views\Wqb\RefundShow.cshtml" />
+    <Content Include="Views\MZGUser\MZGUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -170,7 +293,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Default\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
