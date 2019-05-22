@@ -167,6 +167,7 @@
                 success: function (data) {
                     if (data > 0) {
                         alert("已赠送您100元代金券");
+                        location.href = "/Default/Home?UserId="+$("#uid").val();
                     }
 
                 }

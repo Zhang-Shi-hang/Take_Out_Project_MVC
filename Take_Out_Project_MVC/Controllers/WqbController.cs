@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
+using Take_Out_Project_MVC.Filter;
 using Take_Out_Project_MVC.Models;
 
 namespace Take_Out_Project_MVC.Controllers
@@ -11,6 +12,7 @@ namespace Take_Out_Project_MVC.Controllers
     public class WqbController : Controller
     {
         // GET: Wqb
+        [AuthorFilter]
         public ActionResult Main()
         {
             return View();
@@ -20,6 +22,7 @@ namespace Take_Out_Project_MVC.Controllers
         /// </summary>
         /// <param name="id">用户id</param>
         /// <returns></returns>
+        [AuthorFilter]
         public ActionResult OrderShow()
         {
             HttpCookie cookie = Request.Cookies["UserId"];
@@ -31,6 +34,7 @@ namespace Take_Out_Project_MVC.Controllers
         /// 评价界面
         /// </summary>
         /// < returns ></ returns >
+        [AuthorFilter]
         public ActionResult Comment()
         {
             return View();
@@ -42,10 +46,11 @@ namespace Take_Out_Project_MVC.Controllers
         /// <param name="UserId"></param>
         /// <param name="OrderId"></param>
         /// <returns></returns>
+        [AuthorFilter]
         public ActionResult OrderParticulars(string UserId=null)
         {
             HttpCookie cookie = Request.Cookies["UserId"];
-            string UserId = Server.UrlDecode(cookie.Value);
+             UserId = Server.UrlDecode(cookie.Value);
             string json = HttpClientHelper.Sender("get", "OrderManage/OrderParticulars?UserId=" + UserId);
             var list = JsonConvert.DeserializeObject<List<ViewModel>>(json);
             return View(list);
@@ -55,6 +60,7 @@ namespace Take_Out_Project_MVC.Controllers
         /// </summary>
         /// <param name="id">用户id</param>
         /// <returns></returns>
+        [AuthorFilter]
         public ActionResult CommentShow()
         {
             HttpCookie cookie = Request.Cookies["UserId"];
@@ -67,6 +73,7 @@ namespace Take_Out_Project_MVC.Controllers
         /// </summary>
         /// <param name="id">用户id</param>
         /// <returns></returns>
+        [AuthorFilter]
         public ActionResult RefundShow()
         {
             HttpCookie cookie = Request.Cookies["UserId"];
@@ -74,6 +81,11 @@ namespace Take_Out_Project_MVC.Controllers
             Session["id"] = UserId;
             return View();
         }
+        /// <summary>
+        /// 退款提交页面
+        /// </summary>
+        /// <returns></returns>
+        [AuthorFilter]
         public ActionResult Refund()
         {
             return View();

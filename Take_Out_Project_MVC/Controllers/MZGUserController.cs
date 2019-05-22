@@ -7,7 +7,9 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Web;
+using System.Web.Caching;
 using System.Web.Mvc;
+using Take_Out_Project_MVC.Filter;
 
 namespace Take_Out_Project_MVC.Controllers
 {
@@ -15,12 +17,11 @@ namespace Take_Out_Project_MVC.Controllers
     {
         public string yzm { get; set; }
         // GET: MZGUser
+        [AuthorFilter]
         public ActionResult MZGUser(string UserId="")
         {
-            HttpCookie cookie = new HttpCookie("UserId");
-            cookie.Value =Server.UrlEncode(UserId);
-            cookie.Expires = DateTime.MaxValue;
-            Request.Cookies.Add(cookie);
+            Cache cache = new Cache();
+            cache["UserId"] = UserId;
             return View();
         }
         public string YanZheng(string Phone)

@@ -24,7 +24,6 @@ namespace Take_Out_Project_MVC.Models
         /// </summary>
         public Guid DetailId { get; set; }//明细主键Id
         public int Gnum { get; set; }//菜品数量
-        public int Gsum { get; set; }//菜品总价
         public decimal Gprice { get; set; }//菜品价格   --可用可不用
         #endregion
 
@@ -65,7 +64,7 @@ namespace Take_Out_Project_MVC.Models
         /// 订单表
         /// </summary>
         public Guid OrderId { get; set; }//订单主键Id
-        public int Oen { get; set; }//订单编号
+        public string Oen { get; set; }//订单编号
         public int OrderStatic { get; set; }//订单状态
         public DateTime OrderTime { get; set; }//订单时间
         public string OrderRemark { get; set; }//订单备注
@@ -127,7 +126,7 @@ namespace Take_Out_Project_MVC.Models
         #endregion
         //外键
         public Guid Uid { get; set; }//用户外键          评价表 优惠表 订单表 
-        public Guid Sid { get; set; }//店铺外键          评价表 优惠表 菜品表
+        public Guid Sid { get; set; }//店铺外键          评价表 优惠表 菜品表 订单表
         public Guid Hid { get; set; }//骑士外键          订单表 
         public Guid Gid { get; set; }//菜品外键          明细表 
         public Guid Oid { get; set; }//订单外键          退款表 明细表

@@ -121,16 +121,32 @@
     <Content Include="css\weui.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
+    <Content Include="images\1.png" />
+    <Content Include="images\11.jpg" />
+    <Content Include="images\a1.jpg" />
+    <Content Include="images\a2.jpg" />
+    <Content Include="images\a3.jpg" />
+    <Content Include="images\a4.jpg" />
+    <Content Include="images\invoice.png" />
+    <Content Include="images\jycg.png" />
+    <Content Include="images\left.png" />
+    <Content Include="images\minus.png" />
     <Content Include="images\pic.png" />
+    <Content Include="images\seller_avatar_256px.jpg" />
+    <Content Include="images\sell_out.png" />
+    <Content Include="images\sell_out1.png" />
+    <Content Include="images\shalou.png" />
+    <Content Include="images\star_empty.png" />
+    <Content Include="images\star_full.png" />
+    <Content Include="images\success_icon.png" />
     <Content Include="images\up.png" />
+    <Content Include="images\wxlogo.png" />
+    <Content Include="images\zfblogo.png" />
+    <Content Include="js\add.js" />
+    <Content Include="js\weui.min.js" />
     <Content Include="ThumbnailsImages\92干红拉菲.jpg" />
     <Content Include="ThumbnailsImages\BBQ鸡中翅.jpg" />
-    <Content Include="images\ad-001.png" />
-    <Content Include="images\ad-002.png" />
-    <Content Include="images\ad-003.png" />
-    <Content Include="images\ad-004.png" />
     <Content Include="images\add.png" />
-    <Content Include="images\banner.png" />
     <Content Include="images\cart.png" />
     <Content Include="images\check.png" />
     <Content Include="images\checkbox_n.png" />
@@ -143,21 +159,6 @@
     <Content Include="images\huae.png" />
     <Content Include="images\huah.png" />
     <Content Include="images\icon-add.png" />
-    <Content Include="images\icon-food-001.png" />
-    <Content Include="images\icon-food-002.png" />
-    <Content Include="images\icon-food-003.png" />
-    <Content Include="images\icon-food-004.png" />
-    <Content Include="images\icon-food-005.png" />
-    <Content Include="images\icon-food-006.png" />
-    <Content Include="images\icon-food-007.png" />
-    <Content Include="images\icon-food-008.png" />
-    <Content Include="images\icon-food-009.png" />
-    <Content Include="images\icon-food-010.png" />
-    <Content Include="images\icon-food-011.png" />
-    <Content Include="images\icon-food-012.png" />
-    <Content Include="images\icon-food-013.png" />
-    <Content Include="images\icon-food-014.png" />
-    <Content Include="images\icon-food-015.png" />
     <Content Include="images\news.png" />
     <Content Include="ThumbnailsImages\T骨牛排.png" />
     <Content Include="ThumbnailsImages\XO人头马.jpg" />
@@ -225,7 +226,8 @@
     <Content Include="js\jquery.js" />
     <Content Include="js\form.js" />
     <Content Include="js\jquery.min.js" />
-    <Content Include="Views\Default\Classify.cshtml" />
+    <None Include="Views\Default\classify.cshtml" />
+    <Content Include="Views\Default\add.js" />
     <Content Include="Views\Default\Home.cshtml" />
     <None Include="Views\Default\Order_notes.cshtml" />
     <None Include="Views\Default\Payment.cshtml" />
@@ -237,6 +239,7 @@
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\MZGUserController.cs" />
     <Compile Include="Controllers\WqbController.cs" />
+    <Compile Include="Filter\AuthorFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -260,6 +263,7 @@
     <Content Include="Views\Wqb\Main.cshtml" />
     <Content Include="Views\Wqb\RefundShow.cshtml" />
     <Content Include="Views\MZGUser\MZGUser.cshtml" />
+    <Content Include="Views\MZGUser\SSS.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
