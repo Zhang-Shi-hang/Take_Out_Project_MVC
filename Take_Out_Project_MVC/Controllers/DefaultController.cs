@@ -35,21 +35,22 @@ namespace Take_Out_Project_MVC.Controllers
             return View();
         }
         //订单备注信息
-        [AuthorFilter]
-        public ActionResult Order_notes()
+        public ActionResult Order_notes(string Bianhao,string uid)
         {
+            Session["bh"] = Bianhao;
+            Session["uid"] = uid;
             return View();
         }
         //确认支付
-        [AuthorFilter]
         public ActionResult Payment()
         {
+            Session["bh"] = oen;
             return View();
         }
         //支付结果
-        [AuthorFilter]
         public ActionResult Payment_results()
         {
+            Session["bh"] = oen;
             return View();
         }
         public ActionResult demo()
