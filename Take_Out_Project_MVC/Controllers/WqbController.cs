@@ -42,7 +42,6 @@ namespace Take_Out_Project_MVC.Controllers
         /// <param name="UserId"></param>
         /// <param name="OrderId"></param>
         /// <returns></returns>
-        public ActionResult OrderParticulars()
         public ActionResult OrderParticulars(string UserId=null)
         {
             HttpCookie cookie = Request.Cookies["UserId"];
