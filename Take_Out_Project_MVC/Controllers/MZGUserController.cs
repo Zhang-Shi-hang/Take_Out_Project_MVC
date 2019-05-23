@@ -17,11 +17,8 @@ namespace Take_Out_Project_MVC.Controllers
     {
         public string yzm { get; set; }
         // GET: MZGUser
-        [AuthorFilter]
-        public ActionResult MZGUser(string UserId="")
+        public ActionResult MZGUser()
         {
-            Cache cache = new Cache();
-            cache["UserId"] = UserId;
             return View();
         }
         public string YanZheng(string Phone)
@@ -36,14 +33,14 @@ namespace Take_Out_Project_MVC.Controllers
             var parameters = new Dictionary<string, string>();
             parameters.Add("mobile", Phone); //接受短信的用户手机号码
             parameters.Add("tpl_id", "159258"); //您申请的短信模板ID，根据实际情况修改
-            parameters.Add("tpl_value", "#code#="+yzm); //您设置的模板变量，根据实际情况修改
+            parameters.Add("tpl_value", "#code#=" + yzm); //您设置的模板变量，根据实际情况修改
             parameters.Add("key", "372d980ef4f4c8549b88dea0439860e6");//你申请的key
 
             string result = sendPost(url, parameters, "post");
 
             // 代码中JsonObject类下载地址:http://download.csdn.net/download/gcm3206021155665/7458439
             // JsonObject newObj = new JsonObject(result);
-          var  newObj =JsonConvert.DeserializeObject(result);
+            var newObj = JsonConvert.DeserializeObject(result);
             //String errorCode = newObj["error_code"].Value;
             var c = JsonConvert.DeserializeObject<B>(result);
             if (c.error_code == "0")
@@ -58,15 +55,15 @@ namespace Take_Out_Project_MVC.Controllers
             }
             return yzm;
         }
-       // / <summary>
-		/// Http(GET/POST)
-		/// </summary>
-		/// <param name = "url" > 请求URL </ param >
+        // / <summary>
+        /// Http(GET/POST)
+        /// </summary>
+        /// <param name = "url" > 请求URL </ param >
 
         /// < param name="parameters">请求参数</param>
-		/// <param name = "method" > 请求方法 </ param >
+        /// <param name = "method" > 请求方法 </ param >
 
-       /// < returns > 响应内容 </ returns >
+        /// < returns > 响应内容 </ returns >
 
         static string sendPost(string url, IDictionary<string, string> parameters, string method)
         {
@@ -189,11 +186,11 @@ namespace Take_Out_Project_MVC.Controllers
         public string SJS()
         {
             string s = "";
-            int n= 6;
+            int n = 6;
             Random r = new Random();
             for (int i = 0; i < n; i++)
             {
-               s+= r.Next(0,9);
+                s += r.Next(0, 9);
 
             }
             return s;

@@ -121,7 +121,7 @@ function events() {
         var acount = n;
         var sum = parseFloat($(".subName dd p:nth-child(3) span:nth-child(2)").text()) * acount;
         var price = parseFloat($(".subName dd p:nth-child(3) span:nth-child(2)").text());
-        
+
         var dataIconN = $(this).parent().children(".subName").children("dd").children("p:first-child").attr("data-icon");
 
         //判断购物车里是否有商品，是否有相同规格的商品
@@ -138,7 +138,7 @@ function events() {
             addtr += '</li>';
             $(".list-content ul").append(addtr);
             return;
-            
+
         } else {
             $(".list-content ul li").each(function () {
                 if ($(this).find("span.accountName").html() == m && $(this).find(".taste").html() == taste) {
@@ -268,16 +268,15 @@ function events() {
         //添加订单的方法
         var obj1 =
         {
-            Oen: "2019521225104132152",
-            OrderStatic: 1,
+            Oen: CurentTime(),
+            OrderStatic: 0,
             OrderTime: Date.now().toLocaleString(),
             OrderRemark: "",
             OrderPrice: 294,
-            RepastWay: 0,
-            Uid: "317C1E7F-24E5-479E-8B4E-57867ADC6757",
+            RepastWay: "",
+            Uid: $("#UserId").val(),
             Sid: "92E2E1F1-0CA8-476A-B376-4EF6D0677DE5"
         };
-        console.log(obj1);
         $.ajax({
             url: "http://localhost:50037/api/Zrw/InsertOrderTable",
             type: "Post",
@@ -289,22 +288,17 @@ function events() {
                         url: "http://localhost:50037/api/Zrw/GetOrderFirst",
                         type: "get",
                         success: function (data) {
-                            alert("查询订单");
                             $(data).each(function () {
+                                Oen = this.Oen;
                                 Oid = this.OrderId;
                                 $(".food").each(function (i, v) {
                                     Gnum = $("#num" + i).text();
                                     Gid = $("#Gid" + i).text();
                                     Gprice = $("#Gprice" + i).text();
                                     obj.push({ Gid: Gid, Gprice: Gprice, Gnum: Gnum, Oid: Oid });
-                                    //把菜品Id存到缓存里
                                     GreensIds.push(Gid);
                                 })
-                                Cache["GreensIds"] = GreensIds;
-                                console.log(Cache["GreensIds"]);
-                                alert(Cache["GreensIds"]);
-                                //DetailTable(obj);
-                                console.log(obj)
+                                DetailTable(obj, GreensIds);
                             })
                         }
                     })
@@ -315,19 +309,19 @@ function events() {
         //GreensNames.push($(".accountName").text());
     })
 }
-//function DetailTable(obj) {
-//    $.ajax({
-//        url: "http://localhost:50037/api/Zrw/InsertDetailTable",
-//        type: "Post",
-//        data: JSON.stringify(obj),
-//        contentType: "application/json",
-//        success: function (data) {
-//            if (data > 0) {
-//                alert("添加成功");
-//            }
-//        }
-//    })
-//}
+function DetailTable(obj, GreensIds) {
+    $.ajax({
+        url: "http://localhost:50037/api/Zrw/InsertDetailTable",
+        type: "Post",
+        data: JSON.stringify(obj),
+        contentType: "application/json",
+        success: function (data) {
+            if (data > 0) {
+                location.href = "/Default/Order_notes?Oen=" + Oen + "&GreensIds=" + GreensIds;
+            }
+        }
+    })
+}
 function InsertOrderTable() {
     $("#left li:first-child").addClass("active");
     //商品点击增加
@@ -368,5 +362,34 @@ function InsertOrderTable() {
 
 }
 
-function SettleMoney() {
+function CurentTime()
+{
+    let now = new Date();
+    let year = now.getFullYear();       //年
+    let month = now.getMonth() + 1;     //月
+    let day = now.getDate();            //日
+    let hh = now.getHours();            //时
+    let mm = now.getMinutes();          //分
+    let ss = now.getSeconds();           //秒
+    let clock = year + "";
+    if (month < 10)
+        clock += "0";
+
+    clock += month + "";
+
+    if (day < 10)
+        clock += "0";
+
+    clock += day + "";
+
+    if (hh < 10)
+        clock += "0";
+
+    clock += hh + "";
+    if (mm < 10) clock += '0';
+    clock += mm + "";
+
+    if (ss < 10) clock += '0';
+    clock += ss;
+    return (clock);
 }

@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Newtonsoft.Json;
 using Take_Out_Project_MVC.Filter;
 using Take_Out_Project_MVC.Models;
+using System.IO;
 
 namespace Take_Out_Project_MVC.Controllers
 {
@@ -21,44 +22,86 @@ namespace Take_Out_Project_MVC.Controllers
         }
         //首页
         //[AuthorFilter]
-        public ActionResult Home()
+        public ActionResult Home(string UserId = "", string Phone = "")
         {
-            string result = HttpClientHelper.Sender("get", "/api/Zrw/GetGreens");
-            var list = JsonConvert.DeserializeObject<List<ViewModel>>(result);
-            list = list.Where(s => s.GreensPrice < 150).ToList();
-            return View(list);
+            if (UserId != "" && Phone != "")
+            {
+                HttpCookie cookiePhone = new HttpCookie("Phone");
+                cookiePhone.Value = Server.UrlEncode(Phone);
+                Response.Cookies.Add(cookiePhone);
+                Session["UserId"] = UserId;
+                HttpCookie cookie = new HttpCookie("UserId");
+                cookie.Value = Server.UrlEncode(UserId);
+                Response.Cookies.Add(cookie);
+                string result = HttpClientHelper.Sender("get", "/api/Zrw/GetGreens");
+                var list = JsonConvert.DeserializeObject<List<ViewModel>>(result);
+                list = list.Where(s => s.GreensPrice < 150).ToList();
+                return View(list);
+            }
+            else
+            {
+                Response.Redirect("/MZGUser/MZGUser");
+                return null;
+            }
         }
         //订单页面
-        //[AuthorFilter]
-        public ActionResult Classify(string UserId)
+        [AuthorFilter]
+        public ActionResult Classify()
         {
+            HttpCookie cokUser = Request.Cookies["UserId"];
+            ViewBag.UserId = cokUser.Value;
             return View();
         }
         //订单备注信息
-        public ActionResult Order_notes(string Bianhao,string uid)
+        [AuthorFilter]
+        public ActionResult Order_notes(string Oen,string GreensIds)
         {
-            Session["bh"] = Bianhao;
-            Session["uid"] = uid;
+            HttpCookie cokUser = Request.Cookies["UserId"];
+            HttpCookie cokGreens = new HttpCookie("GreenIds");
+            cokGreens.Value = Server.UrlEncode(GreensIds);
+            ViewBag.uid = cokUser.Value;
+            ViewBag.Oen = Oen;
+            
             return View();
         }
         //确认支付
-        public ActionResult Payment()
+        [AuthorFilter]
+        public ActionResult Payment(string oen)
         {
-            Session["bh"] = oen;
+            ViewBag.oen = oen;
             return View();
         }
         //支付结果
-        public ActionResult Payment_results()
+        [AuthorFilter]
+        public ActionResult Payment_results(string oen)
         {
-            Session["bh"] = oen;
+            ViewBag.oen = oen;
+            string result = HttpClientHelper.Sender("get", "/api/Zrw/GetOrder?Oen=" + oen);
+            var mo = JsonConvert.DeserializeObject<List<ViewModel>>(result).FirstOrDefault();
+            if (mo.RepastWay == true)
+            {
+                try
+                {
+                    if (!Directory.Exists("ThumbnailsImages"))
+                    {
+                        Directory.CreateDirectory("ThumbnailsImages");
+                    }
+                    string filename = "/ThumbnailsImages/";
+                    QRCode.GetBarCode(oen, Server.MapPath(filename + "a.png"));
+                    ViewBag.RepastWay = mo.RepastWay;
+                    ViewBag.img = "/ThumbnailsImages/a.png";
+                }
+                catch (Exception)
+                {
+                    Response.Write("<script>alert('图片路径错误')</script>");
+                    throw;
+                }
+            }
             return View();
         }
-        public ActionResult demo()
+        public void A(string GreensIds)
         {
-            string TypeName = "营养套餐";
-            string json = HttpClientHelper.Sender("get", "Zrw/GetGreensInType？TypeName=" + TypeName);
-            var list = JsonConvert.DeserializeObject<List<ViewModel>>(json);
-            return View(list);
+
         }
     }
 }

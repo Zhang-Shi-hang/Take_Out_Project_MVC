@@ -1,0 +1,44 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+@model List<Take_Out_Project_MVC.Models.ViewModel>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Wei</title>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <link href="~/bootstrap-3.3.7/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <table style="width:100%;height:50px;border:0px;">
+        <tr style="background-color:#f9b82c;height 0:60px;text-align:center;color:white;">
+            <td style="text-align:left;color:white;">
+                <img src="~/UserImg/fh.jpg" onclick="location.href='/ZQ/ZQIndex'" height="30" style="margin-left:20px;">
+            </td>
+            <td>
+                <sapn style="height:30px"><b style="font-size:30px;margin-right:70px;">未付款订单</b></sapn>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <div>
+        @foreach (var i in Model)
+        {
+
+            <div style="width:80%;height:150px;margin-left:30px;">
+                <span>@i.Oen</span>
+                <p>未支付</p>
+                <input id="Button1" type="button" value="去支付" onclick="GO(@i.Oen)" class="btn btn-default"  style="margin-left:80%"/>
+            </div>
+        }
+    </div>
+</body>
+</html>
+<script>
+    function GO(Oen) {
+        location.href = '/Default/Order_notes?Oen=' + Oen;
+    }
+</script>

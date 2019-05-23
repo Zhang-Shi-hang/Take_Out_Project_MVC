@@ -10,7 +10,8 @@ namespace Take_Out_Project_MVC.Filter
     {
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
-            if (filterContext.HttpContext.Cache["UserId"]==null)
+            
+            if (filterContext.HttpContext.Session["UserId"] == null)
             {
                 filterContext.HttpContext.Response.Redirect("/MZGUser/MZGUser");
             }

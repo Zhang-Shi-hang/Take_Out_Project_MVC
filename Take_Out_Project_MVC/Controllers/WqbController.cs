@@ -11,6 +11,10 @@ namespace Take_Out_Project_MVC.Controllers
 {
     public class WqbController : Controller
     {
+        private object cache;
+
+        public object Cache { get; private set; }
+
         // GET: Wqb
         [AuthorFilter]
         public ActionResult Main()
@@ -25,8 +29,8 @@ namespace Take_Out_Project_MVC.Controllers
         [AuthorFilter]
         public ActionResult OrderShow()
         {
-            HttpCookie cookie = Request.Cookies["UserId"];
-            string UserId = Server.UrlDecode(cookie.Value);
+            HttpCookie cookie =Request.Cookies["UserId"];
+            string UserId = cookie.Value;
             Session["id"] = UserId;
             return View();
         }
@@ -37,6 +41,8 @@ namespace Take_Out_Project_MVC.Controllers
         [AuthorFilter]
         public ActionResult Comment()
         {
+            HttpCookie cookie = Request.Cookies["UserId"];
+            string UserId = cookie.Value;
             return View();
         }
 
@@ -47,11 +53,11 @@ namespace Take_Out_Project_MVC.Controllers
         /// <param name="OrderId"></param>
         /// <returns></returns>
         [AuthorFilter]
-        public ActionResult OrderParticulars(string UserId=null)
+        public ActionResult OrderParticulars(string UserId)
         {
             HttpCookie cookie = Request.Cookies["UserId"];
              UserId = Server.UrlDecode(cookie.Value);
-            string json = HttpClientHelper.Sender("get", "OrderManage/OrderParticulars?UserId=" + UserId);
+            string json = HttpClientHelper.Sender("get", "Wqb/OrderParticulars?UserId=" + UserId);
             var list = JsonConvert.DeserializeObject<List<ViewModel>>(json);
             return View(list);
         }
@@ -88,6 +94,8 @@ namespace Take_Out_Project_MVC.Controllers
         [AuthorFilter]
         public ActionResult Refund()
         {
+            HttpCookie cookie = Request.Cookies["UserId"];
+            string UserId = cookie.Value;
             return View();
         }
     }

@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using Take_Out_Project_MVC.Models;
 using Newtonsoft.Json;
+using System.Web.Caching;
+using Take_Out_Project_MVC.Filter;
 
 namespace Take_Out_Project_MVC.Controllers
 {
@@ -12,6 +14,7 @@ namespace Take_Out_Project_MVC.Controllers
     {
 
         // GET: ZQ
+        [AuthorFilter]
         public ActionResult UptShow(string phone)
         {
             var json = HttpClientHelper.Sender("get", "ZQApi/Show?phone=" + phone);
@@ -21,12 +24,14 @@ namespace Take_Out_Project_MVC.Controllers
             return View(list);
         }
         /// <summary>
-        /// 我的  显示
+        /// 我的显示
         /// </summary>
         /// <returns></returns>
-        public ActionResult ZQIndex(string phone = "17600496586")
+        [AuthorFilter]
+        public ActionResult ZQIndex()
         {
-
+            HttpCookie cookiePhone = Request.Cookies["Phone"];
+            string phone = cookiePhone.Value;
             var json = HttpClientHelper.Sender("get", "ZQApi/Show?phone=" + phone);
             var list = JsonConvert.DeserializeObject<List<ViewModel>>(json);
             return View(list);
@@ -35,18 +40,31 @@ namespace Take_Out_Project_MVC.Controllers
         /// 优惠劵显示
         /// </summary>
         /// <returns></returns>
-        public ActionResult ZQYH(string id= "317C1E7F-24E5-479E-8B4E-57867ADC6757")
+        [AuthorFilter]
+        public ActionResult ZQYH()
         {
             //string i = id.ToString();
+            HttpCookie co = Request.Cookies["UserId"];
+            string id = co.Value;
             var json = HttpClientHelper.Sender("get", "ZQApi/ShowYH/" + id);
             var list = JsonConvert.DeserializeObject<List<ViewModel>>(json);
             return View(list);
         }
      
-        public ActionResult ZQJF(int jf=888)
+        public ActionResult ZQJF(int jf)
         {
             ViewBag.j = jf;
             return View();
+        }
+        public ActionResult Wei()
+        {
+            HttpCookie cookie = Request.Cookies["UserId"];
+            string UserId = Server.UrlDecode(cookie.Value);
+            ViewBag.uid = UserId;
+            string json = HttpClientHelper.Sender("get", "Wqb/OrderParticulars?UserId=" + UserId);
+            var list = JsonConvert.DeserializeObject<List<ViewModel>>(json);
+            list = list.Where(s => s.OrderStatic == 0).ToList();
+            return View(list);
         }
 
     }

@@ -64,6 +64,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="ThoughtWorks.QRCode">
+      <HintPath>E:\专业十一\练习\ThoughtWorks.QRCode.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -169,6 +172,7 @@
     <Content Include="images\news.png" />
     <Content Include="ThumbnailsImages\T骨牛排.png" />
     <Content Include="ThumbnailsImages\XO人头马.jpg" />
+    <Content Include="ThumbnailsImages\yhbj.jpg" />
     <Content Include="ThumbnailsImages\三丝乌冬面.png" />
     <Content Include="ThumbnailsImages\卡布奇诺咖啡.jpg" />
     <Content Include="ThumbnailsImages\咖喱海鲜饭.png" />
@@ -250,7 +254,7 @@
     <Content Include="js\form.js" />
     <Content Include="js\jquery.min.js" />
     <None Include="Views\Default\classify.cshtml" />
-    <Content Include="Views\Default\add.js" />
+    <Content Include="UserImg\yhbj.jpg" />
     <Content Include="Views\Default\Home.cshtml" />
     <None Include="Views\Default\Order_notes.cshtml" />
     <None Include="Views\Default\Payment.cshtml" />
@@ -270,6 +274,7 @@
     <Compile Include="HttpClientHelper.cs" />
     <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QRCode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -290,7 +295,7 @@
     <Content Include="Views\Wqb\Main.cshtml" />
     <Content Include="Views\Wqb\RefundShow.cshtml" />
     <Content Include="Views\MZGUser\MZGUser.cshtml" />
-    <Content Include="Views\MZGUser\SSS.cshtml" />
+    <Content Include="Views\ZQ\Wei.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
