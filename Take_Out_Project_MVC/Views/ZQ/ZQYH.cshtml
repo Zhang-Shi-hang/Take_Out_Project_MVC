@@ -31,15 +31,15 @@
         {
             <br />
             <table style="width:92%;margin-left:4%;height:160px;">
-                <tr>
-                    <td style="width:64%;background-color:#f0aa2e;text-align:center;font-size:17px;height:30%">
-                        <b>优惠劵使用规则</b><br />
-                        1.在购买商品时使用 <br />
-                        2.一张优惠劵只有一次使用机会 <br />
-                        3.只能在规定时间内使用
+                <tr style="background-image:url(/UserImg/yhbj.jpg);background-repeat:no-repeat;background-size:100%">
+                    <td style="width:64%;text-align:left;font-size:13px;height:30%">
+                        <b>　　　　　　　　　优惠劵使用规则</b><br />
+                        　　　　　　　　在购买商品时使用 <br />
+                          　　　　　　　　　　请在 @item.SustainDay.ToString("yyyy/mm//dd") 前使用
+                        　　　　　　　　只能在规定时间内使用
                     </td>
-                    <td style="background-color:#e56814;text-align:center;width:36%;">
-                        <span style="font-size:41px;color:white">@string.Format("{0:C0}", item.FavourablePrice)</span>
+                    <td style="text-align:center;width:36%;">
+                        <span style="font-size:41px;color:#b07308">@string.Format("{0:C0}", item.FavourablePrice)</span>
                     </td>
                 </tr>
             </table>
