@@ -82,7 +82,7 @@
     <div id="Box">
         @*导航条*@
         <header class="aui-navBar" style="background-color:#f9b82c">
-            <a href="javascript:;" style="float:left;" class="aui-navBar-item">
+            <a href="Map" style="float:left;" class="aui-navBar-item">
                 <i class=""><img src="~/images/icon-add.png" alt="Alternate Text" style="width:20px;height:20px;" /></i>{{Name}}
             </a>
             <div class="aui-center">
@@ -130,15 +130,7 @@
             <h4 style="margin-top:10px;display:block;margin-left: 30px;">营业时间:8:00-21:00</h4>
         </div>
         @*地图显示*@
-        <div style="width:80%;height:220px;border:1px solid black;margin:auto;margin-top:20px;">
-            <div id="container">
 
-            </div>
-            <div class="info">
-                @*<p>在初始化地图时，如果center属性缺省，地图默认定位到用户所在城市的中心</p><hr>*@
-                <p id='adcode'></p>
-            </div>
-        </div>
         <div style="width:80%;margin:auto;height:30px; background-color:#f9b82c;margin-top:20px;">
             <h3 style="color:red;">淮安特色</h3>
         </div>
@@ -253,38 +245,4 @@
             }
         }
     }
-</script>
-<script type="text/javascript"
-        src="https://webapi.amap.com/maps?v=1.4.14&key=您申请的key值">
-</script>
-<script type="text/javascript">
-    //初始化地图对象，加载地图
-    var map = new AMap.Map('container', {
-        resizeEnable: true
-    });
-    var options = {
-        'showButton': true,//是否显示定位按钮
-        'buttonPosition': 'LB',//定位按钮的位置
-        /* LT LB RT RB */
-        'buttonOffset': new AMap.Pixel(10, 20),//定位按钮距离对应角落的距离
-        'showMarker': true,//是否显示定位点
-        'markerOptions': {//自定义定位点样式，同Marker的Options
-            'offset': new AMap.Pixel(-18, -36),
-            'content': '<img src="https://a.amap.com/jsapi_demos/static/resource/img/user.png" style="width:36px;height:36px"/>'
-        },
-        'showCircle': true,//是否显示定位精度圈
-        'circleOptions': {//定位精度圈的样式
-            'strokeColor': '#0093FF',
-            'noSelect': true,
-            'strokeOpacity': 0.5,
-            'strokeWeight': 1,
-            'fillColor': '#02B0FF',
-            'fillOpacity': 0.25
-        }
-    }
-    AMap.plugin(["AMap.Geolocation"], function () {
-        var geolocation = new AMap.Geolocation(options);
-        map.addControl(geolocation);
-        geolocation.getCurrentPosition()
-    });
 </script>
