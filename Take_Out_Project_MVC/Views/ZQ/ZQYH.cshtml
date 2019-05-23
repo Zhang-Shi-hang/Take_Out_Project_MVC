@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Take_Out_Project_MVC.Models.ViewModel>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <title>ZQYH</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body style="width:100%;background-color:lavender">
+    <div>
+        <table style="width:100%;height:50px">
+            <tr style="background-color:#f9b82c;height 0:60px;text-align:center;color:white;">
+                <td style="text-align:left;color:white;">
+                    <img src="~/UserImg/fh.jpg" onclick="location.href='/ZQ/ZQIndex'" height="30" style="margin-left:20px;">
+                </td>
+                <td>
+                    <sapn style="height:30px"><b style="font-size:30px">优惠劵</b></sapn>
+                </td>
+                <td>　　　　</td>
+            </tr>
+        </table>
+
+
+        @foreach (var item in Model)
+        {
+            <br />
+            <table style="width:92%;margin-left:4%;height:160px;background-image:url(/UserImg/yhbj.jpg);background-repeat:no-repeat;background-size:100%">
+                <tr style="">
+                    <td style="width:64%;text-align:right;font-size:13px;height:30%">
+                        <b>@item.SustainDay.ToString("yyyy/mm//dd")      </b><br />
+                        <b>优惠劵使用规则   </b><br />
+                        在购买商品时使用 <br />
+                        只能在规定时间内使用
+                    </td>
+                    <td style="text-align:center;width:36%;">
+                        <span style="font-size:41px;color:#b07308">@string.Format("{0:C0}", item.FavourablePrice)</span>
+                    </td>
+                </tr>
+            </table>
+        }
+
+    </div>
+</body>
+</html>

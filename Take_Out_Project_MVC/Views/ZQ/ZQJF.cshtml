@@ -1,0 +1,54 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body style="background-color:lavender">
+    <table style="width:100%;height:50px">
+        <tr style="background-color:#f9b82c;height 0:60px;text-align:center;color:white;">
+            <td style="text-align:left;color:white;">
+                <img src="~/UserImg/fh.jpg" onclick="location.href='/ZQ/ZQIndex'" height="30" style="margin-left:20px;">
+            </td>
+            <td>
+                <sapn style="height:30px"><b style="font-size:30px">我的积分</b></sapn>
+            </td>
+            <td>　　　　</td>
+        </tr>
+    </table>
+    <table style="font-size:20px;width:100%;background-color:white">
+        
+        <tr style="height:120px;border-bottom:ridge">
+            
+            <td>　当前积分: @ViewBag.j</td>
+            <td></td>
+            <td  style="text-align:right;"><a href="#">如何赚取积分?　</a></td>
+        </tr>
+        <tr style="height:10px;background-color:lavender">
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr style="border-bottom:ridge;border-top:ridge;height:70px">
+            <td>　额外奖励</td>
+            <td></td>
+            <td style="text-align:right;">+20　　</td>
+        </tr>
+        <tr style="border-bottom:ridge;height:70px">
+            <td>　兑换</td>
+            <td></td>
+            <td style="text-align:right;">-100　　</td>
+        </tr>
+    </table>
+    <div>
+      
+    </div>
+
+</body>
+</html>

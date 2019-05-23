@@ -1,0 +1,199 @@
+﻿<!doctype html>
+@model IEnumerable<Take_Out_Project_MVC.Models.ViewModel>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="apple-touch-icon.png" rel="apple-touch-icon">
+
+    <link href="https://cdn.bootcss.com/framework7/1.6.5/css/framework7.ios.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/framework7/1.6.5/css/framework7.ios.colors.min.css" rel="stylesheet">
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <table style="width:100%;height:50px">
+        <tr style="background-color:#f9b82c;height 0:60px;text-align:center;color:white;">
+            <td style="text-align:left;color:white;">
+                <img src="~/UserImg/fh.jpg" onclick="location.href='/ZQ/ZQIndex'" height="30" style="margin-left:20px;">
+            </td>
+            <td>
+                <sapn style="height:30px"><b style="font-size:30px">修改信息</b></sapn>
+            </td>
+            <td>　　　　</td>
+        </tr>
+    </table>
+    @foreach (var item in Model)
+    {
+        <div class="views">
+            <div class="view view-main">
+                <!-- navbar -->
+                <!-- <div class="navbar">
+                <div class="navbar-inner" data-page="home">
+                    <div class="left"></div>
+                    <div class="center"></div>
+                    <div class="right"></div>
+                </div>
+                </div> -->
+                <!-- Pages -->
+                <div class="pages">
+                    <div class="page" data-page="home">
+                        <div class="page-content hide-tabbar-on-scroll">
+                            <div class="list-block" style="color:black">
+                                <ul>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title label" style="color:black">
+                                                    <font class="color-red">*</font>
+                                                    昵称:
+                                                    <font class="color-red">　　</font>
+                                                </div>
+                                                <div class="item-input">
+                                                    <input type="text" placeholder="用户昵称" name="consignee" id="UserName" value="@item.UserName">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title label" style="color:black">
+                                                    <font class="color-red">*</font>
+                                                    性别:
+                                                    <font class="color-red">　　</font>
+                                                </div>
+                                                <div class="item-input">
+                                                    <input type="text" placeholder="用户性别(男/女)" name="consignee" id="UserSex" value="@item.UserSex">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title label" style="color:black">
+                                                    <font class="color-red">*</font>
+                                                    联系电话:
+
+                                                </div>
+                                                <div class="item-input">
+                                                    <input type="tel" placeholder="手机号" name="telephone" readonly id="UserPhone" value="@item.UserPhone">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title label" style="color:black">
+                                                    <font class="color-red">*</font>
+                                                    所在地区:
+
+                                                </div>
+                                                <div class="item-input">
+                                                    <input type="text" placeholder="请选择城市" readonly id="location" name="location">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title label" style="color:black">
+                                                    <font class="color-red">*</font>
+                                                    详细地址:
+                                                    w
+                                                </div>
+                                                <div class="item-input">
+                                                    <input type="text" placeholder="街道、楼号" name="detailedAddress" id="location2">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- /.list-block -->
+                            <div class="content-block">
+                                <span class="button button-big button-fill" onclick="Upt()">确定</span>
+                            </div>
+                        </div>
+                        <!-- /.page-content -->
+                    </div>
+                    <!-- /.page -->
+                </div>
+                <!-- /.pages -->
+            </div>
+            <!-- /.view -->
+        </div>
+        <!-- /.views -->
+    }
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/regionsObject2.js"></script>
+    <script src="~/js/framework7.min.js"></script>
+    <script src="~/js/cityPicker.js"></script>
+</body>
+
+</html>
+<script>
+    $(function () {
+        if ($("#UserSex").val() == 0) {
+            $("#UserSex").val("男");
+        } else {
+             $("#UserSex").val("女");
+        }
+        
+    })
+
+    function Upt() {
+        var obj = new Object();
+        if ($("#UserName").val() != "") {
+            obj.UserName = $("#UserName").val();
+
+            if ($("#UserSex").val() == "男" || $("#UserSex").val() == "女") {
+                if ($("#UserSex").val() == "男") {
+                    obj.UserSex = 0;
+                } else {
+                    obj.UserSex = 1;
+                }
+                obj.UserPhone = $("#UserPhone").val();
+                if ($("#location2").val() != "" && $("#location").val() != "") {
+                    var addre = $("#location").val() + $("#location2").val();
+                    obj.UserAddress = addre;
+
+                    $.ajax({
+                        url: "http://localhost:50037/api/ZQApi/Upt?json=" + JSON.stringify(obj),
+                        type: "get",
+                        dataType: "json",
+                        success: function (data) {
+                            if (data > 0) {
+                                alert("修改成功");
+                                location.href = "ZQIndex?phone=" + obj.UserPhone;
+                            }
+                            else {
+                                alert("修改失败");
+                            }
+                        }
+                    })
+                } else {
+                    alert("请选择地区并填写详细地址");
+                }
+            } else {
+                alert("请正确输入性别");
+            }
+
+        } else {
+            alert("请输入昵称");
+        }
+
+
+
+    }
+</script>
