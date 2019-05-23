@@ -51,7 +51,7 @@ namespace Take_Out_Project_MVC.Controllers
         /// </summary>
         /// <param name="id">用户id</param>
         /// <returns></returns>
-        public ActionResult CommentShow(string id = "283799B4-CA3A-44EC-8482-84B07A30A38F")
+        public ActionResult CommentShow(string id = "317C1E7F-24E5-479E-8B4E-57867ADC6757")
         {
             Session["id"] = id;
             return View();
