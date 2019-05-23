@@ -10,11 +10,10 @@
     <meta name="viewport" content="width=device-width" />
     <title>Classify</title>
     <link href="~/css/classify.css" rel="stylesheet" />
-    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
-    
+
 </head>
 <body>
-    <input id="UserId" type="hidden"value="@ViewBag.UserId" />
+    <input id="UserId" type="hidden" value="@ViewBag.UserId" />
     <div class="header">
         <div class="content-wrapper">
             <div class="avatar">
@@ -95,49 +94,11 @@
     </div>
     <div class="main">
         <div class="left-menu" id="left">
-            <ul id="u">
-            </ul>
+            <ul id="u"></ul>
         </div>
         <div class="con">
             <div class="right-con con-active" style="display: none;">
-                <ul id="uu">
-                </ul>
-            </div>
-            <div class="right-con" style="display: none;">
-                <ul>
-                    <li>
-                        <div class="menu-img"><img src="~/images/demo.jpg"></div>
-                        <div class="menu-txt">
-                            <h4 data-icon="10">宫保鸡丁</h4>
-                            <p class="list1">家常菜</p>
-                            <p class="list2">
-                                <b>￥</b><b>4.00</b>
-                            </p>
-                            <div class="btn">
-                                <button class="minus"></button>
-                                <i>0</i>
-                                <button class="add"></button>
-                                <i class="price">4.00</i>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="menu-img"><img src="~/images/demo.jpg"></div>
-                        <div class="menu-txt">
-                            <h4 data-icon="11">回锅肉</h4>
-                            <p class="list1">家常菜</p>
-                            <p class="list2">
-                                <b>￥</b><b>5.00</b>
-                            </p>
-                            <div class="btn">
-                                <button class="minus"></button>
-                                <i>0</i>
-                                <button class="add"></button>
-                                <i class="price">5.00</i>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                <ul id="uu"></ul>
             </div>
         </div>
         <div class="up1"></div>
@@ -172,7 +133,7 @@
                 <dd>
                     <p data-icon=""></p>
                     <h5 style="display:none;"></h5>
-                    <p><span>¥ </span><span class="pce"></span></p>
+                    <p><span>￥ </span><span class="pce"></span></p>
                     <p>
                         <span>已选：“</span>
                         <span class="choseValue"></span>
@@ -180,8 +141,8 @@
                     </p>
                 </dd>
             </dl>
-            
-            <dl class="subChose" >
+
+            <dl class="subChose">
                 <dt>规格</dt>
                 <dd class="m-active">特大杯</dd>
                 <dd>大杯</dd>
@@ -209,6 +170,6 @@
         </div>
     </div>
     <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
-    <script type="text/javascript" src="~/js/add.js"></script>
+    <script src="~/js/add.js"></script>
 </body>
 </html>

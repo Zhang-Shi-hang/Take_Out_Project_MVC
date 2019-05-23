@@ -12,32 +12,35 @@
     <link href="~/css/payment.css" rel="stylesheet" />
 </head>
 <body>
-<div class="pay_top">
-    <p>实付金额</p>
-    <p>¥ <span id="Price"></span></p>
-</div>
-<div class="invoice">
-    <div>店铺名称</div>
-    <span>枫叶餐厅</span>
-</div>
-<div class="invoice" style="margin-bottom:0;">
-    <div class="wxlogo">微信支付</div>
-    <input type="radio" name="payment" class="payment">
-</div>
-<div class="invoice">
-    <div class="zfblogo">支付宝支付</div>
-    <input type="radio" name="payment" class="payment">
-</div>
-<div class="paydiv">
-    <a onclick="Jump()"><button class="paybtn">确定付款</button></a>
-</div>
-<input id="oen" type="hidden" value="@ViewBag.oen" />
+    <div class="pay_top">
+        <p>实付金额</p>
+        <p>¥ <span id="Price"></span></p>
+    </div>
+    <div class="invoice">
+        <div>店铺名称</div>
+        <span>枫叶餐厅</span>
+    </div>
+    <div class="invoice" style="margin-bottom:0;">
+        <div class="wxlogo">微信支付</div>
+        <input type="radio" name="payment" class="payment">
+    </div>
+    <div class="invoice">
+        <div class="zfblogo">支付宝支付</div>
+        <input type="radio" name="payment" class="payment">
+    </div>
+    <div class="paydiv">
+        <a onclick="Payment()"><button class="paybtn">确定付款</button></a>
+    </div>
+    <input id="oen" type="hidden" value="@ViewBag.oen" />
+    <input id="DiscountsId" type="hidden" value="@ViewBag.DiscountsId" />
+    <input id="uid" type="hidden" value="@ViewBag.uid" />
 </body>
 </html>
 <script>
     //全局变量
-    var aaa = $("#oen").val();
-
+    var aaa = $("#oen").val();//订单编号
+    var Uid = $("#uid").val();//用户Id
+    var DiscountsId=$("#DiscountsId").val();//优惠券Id
     //初始化函数
     $(function () {
         GetOrder();
@@ -55,7 +58,20 @@
             }
         })
     }
-
+        //付款(修改优惠券状态并跳转页面)
+    function Payment() {
+        $.ajax({
+            url: "http://localhost:50037/api/Zrw/UpdateDiscounts",
+            type: "get",
+            data: {Uid:Uid,DiscountsId:DiscountsId},
+            dataType: "json",
+            success: function (data) {
+                if (data > 0) {
+                    Jump();
+                }
+            }
+        })
+    }
     //跳转页面
     function Jump() {
          $.ajax({

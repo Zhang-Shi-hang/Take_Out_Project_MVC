@@ -21,6 +21,7 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/style.css" rel="stylesheet" />
     <link href="~/Content/lunbo.css" rel="stylesheet" />
+    <script src="~/layer-v3.1.1/layer/layer.js"></script>
 
     <style>
         html, body, #container {
@@ -148,12 +149,12 @@
             {
                 <a href="Classify" class="aui-list-theme-item">
                     <div class="aui-list-img">
-                        <img src="@i.GreensImgUrl"  style="height:80px;"/>
+                        <img src="@i.GreensImgUrl" style="height:80px;" />
                     </div>
                     <div class="aui-list-title">
                         <h3>@i.GreensName</h3>
                         <div class="aui-list-spell">
-                            <span>根据特色菜推荐</span>
+                            <span>根据特色菜推荐</span><input id="vv" type="hidden" value="@ViewBag.vv" />
                         </div>
                     </div>
                 </a>
@@ -257,7 +258,22 @@
 <script type="text/javascript"
         src="https://webapi.amap.com/maps?v=1.4.14&key=您申请的key值">
 </script>
+
 <script type="text/javascript">
+    if ($("#vv").val != 0) {
+        var img = "<img src='/images/123.jpg' id='img1' width='300px' height='150px'/>"
+        layer.open({
+            type: 1,
+            title: false,
+            closeBtn: 0,
+            anim: 5,
+            area: ['300px', '150px'],
+            shade: 0,
+            shadeClose: true,
+            time: 5000,
+            content: img
+        });
+    }
     //初始化地图对象，加载地图
     var map = new AMap.Map('container', {
         resizeEnable: true
