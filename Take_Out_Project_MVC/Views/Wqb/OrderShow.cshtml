@@ -33,7 +33,7 @@
             Type: "get",
             dataType: "json",
             success: function (data) {
-                $("#tby").empty();
+                $("#dt1").empty();
                 $(data).each(function () {
                     if (this.OrderStatic == 5) {
                         var obj ='<div style="width:92%;height:175px;background-color:white;margin-left:4%;margin-bottom:20px;">'
@@ -128,8 +128,8 @@
                                             +'<span style="float:right">￥'+this.OrderPrice+'.0</span>'
                             + '</div>'
                             +'<div style="float:right;margin-right:30px;margin-top:10px;">'
-                            +'<input id="Button1" type="button" value="订单详情" class="btn btn-default" onclick="Particulars()" style="margin-right:15px;"/>'
-                            + '<input id="Button1" type="button" value="取消订单" class="btn btn-default"onclick="Cancel(id)" />'
+                            + '<input id="Button1" type="button" value="订单详情" class="btn btn-default" onclick="Particulars()" style="margin-right:15px;"/>'
+                            + '<input id="' + this.OrderId +'" type="button" value="取消订单" class="btn btn-default" onclick="Cancel(id)" />'
                             +'</div>'
                                     +'</div>'
                         $("#dt1").append(obj);
@@ -137,6 +137,7 @@
                 })
             }
         })
+
     }
     function Again() {
         location.href = "再来一单";
@@ -160,7 +161,9 @@
     function Refund(){
         location.href = '/Wqb/RefundShow';
     }
-
+    function Particulars() {
+        location.href = '/Wqb/OrderParticulars';
+    }
 
 </script>
 

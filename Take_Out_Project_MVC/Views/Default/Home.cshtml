@@ -83,7 +83,7 @@
     <div id="Box">
         @*导航条*@
         <header class="aui-navBar" style="background-color:#f9b82c">
-            <a href="javascript:;" style="float:left;" class="aui-navBar-item">
+            <a href="Map" style="float:left;" class="aui-navBar-item">
                 <i class=""><img src="~/images/icon-add.png" alt="Alternate Text" style="width:20px;height:20px;" /></i>{{Name}}
             </a>
             <div class="aui-center">
@@ -131,15 +131,7 @@
             <h4 style="margin-top:10px;display:block;margin-left: 30px;">营业时间:8:00-21:00</h4>
         </div>
         @*地图显示*@
-        <div style="width:80%;height:220px;border:1px solid black;margin:auto;margin-top:20px;">
-            <div id="container">
 
-            </div>
-            <div class="info">
-                @*<p>在初始化地图时，如果center属性缺省，地图默认定位到用户所在城市的中心</p><hr>*@
-                <p id='adcode'></p>
-            </div>
-        </div>
         <div style="width:80%;margin:auto;height:30px; background-color:#f9b82c;margin-top:20px;">
             <h3 style="color:red;">淮安特色</h3>
         </div>
@@ -298,9 +290,4 @@
             'fillOpacity': 0.25
         }
     }
-    AMap.plugin(["AMap.Geolocation"], function () {
-        var geolocation = new AMap.Geolocation(options);
-        map.addControl(geolocation);
-        geolocation.getCurrentPosition()
-    });
 </script>

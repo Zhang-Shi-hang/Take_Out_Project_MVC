@@ -45,6 +45,15 @@ namespace Take_Out_Project_MVC.Controllers
                 return null;
             }
         }
+
+        //地图页面
+        public ActionResult Map()
+        {
+            HttpCookie cokUser = Request.Cookies["UserId"];
+            ViewBag.UserId = cokUser.Value;
+            return View();
+        }
+
         //订单页面
         [AuthorFilter]
         public ActionResult Classify()

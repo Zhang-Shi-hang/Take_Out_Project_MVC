@@ -19,6 +19,13 @@ namespace Take_Out_Project_MVC.Controllers
         [AuthorFilter]
         public ActionResult Main()
         {
+            //从Cookie中获取uid
+            HttpCookie uid = Request.Cookies["UserId"];
+            ViewBag.uid = Server.UrlDecode(uid.Value);
+            //从Cookie中获取Phone
+            HttpCookie phone = Request.Cookies["Phone"];
+            ViewBag.phone = Server.UrlDecode(phone.Value);
+
             return View();
         }
         /// <summary>
