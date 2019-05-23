@@ -31,15 +31,16 @@
 <div class="paydiv">
     <a onclick="Jump()"><button class="paybtn">确定付款</button></a>
 </div>
+<input id="oen" type="hidden" value="@ViewBag.oen" />
 </body>
 </html>
 <script>
     //全局变量
-    var aaa=Session["bh"]
+    var aaa = $("#oen").val();
 
     //初始化函数
     $(function () {
-        GetOrder()
+        GetOrder();
     })
     //查询订单详情
     function GetOrder() {
@@ -57,7 +58,17 @@
 
     //跳转页面
     function Jump() {
-        location.href = "Payment_results?oen=" + aaa;
+         $.ajax({
+            url: "http://localhost:50037/api/Zrw/UpdateOrder?Oen=" + aaa,
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                $(data).each(function () {
+                    location.href = "Payment_results?oen=" + aaa;
+                })
+            }
+        })
+        
     }
 
 </script>

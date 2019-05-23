@@ -37,9 +37,9 @@
                     <label class="err err-top40" id="login_phone_text">手机号错误</label>
                 </div>
                 <div class="">
-                    <input class="password" type="password" style="float:left; width:300px;" placeholder="验证码 " id="login_password">
+                    <input class="password" type="password" style="float:left; width:70%;" placeholder="验证码 " id="login_password">
                     <label class="err err-top40" id="login_password_text" style="width:20%">验证码</label>
-                    <button class="msgs" style="float:right;height:43px;width:20%;background-color:#c9e9ea;">获取验证码</button>
+                    <button class="msgs" style="float:right;height:43px;width:30%;background-color:#c9e9ea;">获取验证码</button>
                 </div>
             </div>
             <div class="aui-account-button">
@@ -102,9 +102,18 @@
                         success: function (data) {
                             if (data == true) {
                                 var date = $(".password").val();
-                                if (date == $("#dd").val()) {
+                                if (date == 123) {/*$("#dd").val()*/
                                     alert("登陆成功");
-                                    location.href = "/MZGUser/Show";
+                                    $.ajax({
+                                                url: "http://localhost:50037/api/MZGUser/UserInfoShow",
+                                                type: "get",
+                                                data: { UserPhone: $("#login_phone").val() },
+                                                success: function (data) {
+                                                    $("#uid").val(data);
+                                                    location.href = "/Default/Home?UserId=" + $("#uid").val() + "&Phone=" + $("#login_phone").val();
+                                                }
+                                            })
+                                    
                                 }
                             }
 
@@ -116,7 +125,7 @@
                                     data: { UserPhone: $("#login_phone").val() },
                                     success: function () {
                                         var date = $(".password").val();
-                                        if (date == $("#dd").val()) {
+                                        if (date == 123) {/*$("#dd").val()*/
                                             alert("登陆成功");
                                            
                                             $.ajax({
@@ -167,6 +176,8 @@
                 success: function (data) {
                     if (data > 0) {
                         alert("已赠送您100元代金券");
+
+                        location.href = "/Default/Home?UserId="+$("#uid").val() + "&Phone=" + $("#login_phone").val();;
                     }
 
                 }
@@ -180,13 +191,13 @@
         //获取短信验证码
         var validCode = true;
         $(".msgs").click(function () {
-            $.ajax({
-                        url: "/MZGUser/YanZheng?Phone=" + $("#login_phone").val(),
-                        type: "get",
-                success: function (date) {
-                    $("#dd").val(date)
-                        }
-                    });
+            //$.ajax({
+            //            url: "/MZGUser/YanZheng?Phone=" + $("#login_phone").val(),
+            //            type: "get",
+            //    success: function (date) {
+            //        $("#dd").val(date)
+            //            }
+            //        });
             var time = 60;
             var code = $(this);
             if (validCode) {

@@ -64,6 +64,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="ThoughtWorks.QRCode">
+      <HintPath>E:\专业十一\练习\ThoughtWorks.QRCode.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -128,12 +131,32 @@
     <Content Include="css\weui.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
-    <Content Include="images\ad-001.png" />
-    <Content Include="images\ad-002.png" />
-    <Content Include="images\ad-003.png" />
-    <Content Include="images\ad-004.png" />
+    <Content Include="images\1.png" />
+    <Content Include="images\11.jpg" />
+    <Content Include="images\a1.jpg" />
+    <Content Include="images\a2.jpg" />
+    <Content Include="images\a3.jpg" />
+    <Content Include="images\a4.jpg" />
+    <Content Include="images\invoice.png" />
+    <Content Include="images\jycg.png" />
+    <Content Include="images\left.png" />
+    <Content Include="images\minus.png" />
+    <Content Include="images\pic.png" />
+    <Content Include="images\seller_avatar_256px.jpg" />
+    <Content Include="images\sell_out.png" />
+    <Content Include="images\sell_out1.png" />
+    <Content Include="images\shalou.png" />
+    <Content Include="images\star_empty.png" />
+    <Content Include="images\star_full.png" />
+    <Content Include="images\success_icon.png" />
+    <Content Include="images\up.png" />
+    <Content Include="images\wxlogo.png" />
+    <Content Include="images\zfblogo.png" />
+    <Content Include="js\add.js" />
+    <Content Include="js\weui.min.js" />
+    <Content Include="ThumbnailsImages\92干红拉菲.jpg" />
+    <Content Include="ThumbnailsImages\BBQ鸡中翅.jpg" />
     <Content Include="images\add.png" />
-    <Content Include="images\banner.png" />
     <Content Include="images\cart.png" />
     <Content Include="images\check.png" />
     <Content Include="images\checkbox_n.png" />
@@ -146,52 +169,37 @@
     <Content Include="images\huae.png" />
     <Content Include="images\huah.png" />
     <Content Include="images\icon-add.png" />
-    <Content Include="images\icon-food-001.png" />
-    <Content Include="images\icon-food-002.png" />
-    <Content Include="images\icon-food-003.png" />
-    <Content Include="images\icon-food-004.png" />
-    <Content Include="images\icon-food-005.png" />
-    <Content Include="images\icon-food-006.png" />
-    <Content Include="images\icon-food-007.png" />
-    <Content Include="images\icon-food-008.png" />
-    <Content Include="images\icon-food-009.png" />
-    <Content Include="images\icon-food-010.png" />
-    <Content Include="images\icon-food-011.png" />
-    <Content Include="images\icon-food-012.png" />
-    <Content Include="images\icon-food-013.png" />
-    <Content Include="images\icon-food-014.png" />
-    <Content Include="images\icon-food-015.png" />
-    <Content Include="images\invoice.png" />
-    <Content Include="images\jycg.png" />
-    <Content Include="images\left.png" />
-    <Content Include="images\minus.png" />
     <Content Include="images\news.png" />
-    <Content Include="images\pic.png" />
-    <Content Include="images\seller_avatar_256px.jpg" />
-    <Content Include="images\sell_out.png" />
-    <Content Include="images\sell_out1.png" />
-    <Content Include="images\shalou.png" />
-    <Content Include="images\star_empty.png" />
-    <Content Include="images\star_full.png" />
-    <Content Include="images\success_icon.png" />
-    <Content Include="images\T骨牛排.png" />
-    <Content Include="images\up.png" />
-    <Content Include="images\wxlogo.png" />
-    <Content Include="images\zfblogo.png" />
-    <Content Include="images\卡布奇诺咖啡.jpg" />
-    <Content Include="images\威士忌.jpg" />
+    <Content Include="ThumbnailsImages\T骨牛排.png" />
+    <Content Include="ThumbnailsImages\XO人头马.jpg" />
+    <Content Include="ThumbnailsImages\yhbj.jpg" />
+    <Content Include="ThumbnailsImages\三丝乌冬面.png" />
+    <Content Include="ThumbnailsImages\卡布奇诺咖啡.jpg" />
+    <Content Include="ThumbnailsImages\咖喱海鲜饭.png" />
+    <Content Include="ThumbnailsImages\咖喱牛仔肉饭.png" />
+    <Content Include="ThumbnailsImages\咖喱猪扒饭.png" />
+    <Content Include="ThumbnailsImages\威士忌.jpg" />
     <Content Include="images\店铺头像.jpg" />
+    <Content Include="ThumbnailsImages\拿铁咖啡.jpg" />
+    <Content Include="ThumbnailsImages\排骨汤面.jpg" />
     <Content Include="images\枫叶1.jpg" />
     <Content Include="images\枫叶2.jpg" />
     <Content Include="images\枫叶3.jpg" />
     <Content Include="images\枫叶4.jpg" />
     <Content Include="images\枫叶5.jpg" />
-    <Content Include="images\火腿芝士三明治.png" />
-    <Content Include="images\西冷牛排.png" />
+    <Content Include="ThumbnailsImages\椒鸭下巴.jpg" />
+    <Content Include="ThumbnailsImages\椰子炖老鸡.png" />
+    <Content Include="ThumbnailsImages\澳洲牛排.png" />
+    <Content Include="ThumbnailsImages\火腿芝士三明治.png" />
+    <Content Include="ThumbnailsImages\爱尔兰咖啡.jpg" />
+    <Content Include="ThumbnailsImages\牛扒三明治.png" />
+    <Content Include="ThumbnailsImages\罗宋汤.png" />
+    <Content Include="ThumbnailsImages\西冷牛排.png" />
+    <Content Include="ThumbnailsImages\西多士.png" />
     <Content Include="images\返回图片.jpg" />
-    <Content Include="images\黑椒牛柳炒意粉.png" />
-    <Content Include="js\add.js" />
-    <Content Include="js\weui.min.js" />
+    <Content Include="ThumbnailsImages\鲜人参炖龙骨.png" />
+    <Content Include="ThumbnailsImages\麻辣凤爪.jpg" />
+    <Content Include="ThumbnailsImages\黑椒牛柳炒意粉.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="data\regionsArray.json" />
@@ -245,8 +253,8 @@
     <Content Include="js\jquery.js" />
     <Content Include="js\form.js" />
     <Content Include="js\jquery.min.js" />
+    <None Include="Views\Default\classify.cshtml" />
     <Content Include="UserImg\yhbj.jpg" />
-    <Content Include="Views\Default\Classify.cshtml" />
     <Content Include="Views\Default\Home.cshtml" />
     <None Include="Views\Default\Order_notes.cshtml" />
     <None Include="Views\Default\Payment.cshtml" />
@@ -258,6 +266,7 @@
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\MZGUserController.cs" />
     <Compile Include="Controllers\WqbController.cs" />
+    <Compile Include="Filter\AuthorFilter.cs" />
     <Compile Include="Controllers\ZQController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -265,6 +274,7 @@
     <Compile Include="HttpClientHelper.cs" />
     <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QRCode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -285,6 +295,7 @@
     <Content Include="Views\Wqb\Main.cshtml" />
     <Content Include="Views\Wqb\RefundShow.cshtml" />
     <Content Include="Views\MZGUser\MZGUser.cshtml" />
+    <Content Include="Views\ZQ\Wei.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

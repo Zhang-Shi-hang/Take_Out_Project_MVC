@@ -195,7 +195,7 @@ a {
     display: -ms-flexbox;
     display: flex;
     z-index: 1002;
-    background:none;
+    background: none;
 }
 
 
@@ -272,8 +272,9 @@ a {
     overflow: hidden;
     display: block;
     text-overflow: ellipsis;
-    font-size: 0.95rem;
+    font-size: 1.6rem;
     color: #333;
+    font-weight:bold;
 }
 
 .icon {

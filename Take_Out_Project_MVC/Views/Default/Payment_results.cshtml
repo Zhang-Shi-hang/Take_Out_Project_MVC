@@ -12,39 +12,49 @@
     <link href="~/css/payment_results.css" rel="stylesheet" />
 </head>
 <body>
-<div class="incomplete_order">
-	<p>支付成功</p>
-    <p><span id="Price"></span></p>
-    <a href="../Wqb/OrderParticulars">查看详情</a>
-</div>
-<div class="main_info">
-    <div class="hang">
-    	<span>门店名称</span>
-        <span>枫叶餐厅</span>
+    <div class="incomplete_order">
+        <p>支付成功</p>
+        <p><span id="Price"></span></p>
+        <a href="../Wqb/OrderParticulars">查看详情</a>
     </div>
-    <div class="hang">
-    	<span>交易时间</span>
-        <span id="Time"></span>
+    <div class="main_info">
+        <div class="hang">
+            <span>门店名称</span>
+            <span>枫叶餐厅</span>
+        </div>
+        <div class="hang">
+            <span>交易时间</span>
+            <span id="Time"></span>
+        </div>
+        <div class="hang">
+            <span>交易订单</span>
+            <span id="Oen"></span>
+        </div>
+        <input id="oen" type="hidden" value="@ViewBag.oen" />
+        <input id="img" type="hidden" value="@ViewBag.img" />
+        <input id="RepastWay" type="hidden" value="@ViewBag.RepastWay" />
     </div>
-    <div class="hang">
-    	<span>交易订单</span>
-        <span id="Oen"></span>
+    <div class="invoice">
+        <span>点一点，马上开发票</span>
+        <span>开发票</span>
     </div>
-</div>
-<div class="invoice">
-	<span>点一点，马上开发票</span>
-    <span>开发票</span>
-</div>
+    <div style="margin: auto;" id="ss">
+    </div>
 </body>
 </html>
 <script>
     //全局变量
-    var aaa=Session["bh"]
+    var aaa = $("#oen").val();
 
     //初始化函数
     $(function () {
         //查询订单详情
-        GetOrder()
+        GetOrder();
+        if ($("#RepastWay").val()=="false") { }
+        else {
+            var s = '<img src="' + $("#img").val() + '" style="margin: auto;margin-top: 20px;" />';
+            $("#ss").append(s);
+        }
     })
     //查询订单详情
     function GetOrder() {

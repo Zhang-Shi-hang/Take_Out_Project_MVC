@@ -77,15 +77,16 @@
     </style>
 
 </head>
-<body>
+<body style="width:100%;height:100%">
+
     <div id="Box">
         @*导航条*@
-        <header class="aui-navBar aui-navBar-fixed">
-            <a href="javascript:;" class="aui-navBar-item">
-                <i class="icon icon-return"></i>{{Name}}
+        <header class="aui-navBar" style="background-color:#f9b82c">
+            <a href="javascript:;" style="float:left;" class="aui-navBar-item">
+                <i class=""><img src="~/images/icon-add.png" alt="Alternate Text" style="width:20px;height:20px;" /></i>{{Name}}
             </a>
             <div class="aui-center">
-                <span class="aui-center-title"></span>
+                <h3 class="aui-center-title" style="font-size:1.6rem;font-weight:bold;color:white">枫叶餐厅欢迎您</h3>
             </div>
             <a href="javascript:;" class="aui-navBar-item">
                 <i class="icon icon-news"></i>
@@ -94,7 +95,17 @@
 
         @*店铺详情*@
         <div>
-            <div id="odiv">
+            <table style="width:80%;height:110px;margin-top:10px;margin-left:10%;">
+                <tr>
+                    <td><img src="~/images/a1.jpg" alt="Alternate Text" style="width:95%;height:50px;" /></td>
+                    <td><img src="~/images/a2.jpg" alt="Alternate Text" style="width:95%;height:50px;margin-left:5%" /></td>
+                </tr>
+                <tr style="margin-top:10px;">
+                    <td><img src="~/images/a3.jpg" alt="Alternate Text" style="width:95%;height:50px;" /></td>
+                    <td><img src="~/images/a4.jpg" alt="Alternate Text" style="width:95%;height:50px;margin-left:5%" /></td>
+                </tr>
+            </table>
+            <div id="odiv" style="clear:both;margin-top:15px;">
                 <ul id="ul1" onclick="location.href='Classify'">
                     <li><img src="~/images/枫叶1.jpg" height="0" width="0" style="        display: block;"></li>
                     <li><img src="~/images/枫叶2.jpg" height="0" width="0" style="        display: none;"></li>
@@ -128,76 +139,25 @@
                 <p id='adcode'></p>
             </div>
         </div>
+        <div style="width:80%;margin:auto;height:30px; background-color:#f9b82c;margin-top:20px;">
+            <h3 style="color:red;">淮安特色</h3>
+        </div>
         @*菜品详情显示*@
-        <div style="width:80%;height:100px;margin:auto;margin-top:20px;margin-bottom:20px;">
-            <a href="Classify" class="aui-list-theme-item">
-                <div class="aui-list-img">
-                    <img src="~/images/西冷牛排.png" />
-                </div>
-                <div class="aui-list-title">
-                    <h3>西冷牛排</h3>
-                    <div class="aui-list-spell">
-                        <span>根据特色菜推荐</span>
+        <div style="width:80%;height:100px;margin:auto;margin-top:10px;margin-bottom:20px;">
+            @foreach (var i in Model)
+            {
+                <a href="Classify" class="aui-list-theme-item">
+                    <div class="aui-list-img">
+                        <img src="@i.GreensImgUrl"  style="height:80px;"/>
                     </div>
-                </div>
-            </a>
-            <a href="Classify" class="aui-list-theme-item">
-                <div class="aui-list-img">
-
-                    <img src="~/images/T骨牛排.png" />
-                </div>
-                <div class="aui-list-title">
-                    <h3>T骨牛排</h3>
-                    <div class="aui-list-spell">
-                        <span>根据特色菜推荐</span>
+                    <div class="aui-list-title">
+                        <h3>@i.GreensName</h3>
+                        <div class="aui-list-spell">
+                            <span>根据特色菜推荐</span>
+                        </div>
                     </div>
-                </div>
-            </a>
-            <a href="Classify" class="aui-list-theme-item">
-                <div class="aui-list-img">
-                    <img src="~/images/黑椒牛柳炒意粉.png" />
-                </div>
-                <div class="aui-list-title">
-                    <h3>黑椒牛柳炒意粉</h3>
-                    <div class="aui-list-spell">
-                        <span>根据特色菜推荐</span>
-                    </div>
-                </div>
-            </a>
-            <a href="Classify" class="aui-list-theme-item">
-                <div class="aui-list-img">
-                    <img src="~/images/火腿芝士三明治.png" />
-                </div>
-                <div class="aui-list-title">
-                    <h3>火腿芝士三明治</h3>
-                    <div class="aui-list-spell">
-                        <span>根据特色菜推荐</span>
-                    </div>
-                </div>
-            </a>
-            <a href="Classify" class="aui-list-theme-item">
-                <div class="aui-list-img">
-                    <img src="~/images/卡布奇诺咖啡.jpg" />
-                </div>
-                <div class="aui-list-title">
-                    <h3>卡布奇诺咖啡</h3>
-                    <div class="aui-list-spell">
-                        <span>根据特色菜推荐</span>
-                    </div>
-                </div>
-            </a>
-            <a href="Classify" class="aui-list-theme-item">
-                <div class="aui-list-img">
-                    <img src="~/images/威士忌.jpg" />
-                </div>
-                <div class="aui-list-title">
-                    <h3>威士忌</h3>
-                    <div class="aui-list-spell">
-                        <span>根据特色菜推荐</span>
-                    </div>
-                </div>
-            </a>
-
+                </a>
+            }
         </div>
 
     </div>

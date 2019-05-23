@@ -34,12 +34,12 @@
         </tr>
         <tr style="border-bottom:ridge">
             <td style="padding-top:10px;">
-                <img src="~/UserImg/wf.jpg" /> <a href="#">未付款订单 </a>
+                <img src="~/UserImg/wf.jpg" /> <a href="/ZQ/Wei">未付款订单 </a>
             </td>
         </tr>
         <tr style="border-bottom:ridge">
             <td style="padding-top:10px;">
-                <img src="~/UserImg/jf.jpg" /> <a href="#" onclick="JF('@item.UserIntegral')">我的积分:</a>　　　<span>@item.UserIntegral</span>
+                <img src="~/UserImg/jf.jpg" /> <a href="#" onclick="JF('@item.UserIntegral')">我的积分:&nbsp;@item.UserIntegral</a>
             </td>
         </tr>
         <tr style="border-bottom:ridge">
@@ -60,7 +60,7 @@
 
         <tr style="border-bottom:ridge;border-top:ridge">
             <td style="padding-top:10px;">
-                <img src="~/UserImg/tc.jpg" /> 退出
+                <img src="~/UserImg/tc.jpg" /> <span onclick="Eixt()">退出</span>
             </td>
         </tr>
     </table>
@@ -75,6 +75,12 @@
         }
     function JF(jf) {
         location.href = "/ZQ/ZQJF?jf=" + jf;
+    }
+    function Eixt() {
+        if (confirm("是否退出"))
+        {
+            location.href = "/MZGUser/MZGUser";
+        }
     }
 </script>
 </body>

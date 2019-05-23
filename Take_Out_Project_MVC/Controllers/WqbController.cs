@@ -4,13 +4,19 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
+using Take_Out_Project_MVC.Filter;
 using Take_Out_Project_MVC.Models;
 
 namespace Take_Out_Project_MVC.Controllers
 {
     public class WqbController : Controller
     {
+        private object cache;
+
+        public object Cache { get; private set; }
+
         // GET: Wqb
+        [AuthorFilter]
         public ActionResult Main()
         {
             return View();
@@ -20,17 +26,23 @@ namespace Take_Out_Project_MVC.Controllers
         /// </summary>
         /// <param name="id">用户id</param>
         /// <returns></returns>
-        public ActionResult OrderShow(string id = "317C1E7F-24E5-479E-8B4E-57867ADC6757")
+        [AuthorFilter]
+        public ActionResult OrderShow()
         {
-            Session["id"] = id;
+            HttpCookie cookie =Request.Cookies["UserId"];
+            string UserId = cookie.Value;
+            Session["id"] = UserId;
             return View();
         }
         /// <summary>
         /// 评价界面
         /// </summary>
         /// < returns ></ returns >
+        [AuthorFilter]
         public ActionResult Comment()
         {
+            HttpCookie cookie = Request.Cookies["UserId"];
+            string UserId = cookie.Value;
             return View();
         }
 
@@ -40,9 +52,12 @@ namespace Take_Out_Project_MVC.Controllers
         /// <param name="UserId"></param>
         /// <param name="OrderId"></param>
         /// <returns></returns>
-        public ActionResult OrderParticulars(string UserId=null)
+        [AuthorFilter]
+        public ActionResult OrderParticulars(string UserId)
         {
-            string json = HttpClientHelper.Sender("get", "OrderManage/OrderParticulars?UserId=" + UserId);
+            HttpCookie cookie = Request.Cookies["UserId"];
+             UserId = Server.UrlDecode(cookie.Value);
+            string json = HttpClientHelper.Sender("get", "Wqb/OrderParticulars?UserId=" + UserId);
             var list = JsonConvert.DeserializeObject<List<ViewModel>>(json);
             return View(list);
         }
@@ -51,9 +66,12 @@ namespace Take_Out_Project_MVC.Controllers
         /// </summary>
         /// <param name="id">用户id</param>
         /// <returns></returns>
-        public ActionResult CommentShow(string id = "283799B4-CA3A-44EC-8482-84B07A30A38F")
+        [AuthorFilter]
+        public ActionResult CommentShow()
         {
-            Session["id"] = id;
+            HttpCookie cookie = Request.Cookies["UserId"];
+            string UserId = Server.UrlDecode(cookie.Value);
+            Session["id"] = UserId;
             return View();
         }
         /// <summary>
@@ -61,13 +79,23 @@ namespace Take_Out_Project_MVC.Controllers
         /// </summary>
         /// <param name="id">用户id</param>
         /// <returns></returns>
-        public ActionResult RefundShow(string id = "283799B4-CA3A-44EC-8482-84B07A30A38F")
+        [AuthorFilter]
+        public ActionResult RefundShow()
         {
-            Session["id"] = id;
+            HttpCookie cookie = Request.Cookies["UserId"];
+            string UserId = Server.UrlDecode(cookie.Value);
+            Session["id"] = UserId;
             return View();
         }
+        /// <summary>
+        /// 退款提交页面
+        /// </summary>
+        /// <returns></returns>
+        [AuthorFilter]
         public ActionResult Refund()
         {
+            HttpCookie cookie = Request.Cookies["UserId"];
+            string UserId = cookie.Value;
             return View();
         }
     }

@@ -18,15 +18,13 @@
             <div class="invoice">
                 <div>已点<span id="Count"></span>个菜品</div>
             </div>
-            <ul class="food_list" id="OrderUl">
-                
-            </ul>
+            <ul class="food_list" id="OrderUl"></ul>
             <div class="invoice">
                 <div>
                     <span>就餐方式：</span>
                     <select id="GreensType" class="myselect">
-                        <option value="0">到店自取</option>
-                        <option value="1">外卖派送</option>
+                        <option value="false">到店自取</option>
+                        <option value="true">外卖派送</option>
                     </select>
                 </div>
 
@@ -41,20 +39,18 @@
             </div>
             <div class="invoice">
                 <div>优惠券：</div>
-                <select id="Discounts" class="myselect">
-                    
-                </select>
+                <select id="Discounts" class="myselect"></select>
             </div>
             <div class="total_price">合计：<span id="EndPrice">¥ </span></div>
         </div>
         <div class="pay_notice">15分钟内未支付系统将自动取消订单</div>
         <div class="btn">
-            <button class="btn1">取消订单</button>
-            <a onclick="Payment()" ><button class="btn2"  >付款</button></a>
+            <button class="btn1" onclick="qu()">取消订单</button>
+            <a onclick="Payment()"><button class="btn2">付款</button></a>
         </div>
-
+        <input id="oen" type="hidden" value="@ViewBag.Oen" />
+        <input id="uid" type="hidden" value="@ViewBag.uid" />
     </div>
-
 
 
     <script src="~/Scripts/jquery-3.3.1.js"></script>
@@ -65,19 +61,11 @@
     //全局变量
     var CountNum = 0;    //份数
     var PriceSum = 0;    //总价
-    var aaa = Session["bh"]  //订单编号
-    var Uid= Session["uid"]  //用户ID
+    var oen = $("#oen").val();  //订单编号
+    var Uid = $("#uid").val(); //用户ID
 
     //初始化函数
     $(function () {
-        setInterval(function () {
-            $("#Price").text(parseInt(PriceSum));
-            var a = PriceSum
-            var b = $("#Discounts").text();
-            var c = parseFloat(a) - parseFloat(b);
-            $("#EndPrice").text(parseFloat(c))
-        }, 500)
-
         //根据订单编号查询菜品明细
         GetDetailInOen()
     })
@@ -85,7 +73,7 @@
     //根据订单编号查询菜品明细
     function GetDetailInOen() {
         $.ajax({
-            url: "http://localhost:50037/api/Zrw/GetDetailInOen?OenNum=" + aaa,
+            url: "http://localhost:50037/api/Zrw/GetDetailInOen?OenNum=" + oen,
             type: "get",
             dataType: "json",
             success: function (data) {
@@ -93,7 +81,7 @@
                 $(data).each(function () {
                     PriceSum += this.Gprice;
                     var obj = '<li class="food_li">'
-                        + '     <img src="~/images/卡布奇诺咖啡.jpg"  class="food_li_left" />'
+                        + '     <img src="'+this.GreensImgUrl+'"  class="food_li_left" />'
                         + '     <div class="food_li_middle">'
                         + '          <div>'
                         + '            <p>' + this.GreensName + '</p>'
@@ -114,7 +102,7 @@
     //根据订单编号查询菜品数量
     function GetCount() {
         $.ajax({
-            url: "http://localhost:50037/api/Zrw/GetCount?OenNum=" + aaa,
+            url: "http://localhost:50037/api/Zrw/GetCount?OenNum=" + oen,
             type: "get",
             dataType: "json",
             success: function (data) {
@@ -143,15 +131,28 @@
 
                 //根据用户Id查询优惠券信息
                 GetDiscountsTable();
+                $("#Price").text(parseInt(PriceSum));
+                var a = PriceSum
+                
+                var b = $("#Discounts option:selected").text();
+                if (b == "" || b == null) {
+                      $("#EndPrice").text(parseFloat(a));  
+                }
+                else {
+                var c = parseFloat(a) - parseFloat(b);
+                $("#EndPrice").text(parseFloat(c));
+                }
             }
         })
     }
 
     //付款(修改优惠券状态并跳转页面)
     function Payment() {
+        var DiscountsId = $("#Discounts").val();
         $.ajax({
-            url: "http://localhost:50037/api/Zrw/UpdateDiscounts?Uid=" + Uid,
+            url: "http://localhost:50037/api/Zrw/UpdateDiscounts",
             type: "get",
+            data: {Uid:Uid,DiscountsId:DiscountsId},
             dataType: "json",
             success: function (data) {
                 if (data > 0) {
@@ -168,17 +169,19 @@
         obj.RepastWay = $("#GreensType").val();
         obj.OrderRemark = $("#GreensSay").val();
         obj.OrderPrice = $("#EndPrice").text();
-        obj.Oen=aaa
+        obj.Oen = oen
         $.ajax({
             url: "http://localhost:50037/api/Zrw/UpdateOrderInSay?str=" + JSON.stringify(obj),
             type: "get",
             dataType: "json",
             success: function (data) {
                 if (data > 0) {
-                    location.href = "Payment?oen=" + aaa;
+                    location.href = "Payment?oen=" + oen;
                 }
             }
         })
     }
-
+    function qu() {
+        location.href = "/Default/classify";
+    }
 </script>
