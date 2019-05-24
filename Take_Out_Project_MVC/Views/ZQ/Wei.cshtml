@@ -24,20 +24,55 @@
             <td></td>
         </tr>
     </table>
-    <div>
-        @foreach (var i in Model)
-        {
+    @foreach (var i in Model)
+    {
 
-            <div style="width:80%;height:150px;margin-left:30px;">
-                <span>@i.Oen</span>
+        <div style="width:80%;height:150px;margin-left:30px;">
+            <p>订单编号:@i.Oen</p>
+            <p>订单总价:@i.OrderPrice</p>
+            <p>订单时间:@i.OrderTime.ToString("yyyy-MM-dd HH:mm:ss")</p>
+            <p>订单详情:</p>
+            <div>
+                <input id="orderid" type="hidden" value="@i.OrderId" />
+                <table>
+                    <tr>
+                        <td>菜品姓名</td>
+                        <td>菜品数量</td>
+                        <td>菜品价格</td>
+                    </tr>
+                    <tbody id="td"></tbody>
+                </table>
+                <div>
+                </div>
                 <p>未支付</p>
-                <input id="Button1" type="button" value="去支付" onclick="GO(@i.Oen)" class="btn btn-default"  style="margin-left:80%"/>
+                <input id="Button1" type="button" value="去支付" onclick="GO(@i.Oen)" class="btn btn-default" style="margin-left:80%" />
             </div>
-        }
-    </div>
+        </div>
+    }
+
 </body>
 </html>
 <script>
+    $(function () {
+        var OrderId = $("#orderid").val();
+        Menu(OrderId);
+    })
+    function Menu(OrderId) {
+        $.ajax({
+            url: "http://localhost:50037/api/wqb/ShowMenu?OrderId=" + OrderId,
+            type: "get",
+            success: function (data) {
+                $(data).each(function () {
+                    var line = '<tr>'
+                        + '<td>' + this.GreensName + '</td>'
+                        + '<td>' + this.Gnum + '</td>'
+                        + '<td>' + this.GreensPrice + '</td>'
+                        + '</tr>'
+                    $("#td").append(line);
+                })
+            }
+        })
+    }
     function GO(Oen) {
         location.href = '/Default/Order_notes?Oen=' + Oen;
     }

@@ -95,7 +95,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="aaa.png" />
+    <Content Include="UserImg\yhtx.jpg" />
     <Content Include="bootstrap-3.3.7\css\bootstrap-theme.css" />
     <Content Include="bootstrap-3.3.7\css\bootstrap-theme.min.css" />
     <Content Include="bootstrap-3.3.7\css\bootstrap.css" />

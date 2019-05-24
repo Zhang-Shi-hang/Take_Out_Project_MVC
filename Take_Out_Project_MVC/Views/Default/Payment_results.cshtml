@@ -15,7 +15,7 @@
     <div class="incomplete_order">
         <p>支付成功</p>
         <p><span id="Price"></span></p>
-        <a href="../Wqb/OrderParticulars">查看详情</a>
+        <a href="#" onclick="GetOrder()">查看详情</a>
     </div>
     <div class="main_info">
         <div class="hang">
@@ -48,11 +48,10 @@
 
     //初始化函数
     $(function () {
-        //查询订单详情
-        GetOrder();
         if ($("#RepastWay").val()=="false") { }
         else {
             var s = '<img src="' + $("#img").val() + '" style="margin: auto;margin-top: 20px;" />';
+            s+='<br/><span>到店取餐码</span>'
             $("#ss").append(s);
         }
     })
@@ -67,6 +66,7 @@
                     $("#Price").text(this.OrderPrice);
                     $("#Time").text(this.OrderTime);
                     $("#Oen").text(aaa);
+                    location.href = "/Wqb/OrderParticulars?OrderId="+this.OrderId;
                 })
             }
         })
