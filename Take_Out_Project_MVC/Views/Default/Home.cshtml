@@ -37,7 +37,7 @@
         }
 
         #odiv {
-            width: 80%;
+            width: 100%;
             height: 200px;
             border: 1px solid black;
             margin: 0 auto;
@@ -57,14 +57,14 @@
             width: 80%;
             height: 50px;
             position: absolute;
-            top: 165px;
-            left: 18%;
+            top: 175px;
+            left: 25%;
         }
 
             #ul2 li {
                 float: left;
-                width: 20px;
-                height: 20px;
+                width: 15px;
+                height: 15px;
                 border-radius: 50%;
                 margin-left: 15px;
                 text-align: center;
@@ -96,17 +96,7 @@
 
         @*店铺详情*@
         <div>
-            <table style="width:80%;height:110px;margin-top:10px;margin-left:10%;">
-                <tr>
-                    <td><img src="~/images/a1.jpg" alt="Alternate Text" style="width:95%;height:50px;" /></td>
-                    <td><img src="~/images/a2.jpg" alt="Alternate Text" style="width:95%;height:50px;margin-left:5%" /></td>
-                </tr>
-                <tr style="margin-top:10px;">
-                    <td><img src="~/images/a3.jpg" alt="Alternate Text" style="width:95%;height:50px;" /></td>
-                    <td><img src="~/images/a4.jpg" alt="Alternate Text" style="width:95%;height:50px;margin-left:5%" /></td>
-                </tr>
-            </table>
-            <div id="odiv" style="clear:both;margin-top:15px;">
+            <div id="odiv" style="clear:both;">
                 <ul id="ul1" onclick="location.href='Classify'">
                     <li><img src="~/images/枫叶1.jpg" height="0" width="0" style="        display: block;"></li>
                     <li><img src="~/images/枫叶2.jpg" height="0" width="0" style="        display: none;"></li>
@@ -141,7 +131,7 @@
             {
                 <a href="Classify" class="aui-list-theme-item">
                     <div class="aui-list-img">
-                        <img src="@i.GreensImgUrl" style="height:80px;" />
+                        <img src="@i.GreensImgUrl" style="height:120px;" />
                     </div>
                     <div class="aui-list-title">
                         <h3>@i.GreensName</h3>
