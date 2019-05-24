@@ -11,6 +11,7 @@
     <link href="~/css/style.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="~/js/jquery.min.js"></script>
     <script type="text/javascript" src="~/js/form.js"></script>
+
 </head>
 <body>
     <section class="aui-flexView">
@@ -105,15 +106,15 @@
                                 if (date == 123) {/*$("#dd").val()*/
                                     alert("登陆成功");
                                     $.ajax({
-                                                url: "http://localhost:50037/api/MZGUser/UserInfoShow",
-                                                type: "get",
-                                                data: { UserPhone: $("#login_phone").val() },
-                                                success: function (data) {
-                                                    $("#uid").val(data);
-                                                    location.href = "/Default/Home?UserId=" + $("#uid").val() + "&Phone=" + $("#login_phone").val();
-                                                }
-                                            })
-                                    
+                                        url: "http://localhost:50037/api/MZGUser/UserInfoShow",
+                                        type: "get",
+                                        data: { UserPhone: $("#login_phone").val() },
+                                        success: function (data) {
+                                            $("#uid").val(data);
+                                            location.href = "/Default/Home?UserId=" + $("#uid").val() + "&Phone=" + $("#login_phone").val();
+                                        }
+                                    })
+
                                 }
                             }
 
@@ -127,7 +128,7 @@
                                         var date = $(".password").val();
                                         if (date == 123) {/*$("#dd").val()*/
                                             alert("登陆成功");
-                                           
+
                                             $.ajax({
                                                 url: "http://localhost:50037/api/MZGUser/UserInfoShow",
                                                 type: "get",
@@ -175,9 +176,8 @@
                 data: { Sid: $("#sid").val(), Uid: $("#uid").val() },
                 success: function (data) {
                     if (data > 0) {
-                        alert("已赠送您100元代金券");
 
-                        location.href = "/Default/Home?UserId="+$("#uid").val() + "&Phone=" + $("#login_phone").val();;
+                        location.href = "/Default/Home?UserId=" + $("#uid").val() + "&Phone=" + $("#login_phone").val()+"&vv=1";
                     }
 
                 }

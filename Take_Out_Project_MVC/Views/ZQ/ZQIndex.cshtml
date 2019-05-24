@@ -13,75 +13,78 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
 </head>
 <body style="background-color:whitesmoke">
-        @foreach (var item in Model)
-        {
-    <table  style="height:210px;background-color:skyblue;text-align:center;width:92%;margin-left:4%;background-image:url(/UserImg/bj.jpg)">
-        <tr>
-            <td>
-                <img src="~/aaa.png" style="height:100px;border-radius:50%;width:100px"  />
-                
-            </td>
-        </tr>
-        <tr>
-            <td><b style="margin-top:10px;font-size:25px">@item.UserPhone</b></td>
-        </tr>
-    </table>
-    <table style="font-size:20px;width:92%;margin-left:4%;background-color:white">
-        <tr style="border-bottom:ridge">
-            <td style="padding-top:10px;">
-                <img src="~/UserImg/dd.jpg" /> 我的订单　　　
-            </td>
-        </tr>
-        <tr style="border-bottom:ridge">
-            <td style="padding-top:10px;">
-                <img src="~/UserImg/wf.jpg" /> <a href="/ZQ/Wei">未付款订单 </a>
-            </td>
-        </tr>
-        <tr style="border-bottom:ridge">
-            <td style="padding-top:10px;">
-                <img src="~/UserImg/jf.jpg" /> <a href="#" onclick="JF('@item.UserIntegral')">我的积分:&nbsp;@item.UserIntegral</a>
-            </td>
-        </tr>
-        <tr style="border-bottom:ridge">
-            <td style="padding-top:10px">
-                <img src="~/UserImg/yh.jpg" />
-                <a href="#" onclick="YH('@item.UserId')">我的优惠劵</a><br />
-            </td>
-        </tr>
-        <tr style="border-bottom:ridge">
-            <td style="padding-top:10px">
-                <img src="~/UserImg/gr.jpg" />
-                <a href="#" onclick="Upt('@item.UserPhone')">修改个人信息</a>
-            </td>
-        </tr>
-        <tr style="background-color:whitesmoke">
-            <td>　</td>
-        </tr>
+    @foreach (var item in Model)
+    {
 
-        <tr style="border-bottom:ridge;border-top:ridge">
-            <td style="padding-top:10px;">
-                <img src="~/UserImg/tc.jpg" /> <span onclick="Eixt()">退出</span>
-            </td>
-        </tr>
-    </table>
+        <table style="height:210px;background-color:skyblue;text-align:center;width:92%;margin-left:4%;background-image:url(/UserImg/bj.jpg)">
+            <tr>
+                <td>
+                    <img src="~/UserImg/wd.jpg" onclick="location.href='/Default/Home?UserId=@item.UserId&Phone=@item.UserPhone'" height="30" style="float:left;margin-left:5px">
 
-        }
-<script>
-    function YH(id) {
-        location.href = "/ZQ/ZQYH/" + id;
-        }
-    function Upt(phone) {
-        location.href = "/ZQ/UptShow?phone=" + phone;
-        }
-    function JF(jf) {
-        location.href = "/ZQ/ZQJF?jf=" + jf;
+
+                    <img src="~/aaa.png" style="height:100px;border-radius:50%;width:100px" />
+                    <span>　　 </span>
+                </td>
+            </tr>
+            <tr>
+                <td><b style="margin-top:10px;font-size:25px">@item.UserPhone</b></td>
+            </tr>
+        </table>
+        <table style="font-size:20px;width:92%;margin-left:4%;background-color:white">
+            <tr style="border-bottom:ridge">
+                <td style="padding-top:10px;">
+                    <img src="~/UserImg/dd.jpg" /> 我的订单　　　
+                </td>
+            </tr>
+            <tr style="border-bottom:ridge">
+                <td style="padding-top:10px;">
+                    <img src="~/UserImg/wf.jpg" /> <a href="/ZQ/Wei">未付款订单 </a>
+                </td>
+            </tr>
+            <tr style="border-bottom:ridge">
+                <td style="padding-top:10px;">
+                    <img src="~/UserImg/jf.jpg" /> <a href="#" onclick="JF('@item.UserIntegral')">我的积分:&nbsp;@item.UserIntegral</a>
+                </td>
+            </tr>
+            <tr style="border-bottom:ridge">
+                <td style="padding-top:10px">
+                    <img src="~/UserImg/yh.jpg" />
+                    <a href="#" onclick="YH('@item.UserId')">我的优惠劵</a><br />
+                </td>
+            </tr>
+            <tr style="border-bottom:ridge">
+                <td style="padding-top:10px">
+                    <img src="~/UserImg/gr.jpg" />
+                    <a href="#" onclick="Upt('@item.UserId')">修改个人信息</a>
+                </td>
+            </tr>
+            <tr style="background-color:whitesmoke">
+                <td>　</td>
+            </tr>
+
+            <tr style="border-bottom:ridge;border-top:ridge">
+                <td style="padding-top:10px;">
+                    <img src="~/UserImg/tc.jpg" /> <span onclick="Eixt()">退出</span>
+                </td>
+            </tr>
+        </table>
+
     }
-    function Eixt() {
-        if (confirm("是否退出"))
-        {
-            location.href = "/MZGUser/MZGUser";
+    <script>
+        function YH(id) {
+            location.href = "/ZQ/ZQYH/" + id;
         }
-    }
-</script>
+        function Upt(userid) {
+            location.href = "/ZQ/UptShow?userid=" + userid;
+        }
+        function JF(jf) {
+            location.href = "/ZQ/ZQJF?jf=" + jf;
+        }
+        function Eixt() {
+            if (confirm("是否退出")) {
+                location.href = "/MZGUser/MZGUser";
+            }
+        }
+    </script>
 </body>
 </html>

@@ -9,9 +9,12 @@
 
     }
 </style>
+<input id="HidUid" type="hidden" value="@ViewBag.uid" />
+<input id="HidPhone" type="hidden" value="@ViewBag.phone" />
+
 <div style="height:90px; width:100%">
     <h2 style="text-align:center;margin-top:20px;">
-<img src="~/images/返回图片.jpg" style="width:25px;height:25px;float:left;margin-left:20px;margin-top:5px;" />订单</h2>
+<img src="~/images/返回图片.jpg" style="width:25px;height:25px;float:left;margin-left:20px;margin-top:5px;" onclick="Jump()" />订单</h2>
     <div style="width:80%;height:50px;margin:auto;margin-top:10px;">
         <div style="float:left;"><a href="OrderShow" target="fa" style="font-size:18px;text-decoration:none;color:black;line-height:50px;"id="div-1">全部订单</a></div>
         <div style="float:left;margin-left:25%;"><a href="CommentShow" target="fa" style="font-size:18px;text-decoration:none;color:black;line-height:50px;"id="div-2">待评价</a></div>
@@ -41,5 +44,12 @@
         $("#div-2").css({ 'font-weight': 'normal', 'border-bottom': '0px' });
         $("#div-3").css({ 'font-weight': 'bold', 'border-bottom': '3px solid #ffd800', 'padding-bottom': '13px' });
     })
+
+    //返回主页
+    function Jump() {
+        var uid = $("#HidUid").val()
+        var phone = $("#HidPhone").val();
+        location.href = "/Default/Home?UserId=" + uid + "&Phone=" + phone;
+    }
 </script>
 

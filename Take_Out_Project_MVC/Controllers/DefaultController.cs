@@ -22,7 +22,7 @@ namespace Take_Out_Project_MVC.Controllers
         }
         //首页
         //[AuthorFilter]
-        public ActionResult Home(string UserId = "", string Phone = "")
+        public ActionResult Home(string UserId = "", string Phone = "",int vv=0)
         {
             if (UserId != "" && Phone != "")
             {
@@ -33,6 +33,7 @@ namespace Take_Out_Project_MVC.Controllers
                 HttpCookie cookie = new HttpCookie("UserId");
                 cookie.Value = Server.UrlEncode(UserId);
                 Response.Cookies.Add(cookie);
+                ViewBag.vv = vv;
                 string result = HttpClientHelper.Sender("get", "/api/Zrw/GetGreens");
                 var list = JsonConvert.DeserializeObject<List<ViewModel>>(result);
                 list = list.Where(s => s.GreensPrice < 150).ToList();
@@ -44,6 +45,15 @@ namespace Take_Out_Project_MVC.Controllers
                 return null;
             }
         }
+
+        //地图页面
+        public ActionResult Map()
+        {
+            HttpCookie cokUser = Request.Cookies["UserId"];
+            ViewBag.UserId = cokUser.Value;
+            return View();
+        }
+
         //订单页面
         [AuthorFilter]
         public ActionResult Classify()
@@ -66,14 +76,16 @@ namespace Take_Out_Project_MVC.Controllers
         }
         //确认支付
         [AuthorFilter]
-        public ActionResult Payment(string oen)
+        public ActionResult Payment(string oen,string DiscountsId,string uid)
         {
+            ViewBag.uid = uid;
+            ViewBag.DiscountsId = DiscountsId;
             ViewBag.oen = oen;
             return View();
         }
         //支付结果
         [AuthorFilter]
-        public ActionResult Payment_results(string oen)
+        public ActionResult Payment_results(string oen,HttpPostedFileBase file)
         {
             ViewBag.oen = oen;
             string result = HttpClientHelper.Sender("get", "/api/Zrw/GetOrder?Oen=" + oen);
@@ -83,7 +95,7 @@ namespace Take_Out_Project_MVC.Controllers
                 try
                 {
                     string filename = "/ThumbnailsImages/";
-                    QRCode.GetBarCode(oen, Server.MapPath(filename + "a.png"));
+                    QRCode.GetBarCode(oen, Server.MapPath(filename+"a.png"));
                     ViewBag.RepastWay = mo.RepastWay;
                     ViewBag.img = "/ThumbnailsImages/a.png";
                 }
