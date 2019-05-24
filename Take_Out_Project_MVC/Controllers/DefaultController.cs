@@ -82,10 +82,6 @@ namespace Take_Out_Project_MVC.Controllers
             {
                 try
                 {
-                    if (!Directory.Exists("ThumbnailsImages"))
-                    {
-                        Directory.CreateDirectory("ThumbnailsImages");
-                    }
                     string filename = "/ThumbnailsImages/";
                     QRCode.GetBarCode(oen, Server.MapPath(filename + "a.png"));
                     ViewBag.RepastWay = mo.RepastWay;
