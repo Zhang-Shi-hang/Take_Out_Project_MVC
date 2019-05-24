@@ -27,20 +27,20 @@
     @foreach (var i in Model)
     {
 
-        <div style="width:80%;height:150px;margin-left:30px;">
-            <p>订单编号:@i.Oen</p>
-            <p>订单总价:@i.OrderPrice</p>
-            <p>订单时间:@i.OrderTime.ToString("yyyy-MM-dd HH:mm:ss")</p>
-            <p>订单详情:</p>
-            <div>
-                <input id="orderid" type="hidden" value="@i.OrderId" />
-                <table>
+        <div style="width:80%;height:150px;margin-left:30px;display:block;margin-bottom:100px;">
+            <h4>订单编号:@i.Oen</h4>
+            <h4>订单总价:<span id="sum@(ViewBag.sum++)"></span></h4>
+            <h4>订单时间:@i.OrderTime.ToString("yyyy-MM-dd HH:mm:ss")</h4>
+            <h4>订单详情:</h4>
+            <div class="dd">
+                <input id="orderid@(ViewBag.ss++)" type="hidden" value="@i.OrderId" />
+                <table class="table table-bordered">
                     <tr>
                         <td>菜品姓名</td>
                         <td>菜品数量</td>
                         <td>菜品价格</td>
                     </tr>
-                    <tbody id="td"></tbody>
+                    <tbody id="td@(ViewBag.s++)"></tbody>
                 </table>
                 <div>
                 </div>
@@ -53,23 +53,35 @@
 </body>
 </html>
 <script>
+    var sum = 0;
+    var i = 0;
+    var u = 0;
     $(function () {
-        var OrderId = $("#orderid").val();
-        Menu(OrderId);
+        $(".dd").each(function (i, v) {
+            Menu($("#orderid" + i).val());
+        })
     })
     function Menu(OrderId) {
         $.ajax({
             url: "http://localhost:50037/api/wqb/ShowMenu?OrderId=" + OrderId,
             type: "get",
             success: function (data) {
+                $("#td" + i).empty();
                 $(data).each(function () {
+
                     var line = '<tr>'
                         + '<td>' + this.GreensName + '</td>'
                         + '<td>' + this.Gnum + '</td>'
                         + '<td>' + this.GreensPrice + '</td>'
                         + '</tr>'
-                    $("#td").append(line);
+                    $("#td" + i).append(line);
+                    i = i + 1;
+                    sum += this.Gnum * this.GreensPrice;
+
                 })
+                $("#sum" + u).text(sum);
+                sum = 0;
+                u = u + 1;
             }
         })
     }

@@ -60,6 +60,9 @@ namespace Take_Out_Project_MVC.Controllers
         }
         public ActionResult Wei()
         {
+            ViewBag.ss = 0;
+            ViewBag.s = 0;
+            ViewBag.sum = 0;
             HttpCookie cookie = Request.Cookies["UserId"];
             string UserId = Server.UrlDecode(cookie.Value);
             ViewBag.uid = UserId;
