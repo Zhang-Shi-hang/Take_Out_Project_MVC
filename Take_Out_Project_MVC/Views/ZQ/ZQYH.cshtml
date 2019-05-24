@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
     <title>ZQYH</title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.3.1.js"></script>
@@ -27,15 +27,15 @@
             </tr>
         </table>
 
-
         @foreach (var item in Model)
         {
+
             <br />
-            <table class="td" style="width:92%;margin-left:4%;height:160px;background-image:url(/UserImg/yhbj.jpg);background-repeat:no-repeat;background-size:100%">
+            <table class="td" id="tb@(ViewBag.tb++)" style="width:92%;margin-left:4%;height:160px;background-image:url(/UserImg/yhbj.jpg);background-repeat:no-repeat;background-size:100%;background-color:Transparent">
                 <tr style="">
                     <td style="width:64%;text-align:right;font-size:13px;height:30%">
                         <b>@item.SustainDay.ToString("yyyy-MM-dd")      </b><br />
-                        <b>优惠劵使用规则   </b><br />
+                        <b>优惠劵使用规则      </b><br />
                         在购买商品时使用 <br />
                         只能在规定时间内使用<input id="SustainDay@(ViewBag.s++)" type="hidden" value="@item.SustainDay" />
                         <input id="Id@(ViewBag.ss++)" type="hidden" value="@item.DiscountsId" />
@@ -76,4 +76,14 @@
             }
         })
     }
+</script>
+<script>
+    $(function () {
+        $(".td").each(function (i, v) {
+            if ($("#h" + i).val() == 0) {
+                $("#tb"+i).css('opacity', '0.5');
+            }
+        })
+
+    })
 </script>

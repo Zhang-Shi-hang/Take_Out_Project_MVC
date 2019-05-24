@@ -46,7 +46,7 @@
         <div class="pay_notice">15分钟内未支付系统将自动取消订单</div>
         <div class="btn">
             <button class="btn1" onclick="qu()">取消订单</button>
-            <a onclick="Payment()"><button class="btn2">付款</button></a>
+            <a onclick="ssss()"><button class="btn2">付款</button></a>
         </div>
         <input id="oen" type="hidden" value="@ViewBag.Oen" />
         <input id="uid" type="hidden" value="@ViewBag.uid" />
@@ -63,6 +63,7 @@
     var PriceSum = 0;    //总价
     var oen = $("#oen").val();  //订单编号
     var Uid = $("#uid").val(); //用户ID
+    var DiscountsId = $("#Discounts").val();//优惠券Id
 
     //初始化函数
     $(function () {
@@ -124,6 +125,8 @@
             success: function (data) {
                 //清空下拉框
                 $("#Discounts").empty();
+                var line = '<option value="">==请选择==</option>'
+                $("#Discounts").append(line);
                 $(data).each(function () {
                     var opt = '<option value="' + this.DiscountsId + '">' + this.FavourablePrice + '</option>'
                     $("#Discounts").append(opt);
@@ -135,34 +138,39 @@
                 var a = PriceSum
                 
                 var b = $("#Discounts option:selected").text();
+                if (b == "==请选择==") {
+                    b = 0;
+                }
                 if (b == "" || b == null) {
                       $("#EndPrice").text(parseFloat(a));  
                 }
                 else {
-                var c = parseFloat(a) - parseFloat(b);
-                $("#EndPrice").text(parseFloat(c));
+                    var c = parseFloat(a) - parseFloat(b);
+                    if (c <= 0)
+                    {
+                        c = 0;
+                    }
+                    $("#EndPrice").text(parseFloat(c));
                 }
             }
         })
     }
-
-    //付款(修改优惠券状态并跳转页面)
-    function Payment() {
-        var DiscountsId = $("#Discounts").val();
+    function ssss() {
         $.ajax({
-            url: "http://localhost:50037/api/Zrw/UpdateDiscounts",
+            url: "http://localhost:50037/api/Zrw/SearchAddress?Uid="+Uid,
             type: "get",
-            data: {Uid:Uid,DiscountsId:DiscountsId},
-            dataType: "json",
             success: function (data) {
-                if (data > 0) {
-                    //修改订单备注和就餐方式
+                if (data == true)
+                {
+                    alert("请先填写个人资料");
+                    location.href = "/ZQ/UptShow?userid=" + Uid;
+                }
+                else {
                     UpdateOrderInSay();
                 }
             }
         })
     }
-
     //修改订单备注和就餐方式
     function UpdateOrderInSay() {
         var obj = new Object();
@@ -176,7 +184,7 @@
             dataType: "json",
             success: function (data) {
                 if (data > 0) {
-                    location.href = "Payment?oen=" + oen;
+                    location.href = "Payment?oen=" + oen + "&DiscountsId=" + DiscountsId + "&uid=" + Uid;
                 }
             }
         })

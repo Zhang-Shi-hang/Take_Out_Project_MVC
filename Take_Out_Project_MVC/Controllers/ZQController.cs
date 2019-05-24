@@ -15,12 +15,10 @@ namespace Take_Out_Project_MVC.Controllers
 
         // GET: ZQ
         [AuthorFilter]
-        public ActionResult UptShow(string phone)
+        public ActionResult UptShow(string userid)
         {
-            var json = HttpClientHelper.Sender("get", "ZQApi/Show?phone=" + phone);
+            var json = HttpClientHelper.Sender("get", "ZQApi/Show?userid=" + userid);
             var list = JsonConvert.DeserializeObject<List<ViewModel>>(json);
-
-
             return View(list);
         }
         /// <summary>
@@ -30,9 +28,9 @@ namespace Take_Out_Project_MVC.Controllers
         [AuthorFilter]
         public ActionResult ZQIndex()
         {
-            HttpCookie cookiePhone = Request.Cookies["Phone"];
-            string phone = cookiePhone.Value;
-            var json = HttpClientHelper.Sender("get", "ZQApi/Show?phone=" + phone);
+            HttpCookie cookiePhone = Request.Cookies["UserId"];
+            string userid = cookiePhone.Value;
+            var json = HttpClientHelper.Sender("get", "ZQApi/Show?userid=" + userid);
             var list = JsonConvert.DeserializeObject<List<ViewModel>>(json);
             return View(list);
         }
@@ -43,6 +41,9 @@ namespace Take_Out_Project_MVC.Controllers
         [AuthorFilter]
         public ActionResult ZQYH()
         {
+            ViewBag.tb = 0;
+            ViewBag.count = 0;
+            //string i = id.ToString();
             ViewBag.s = 0;
             ViewBag.ss = 0;
             HttpCookie co = Request.Cookies["UserId"];
