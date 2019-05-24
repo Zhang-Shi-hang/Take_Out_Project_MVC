@@ -68,6 +68,5 @@ namespace Take_Out_Project_MVC.Controllers
             list = list.Where(s => s.OrderStatic == 0).ToList();
             return View(list);
         }
-
     }
 }
