@@ -21,6 +21,7 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/style.css" rel="stylesheet" />
     <link href="~/Content/lunbo.css" rel="stylesheet" />
+    <script src="~/layer-v3.1.1/layer/layer.js"></script>
 
     <style>
         html, body, #container {
@@ -36,7 +37,7 @@
         }
 
         #odiv {
-            width: 80%;
+            width: 100%;
             height: 200px;
             border: 1px solid black;
             margin: 0 auto;
@@ -56,20 +57,20 @@
             width: 80%;
             height: 50px;
             position: absolute;
-            top: 165px;
-            left: 18%;
+            top: 175px;
+            left: 25%;
         }
 
             #ul2 li {
                 float: left;
-                width: 20px;
-                height: 20px;
+                width: 15px;
+                height: 15px;
                 border-radius: 50%;
                 margin-left: 15px;
                 text-align: center;
                 line-height: 40px;
                 background: #7fc6c9;
-            } 
+            }
 
         .a {
             background: #576fb3 !important;
@@ -95,17 +96,7 @@
 
         @*店铺详情*@
         <div>
-            <table style="width:80%;height:110px;margin-top:10px;margin-left:10%;">
-                <tr>
-                    <td><img src="~/images/a1.jpg" alt="Alternate Text" style="width:95%;height:50px;" /></td>
-                    <td><img src="~/images/a2.jpg" alt="Alternate Text" style="width:95%;height:50px;margin-left:5%" /></td>
-                </tr>
-                <tr style="margin-top:10px;">
-                    <td><img src="~/images/a3.jpg" alt="Alternate Text" style="width:95%;height:50px;" /></td>
-                    <td><img src="~/images/a4.jpg" alt="Alternate Text" style="width:95%;height:50px;margin-left:5%" /></td>
-                </tr>
-            </table>
-            <div id="odiv" style="clear:both;margin-top:15px;">
+            <div id="odiv" style="clear:both;">
                 <ul id="ul1" onclick="location.href='Classify'">
                     <li><img src="~/images/枫叶1.jpg" height="0" width="0" style="        display: block;"></li>
                     <li><img src="~/images/枫叶2.jpg" height="0" width="0" style="        display: none;"></li>
@@ -140,12 +131,12 @@
             {
                 <a href="Classify" class="aui-list-theme-item">
                     <div class="aui-list-img">
-                        <img src="@i.GreensImgUrl"  style="height:80px;"/>
+                        <img src="@i.GreensImgUrl" style="height:120px;" />
                     </div>
                     <div class="aui-list-title">
                         <h3>@i.GreensName</h3>
                         <div class="aui-list-spell">
-                            <span>根据特色菜推荐</span>
+                            <span>根据特色菜推荐</span><input id="vv" type="hidden" value="@ViewBag.vv" />
                         </div>
                     </div>
                 </a>
@@ -243,6 +234,50 @@
                 }
 
             }
+        }
+    }
+</script>
+<script type="text/javascript"
+        src="https://webapi.amap.com/maps?v=1.4.14&key=您申请的key值">
+</script>
+
+<script type="text/javascript">
+    if ($("#vv").val() == "1") {
+        var img = "<img src='/images/123.jpg' id='img1' width='300px' height='150px'/>"
+        layer.open({
+            type: 1,
+            title: false,
+            closeBtn: 0,
+            anim: 5,
+            area: ['300px', '150px'],
+            shade: 0,
+            shadeClose: true,
+            time: 5000,
+            content: img
+        });
+    }
+    //初始化地图对象，加载地图
+    var map = new AMap.Map('container', {
+        resizeEnable: true
+    });
+    var options = {
+        'showButton': true,//是否显示定位按钮
+        'buttonPosition': 'LB',//定位按钮的位置
+        /* LT LB RT RB */
+        'buttonOffset': new AMap.Pixel(10, 20),//定位按钮距离对应角落的距离
+        'showMarker': true,//是否显示定位点
+        'markerOptions': {//自定义定位点样式，同Marker的Options
+            'offset': new AMap.Pixel(-18, -36),
+            'content': '<img src="https://a.amap.com/jsapi_demos/static/resource/img/user.png" style="width:36px;height:36px"/>'
+        },
+        'showCircle': true,//是否显示定位精度圈
+        'circleOptions': {//定位精度圈的样式
+            'strokeColor': '#0093FF',
+            'noSelect': true,
+            'strokeOpacity': 0.5,
+            'strokeWeight': 1,
+            'fillColor': '#02B0FF',
+            'fillOpacity': 0.25
         }
     }
 </script>

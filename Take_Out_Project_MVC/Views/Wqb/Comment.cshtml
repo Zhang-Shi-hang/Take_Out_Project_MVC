@@ -46,7 +46,7 @@
         left: 3%;
         top: 10px;
         color: #cdc7c7;
-        text-decoration: none;"onclick="window.history.back(-1)">×</a>
+        text-decoration: none;"onclick="location.href='/Wqb/Main'">×</a>
     <span style="        margin-left: 5%;
         font-size: 30px;
         position: relative;
@@ -75,6 +75,8 @@
                     <i class="fa fa-star"></i>
                 </div>
             </div>
+            <input id="uid" type="hidden" value="@ViewBag.uid" />
+            <input id="oid" type="hidden" value="@ViewBag.oid" />
         </div>
         <div style="margin-top:150px;">
             <textarea id="TextArea1" rows="6" cols="50" placeholder="商家的服务很棒,菜很好吃!" style="font-size:15px;background-color: #f4f1f1;width: 100%;display: block;margin: auto;vertical-align: middle;"></textarea>
@@ -115,10 +117,11 @@
         "overflow-y": "hidden"
     });
     function Add() {
+        var id = $("#uid").val();
         var obj = new Object();
-        obj.Oid = 0;
-        obj.Uid = 0;
-        obj.CommentContent = $("TextArea1").val();
+        obj.Sid = "92E2E1F1-0CA8-476A-B376-4EF6D0677DE5";
+        obj.Uid = id;
+        obj.CommentContent = $("#TextArea1").val();
         obj.CommentScore = CommentScore;
         $.ajax({
             url: "http://localhost:50037/api/wqb/Comment?str=" + JSON.stringify(obj),
@@ -126,11 +129,30 @@
             dataType: "json",
             success: function (data) {
                 if (data > 0) {
-                    alert("添加成功");
-                    location.href = "CommentShow";
+                    alert("评价成功");
+                    //修改订单的状态
+                    UpdateOrderType();
+                    window.history.back(-1);
                 }
                 else {
                     alert("添加失败");
+                }
+            }
+        })
+    }
+
+    //修改订单的状态
+    function UpdateOrderType() {
+        var oid = $("#oid").val();
+        $.ajax({
+            url: "http://localhost:50037/api/wqb/UptComment?OrderId=" + oid,
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                if (data > 0) {
+                }
+                else {
+                    alert("修改失败");
                 }
             }
         })

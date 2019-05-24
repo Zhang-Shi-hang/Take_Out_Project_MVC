@@ -1,6 +1,7 @@
 $(function () {
     GetTypeName();
     events();
+
 });
 function GetTypeName() {
     $.ajax({
@@ -9,17 +10,19 @@ function GetTypeName() {
         success: function (data) {
             $("#u").empty();
             $(data).each(function () {
-                var line = '<li ><span id="' + this.GreensType + '" onclick="list(id)">' + this.GreensType + '</span></li>'
+                var line = '<li ><span id="' + this.GreensType + '" onclick="GetGreens(id)" >' + this.GreensType + '</span></li>'
                 $("#u").append(line);
             })
-            list("蛋及三明治");
+            GetGreens("蛋及三明治");
         }
     })
 }
-function list(GreensType) {
-    GetGreens(GreensType);
-}
 function GetGreens(TypeName) {
+        $("#u li").addClass("active").siblings().removeClass("active");
+        var n = $(".left-menu li").index("#u li");
+        $(".left-menu li").index("#u li");
+        $(".con>div").hide();
+        $(".con>div:eq(" + n + ")").show();
     $.ajax({
         url: "http://localhost:50037/api/Zrw/GetGreensInType?TypeName=" + TypeName,
         type: "get",
@@ -223,13 +226,7 @@ function events() {
     //选项卡
     $(".con>div").hide();
     $(".con>div:eq(0)").show();
-    $(".left-menu li").click(function () {
-        $(this).addClass("active").siblings().removeClass("active");
-        var n = $(".left-menu li").index(this);
-        $(".left-menu li").index(this);
-        $(".con>div").hide();
-        $(".con>div:eq(" + n + ")").show();
-    });
+
     $(".subFly").hide();
     $(".close").click(function () {
         $(".subFly").hide();
@@ -305,8 +302,6 @@ function events() {
                 }
             }
         })
-        //var date = new Date();
-        //GreensNames.push($(".accountName").text());
     })
 }
 function DetailTable(obj, GreensIds) {
@@ -362,8 +357,7 @@ function InsertOrderTable() {
 
 }
 
-function CurentTime()
-{
+function CurentTime() {
     let now = new Date();
     let year = now.getFullYear();       //年
     let month = now.getMonth() + 1;     //月

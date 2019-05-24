@@ -542,7 +542,7 @@ button:focus {
 	left: 0;
 	bottom: 60px;
 	width: 100%;
-	min-height: 200px;
+	min-height: 300px;
 	display: none;
 	z-index: 3;
 	background: #fff;
