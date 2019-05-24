@@ -39,7 +39,7 @@
             </div>
             <div class="invoice">
                 <div>优惠券：</div>
-                <select id="Discounts" class="myselect"></select>
+                <select id="Discounts" class="myselect" onchange="Price()" ></select>
             </div>
             <div class="total_price">合计：<span id="EndPrice">¥ </span></div>
         </div>
@@ -82,7 +82,7 @@
                 $(data).each(function () {
                     PriceSum += this.Gprice;
                     var obj = '<li class="food_li">'
-                        + '     <img src="'+this.GreensImgUrl+'"  class="food_li_left" />'
+                        + '     <img src="' + this.GreensImgUrl + '"  class="food_li_left" />'
                         + '     <div class="food_li_middle">'
                         + '          <div>'
                         + '            <p>' + this.GreensName + '</p>'
@@ -120,37 +120,40 @@
                     var opt = '<option value="' + this.DiscountsId + '">' + this.FavourablePrice + '</option>'
                     $("#Discounts").append(opt);
                 })
-
-                //根据用户Id查询优惠券信息
-                GetDiscountsTable();
-                $("#Price").text(parseInt(PriceSum));
-                var a = PriceSum
-                
-                var b = $("#Discounts option:selected").text();
-                if (b == "==请选择==") {
-                    b = 0;
-                }
-                if (b == "" || b == null) {
-                      $("#EndPrice").text(parseFloat(a));  
-                }
-                else {
-                    var c = parseFloat(a) - parseFloat(b);
-                    if (c <= 0)
-                    {
-                        c = 0;
-                    }
-                    $("#EndPrice").text(parseFloat(c));
-                }
+                //价格计算
+                Price();
             }
         })
     }
+
+    //价格计算
+    function Price() { 
+        $("#Price").text(parseInt(PriceSum));
+        var a = PriceSum
+        var b = $("#Discounts option:selected").text();
+        if (b == "==请选择==") {
+            b = 0;
+        }
+        if (b == "" || b == null) {
+            $("#EndPrice").text(parseFloat(a));
+        }
+        else {
+            var c = parseFloat(a) - parseFloat(b);
+            if (c <= 0) {
+                c = 0;
+            }
+            $("#EndPrice").text(parseFloat(c));
+        }
+    }
+
+    //判断是否填写个人信息
     function ssss() {
         $.ajax({
-            url: "http://localhost:50037/api/Zrw/SearchAddress?Uid="+Uid,
+            url: "http://localhost:50037/api/Zrw/SearchAddress?Uid=" + Uid,
             type: "get",
+            dataType:"json",
             success: function (data) {
-                if (data == true)
-                {
+                if (data == true) {
                     alert("请先填写个人资料");
                     location.href = "/ZQ/UptShow?userid=" + Uid;
                 }
