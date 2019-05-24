@@ -92,29 +92,18 @@
                         + '      <div class="food_li_price">¥' + this.Gprice + '</div>'
                         + '     </div>'
                         + ' </li>'
+                    //份数
+                    CountNum += this.Gnum;
                     $("#OrderUl").append(obj);
                 })
-                //根据订单编号查询菜品数量
-                GetCount();
-            }
-        })
-    }
-
-    //根据订单编号查询菜品数量
-    function GetCount() {
-        $.ajax({
-            url: "http://localhost:50037/api/Zrw/GetCount?OenNum=" + oen,
-            type: "get",
-            dataType: "json",
-            success: function (data) {
-                a = data;
-                $("#Count").text(a);
-
+                //显示份数
+                $("#Count").text(CountNum)
                 //根据用户Id查询优惠券信息
                 GetDiscountsTable();
             }
         })
     }
+
 
     //根据用户Id查询优惠券信息
     function GetDiscountsTable() {
