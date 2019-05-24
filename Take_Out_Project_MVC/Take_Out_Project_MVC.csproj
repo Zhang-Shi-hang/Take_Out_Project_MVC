@@ -65,7 +65,7 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="ThoughtWorks.QRCode">
-      <HintPath>E:\专业\其他\第三方控件\Helper\二维码\ThoughtWorks.QRCode.dll</HintPath>
+      <HintPath>C:\Users\喵喵喵\Desktop\ThoughtWorks.QRCode.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +235,7 @@
     <Content Include="UserImg\gr.jpg" />
     <Content Include="UserImg\jf.jpg" />
     <Content Include="UserImg\tc.jpg" />
+    <Content Include="UserImg\wd.jpg" />
     <Content Include="UserImg\wf.jpg" />
     <Content Include="UserImg\yh.jpg" />
     <Content Include="images\.DS_Store" />

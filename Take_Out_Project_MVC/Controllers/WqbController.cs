@@ -46,10 +46,15 @@ namespace Take_Out_Project_MVC.Controllers
         /// </summary>
         /// < returns ></ returns >
         [AuthorFilter]
-        public ActionResult Comment()
+        public ActionResult Comment(string OrderId)
         {
             HttpCookie cookie = Request.Cookies["UserId"];
-            string UserId = cookie.Value;
+            ViewBag.uid = Server.UrlDecode(cookie.Value);
+
+            HttpCookie Orid = new HttpCookie("OrderId");
+            Orid.Value = OrderId;
+            ViewBag.oid = Orid.Value;
+
             return View();
         }
 
@@ -60,11 +65,11 @@ namespace Take_Out_Project_MVC.Controllers
         /// <param name="OrderId"></param>
         /// <returns></returns>
         [AuthorFilter]
-        public ActionResult OrderParticulars(string UserId)
+        public ActionResult OrderParticulars(string OrderId)
         {
-            HttpCookie cookie = Request.Cookies["UserId"];
-             UserId = Server.UrlDecode(cookie.Value);
-            string json = HttpClientHelper.Sender("get", "Wqb/OrderParticulars?UserId=" + UserId);
+            HttpCookie orid = new HttpCookie("OrderId");
+            orid.Value = Server.UrlEncode(OrderId);
+            string json = HttpClientHelper.Sender("get", "Wqb/OrderParticulars?OrderId=" + OrderId);
             var list = JsonConvert.DeserializeObject<List<ViewModel>>(json);
             return View(list);
         }
@@ -76,9 +81,12 @@ namespace Take_Out_Project_MVC.Controllers
         [AuthorFilter]
         public ActionResult CommentShow()
         {
+            //用户ID传输
             HttpCookie cookie = Request.Cookies["UserId"];
             string UserId = Server.UrlDecode(cookie.Value);
-            Session["id"] = UserId;
+            ViewBag.uid = UserId;
+
+
             return View();
         }
         /// <summary>
@@ -91,7 +99,7 @@ namespace Take_Out_Project_MVC.Controllers
         {
             HttpCookie cookie = Request.Cookies["UserId"];
             string UserId = Server.UrlDecode(cookie.Value);
-            Session["id"] = UserId;
+            ViewBag.uid = UserId;
             return View();
         }
         /// <summary>
@@ -99,10 +107,14 @@ namespace Take_Out_Project_MVC.Controllers
         /// </summary>
         /// <returns></returns>
         [AuthorFilter]
-        public ActionResult Refund()
+        public ActionResult Refund(string OrderId)
         {
             HttpCookie cookie = Request.Cookies["UserId"];
-            string UserId = cookie.Value;
+            ViewBag.uid = cookie.Value;
+
+            HttpCookie Orid = new HttpCookie("OrderId");
+            Orid.Value = OrderId;
+            ViewBag.oid = Orid.Value;
             return View();
         }
     }

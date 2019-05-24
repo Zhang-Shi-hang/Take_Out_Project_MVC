@@ -127,11 +127,11 @@
                                             +'<span style="float:left;font-size:15px;color:#808080;">爆浆鸡排&nbsp;等6件商品</span>'
                                             +'<span style="float:right">￥'+this.OrderPrice+'.0</span>'
                             + '</div>'
-                            +'<div style="float:right;margin-right:30px;margin-top:10px;">'
-                            + '<input id="Button1" type="button" value="订单详情" class="btn btn-default" onclick="Particulars()" style="margin-right:15px;"/>'
+                            + '<div style="float:right;margin-right:30px;margin-top:10px;">'
+                            + '<input id="' + this.OrderId +'" type="button" value="订单详情" class="btn btn-default" onclick="Particulars(id)" style="margin-right:15px;"/>'
                             + '<input id="' + this.OrderId +'" type="button" value="取消订单" class="btn btn-default" onclick="Cancel(id)" />'
                             +'</div>'
-                                    +'</div>'
+                            +'</div>'
                         $("#dt1").append(obj);
                     }
                 })
@@ -161,8 +161,8 @@
     function Refund(){
         location.href = '/Wqb/RefundShow';
     }
-    function Particulars() {
-        location.href = '/Wqb/OrderParticulars';
+    function Particulars(OrderId) {
+        location.href = '/Wqb/OrderParticulars?OrderId='+OrderId;
     }
 
 </script>

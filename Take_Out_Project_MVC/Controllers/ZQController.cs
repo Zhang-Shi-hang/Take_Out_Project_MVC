@@ -44,6 +44,8 @@ namespace Take_Out_Project_MVC.Controllers
             ViewBag.tb = 0;
             ViewBag.count = 0;
             //string i = id.ToString();
+            ViewBag.s = 0;
+            ViewBag.ss = 0;
             HttpCookie co = Request.Cookies["UserId"];
             string id = co.Value;
             var json = HttpClientHelper.Sender("get", "ZQApi/ShowYH/" + id);

@@ -65,62 +65,71 @@
 <body style="width:100%;height:100%;background-color:#fbf7f7;margin-top:-40px;">
     <div style="width:100%;height:100%;">
         <h2 style="text-align:center;margin-top:40px;">
-            <img src="~/images/返回图片.jpg" style="width:25px;height:25px;float:left;margin-left:20px;margin-top:5px;cursor:pointer;" onclick="window.history.back(-1)" />申请退款
+            <img src="~/images/返回图片.jpg" style="width:25px;height:25px;float:left;margin-left:20px;margin-top:5px;cursor:pointer;" onclick="location.href='/Wqb/Main'" />申请退款
         </h2>
         <div style="margin-left:40px;margin-top:10px;">
             <h4>退款原因:</h4>
             <div class="select">
-                <select name="cars">
-                    <option value="volvo">申请退款</option>
-                    <option value="saab">申请退款</option>
-                    <option value="opel" selected>申请退款</option>
-                    <option value="audi">申请退款</option>
+                <select name="cars" id="cars">
+                    <option value="骑手太慢">骑手太慢</option>
+                    <option value="送错餐">送错餐</option>
+                    <option value="饭馊了" selected>饭馊了</option>
+                    <option value="突然不想吃了">突然不想吃了</option>
                 </select>
             </div>
             <h4 style="margin-top:60px;">退款说明:</h4>
             <div style="margin-top:30px;">
-                <textarea style="border:0;border-radius:5px;background-color:rgba(241,241,241,.98);width: 355px;height: 150px;padding: 10px;resize: none;" placeholder="请输入退款说明"></textarea>
+                <textarea id="TextArea1" style="border:0;border-radius:5px;background-color:rgba(241,241,241,.98);width: 355px;height: 150px;padding: 10px;resize: none;" placeholder="请输入退款说明"></textarea>
             </div>
         </div>
-    </div>
+    </div><input id="uid" type="hidden" value="@ViewBag.uid" />
+    <input id="oid" type="hidden" value="@ViewBag.oid" />
     <div style="position: relative;
     top: -55px;width: 100%;
         background-color: #fad32e;
         height: 8%;">
-        <h3 onclick="Add()" style="cursor:pointer;text-align: center;
-        line-height: 55px">
+        <h3 onclick="Add()" style="cursor:pointer;text-align: center;line-height: 55px">
             提交
         </h3>
     </div>
 </body>
 </html>
 <script>
-    var id = "@Session["id"]";
-    $(function () {
-        Show();
-    })
-    function Show() {
+    var id = $("#uid").val();
+    function Add() {
+        var id = $("#uid").val();
+        var obj = new Object();
+        obj.Uid = id;
+        obj.RefundCause = $("#cars").select;
+        obj.RefundExplain = $("#TextArea1").val();
         $.ajax({
-            url: "http://localhost:50037/api/wqb/OrderShow?id=" + id,
-            Type: "get",
+            url: "http://localhost:50037/api/wqb/Comment?str=" + JSON.stringify(obj),
+            type: "get",
             dataType: "json",
             success: function (data) {
-                $("#tby").empty();
-                $(data).each(function () {
-                    if (this.OrderStatic == 3) {
-                        var obj = '<tr>'
-                            + '<td>' + this.Oen + '</td>'
-                            + '<td>' + this.OrderStatic + '</td>'
-                            + '<td><input id="Button1" type="button" value="申请退款" class="btn-danger btn" onclick="refund(' + this.OrderId+')"/></td>'
-                            + '</tr>'
-                        $("#tby").append(obj);
-                    }
-                })
+                if (data > 0) {
+                    alert("修改成功");
+                    location.href = "Main";
+                }
+                else {
+                    alert("添加失败");
+                }
             }
         })
     }
-    function refund(id) {
-
-        }
-
+    function UpdateOrderType() {
+        var oid = $("#oid").val();
+        $.ajax({
+            url: "http://localhost:50037/api/wqb/UptRefund?OrderId=" + oid,
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                if (data > 0) {
+                }
+                else {
+                    alert("修改失败");
+                }
+            }
+        })
+    }
 </script>
