@@ -39,7 +39,7 @@
             </div>
             <div class="invoice">
                 <div>优惠券：</div>
-                <select id="Discounts" class="myselect" onchange="Price()" ></select>
+                <select id="Discounts" class="myselect" onchange="Price()"></select>
             </div>
             <div class="total_price">合计：<span id="EndPrice">¥ </span></div>
         </div>
@@ -80,7 +80,7 @@
             success: function (data) {
                 $("#OrderUl").empty();
                 $(data).each(function () {
-                    PriceSum += this.Gprice;
+                    PriceSum += this.Gprice * this.Gnum;
                     var obj = '<li class="food_li">'
                         + '     <img src="' + this.GreensImgUrl + '"  class="food_li_left" />'
                         + '     <div class="food_li_middle">'
@@ -127,9 +127,9 @@
     }
 
     //价格计算
-    function Price() { 
+    function Price() {
         $("#Price").text(parseInt(PriceSum));
-        var a = PriceSum
+        var a = PriceSum;
         var b = $("#Discounts option:selected").text();
         if (b == "==请选择==") {
             b = 0;
@@ -151,7 +151,7 @@
         $.ajax({
             url: "http://localhost:50037/api/Zrw/SearchAddress?Uid=" + Uid,
             type: "get",
-            dataType:"json",
+            dataType: "json",
             success: function (data) {
                 if (data == true) {
                     alert("请先填写个人资料");
@@ -182,6 +182,30 @@
         })
     }
     function qu() {
-        location.href = "/Default/classify";
+        $.ajax({
+            url: "http://localhost:50037/api/Zrw/GetOrder?Oen=" + oen,
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                $(data).each(function () {
+                    Cancel(this.OrderId)
+                })
+            }
+        })
+    }
+    function Cancel(OrderId) {
+        $.ajax({
+            url: "http://localhost:50037/api/wqb/DelOrder?id=" + OrderId,
+            Type: "get",
+            dataType: "json",
+            success: function (data) {
+                if (data > 0) {
+                    location.href = "/Default/classify";
+                }
+                else {
+                    alert("取消失败");
+                }
+            }
+        })
     }
 </script>

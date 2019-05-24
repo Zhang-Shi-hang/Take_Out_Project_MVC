@@ -18,7 +18,7 @@
         <div>
             @foreach (var i in Model)
             {
-                <table class="table table-striped">
+                <table class="">
                     <tr>
                         <td>订单编号:</td>
                         <td>@i.Oen</td>
@@ -28,13 +28,21 @@
                         <td>@i.OrderTime</td>
                     </tr>
                     <tr>
+                        <td>订单总价:</td>
+                        <td><span id="dd"></span></td>
+                    </tr>
+                    <tr>
                         <td>以下菜品:</td>
                         <td>
                             <input id="orderid" type="hidden" value="@i.OrderId" />
-                            <table id="td"></table>
-                            <div>
-
-                            </div>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td>菜品姓名</td>
+                                    <td>菜品数量</td>
+                                    <td>菜品价格</td>
+                                </tr>
+                                <tbody id="td"></tbody>
+                            </table>
                         </td>
                     </tr>
                 </table>
@@ -44,24 +52,26 @@
 </body>
 </html>
 <script>
+    var sum = 0;
     $(function () {
         var OrderId = $("#orderid").val();
         Menu(OrderId);
     })
     function Menu(OrderId) {
         $.ajax({
-            url: "http://localhost:50037/api/wqb/ShowMenu?OrderId="+OrderId,
+            url: "http://localhost:50037/api/wqb/ShowMenu?OrderId=" + OrderId,
             type: "get",
             success: function (data) {
                 $(data).each(function () {
                     var line = '<tr>'
-                        + '<td><img src="' + this.GreensImgUrl + '" alt="Alternate Text" style="width:60px;height:60px;" /></td>'
                         + '<td>' + this.GreensName + '</td>'
                         + '<td>' + this.Gnum + '</td>'
                         + '<td>' + this.GreensPrice + '</td>'
                         + '</tr>'
                     $("#td").append(line);
+                    sum += this.Gnum * this.GreensPrice;
                 })
+                $("#dd").text(sum);
             }
         })
     }

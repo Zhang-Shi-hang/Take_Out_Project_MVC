@@ -60,10 +60,13 @@ namespace Take_Out_Project_MVC.Controllers
         }
         public ActionResult Wei()
         {
+            ViewBag.ss = 0;
+            ViewBag.s = 0;
+            ViewBag.sum = 0;
             HttpCookie cookie = Request.Cookies["UserId"];
             string UserId = Server.UrlDecode(cookie.Value);
             ViewBag.uid = UserId;
-            string json = HttpClientHelper.Sender("get", "Wqb/OrderParticulars?UserId=" + UserId);
+            string json = HttpClientHelper.Sender("get", "ZQApi/Wei?UserId=" + UserId);
             var list = JsonConvert.DeserializeObject<List<ViewModel>>(json);
             list = list.Where(s => s.OrderStatic == 0).ToList();
             return View(list);

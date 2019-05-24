@@ -15,7 +15,7 @@
     <div class="incomplete_order">
         <p>支付成功</p>
         <p><span id="Price"></span></p>
-        <a href="../Wqb/OrderParticulars">查看详情</a>
+        <a href="#" onclick="GetOrder()">查看详情</a>
     </div>
     <div class="main_info">
         <div class="hang">
@@ -48,14 +48,28 @@
 
     //初始化函数
     $(function () {
-        //查询订单详情
-        GetOrder();
         if ($("#RepastWay").val()=="false") { }
         else {
-            var s = '<img src="' + $("#img").val() + '" style="margin: auto;margin-top: 20px;" />';
+            var s = '<h3>到店取餐码</h3><img src="' + $("#img").val() + '" style="margin: auto;margin-top: 20px;" />';
             $("#ss").append(s);
         }
+        GetOrder11();
     })
+        //查询订单详情
+    function GetOrder11() {
+        $.ajax({
+            url: "http://localhost:50037/api/Zrw/GetOrder?Oen=" + aaa,
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                $(data).each(function () {
+                    $("#Price").text(this.OrderPrice);
+                    $("#Time").text(this.OrderTime);
+                    $("#Oen").text(aaa);
+                })
+            }
+        })
+    }
     //查询订单详情
     function GetOrder() {
         $.ajax({
@@ -67,6 +81,7 @@
                     $("#Price").text(this.OrderPrice);
                     $("#Time").text(this.OrderTime);
                     $("#Oen").text(aaa);
+                    top.location.href = "/Wqb/OrderParticulars?OrderId=" + this.OrderId;
                 })
             }
         })
