@@ -60,17 +60,20 @@
     }
         //付款(修改优惠券状态并跳转页面)
     function Payment() {
-        $.ajax({
+        alert(DiscountsId);
+        if (DiscountsId.length>5) {
+            $.ajax({
             url: "http://localhost:50037/api/Zrw/UpdateDiscounts",
             type: "get",
             data: {Uid:Uid,DiscountsId:DiscountsId},
             dataType: "json",
             success: function (data) {
                 if (data > 0) {
-                    Jump();
                 }
             }
         })
+        }
+        Jump();
     }
     //跳转页面
     function Jump() {

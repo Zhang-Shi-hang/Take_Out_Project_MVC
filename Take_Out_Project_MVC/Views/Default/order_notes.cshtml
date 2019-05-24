@@ -46,7 +46,7 @@
         <div class="pay_notice">15分钟内未支付系统将自动取消订单</div>
         <div class="btn">
             <button class="btn1" onclick="qu()">取消订单</button>
-            <a onclick="Payment()"><button class="btn2">付款</button></a>
+            <a onclick="ssss()"><button class="btn2">付款</button></a>
         </div>
         <input id="oen" type="hidden" value="@ViewBag.Oen" />
         <input id="uid" type="hidden" value="@ViewBag.uid" />
@@ -151,8 +151,21 @@
                         c = 0;
                     }
                     $("#EndPrice").text(parseFloat(c));
-                    
-                    //修改订单备注和就餐方式
+                }
+            }
+        })
+    }
+    function ssss() {
+        $.ajax({
+            url: "http://localhost:50037/api/Zrw/SearchAddress?Uid="+Uid,
+            type: "get",
+            success: function (data) {
+                if (data == true)
+                {
+                    alert("请先填写个人资料");
+                    location.href = "/ZQ/UptShow?userid=" + Uid;
+                }
+                else {
                     UpdateOrderInSay();
                 }
             }

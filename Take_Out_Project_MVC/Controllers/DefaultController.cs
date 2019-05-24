@@ -85,7 +85,7 @@ namespace Take_Out_Project_MVC.Controllers
         }
         //支付结果
         [AuthorFilter]
-        public ActionResult Payment_results(string oen)
+        public ActionResult Payment_results(string oen,HttpPostedFileBase file)
         {
             ViewBag.oen = oen;
             string result = HttpClientHelper.Sender("get", "/api/Zrw/GetOrder?Oen=" + oen);
@@ -94,12 +94,8 @@ namespace Take_Out_Project_MVC.Controllers
             {
                 try
                 {
-                    if (!Directory.Exists("ThumbnailsImages"))
-                    {
-                        Directory.CreateDirectory("ThumbnailsImages");
-                    }
                     string filename = "/ThumbnailsImages/";
-                    QRCode.GetBarCode(oen, Server.MapPath(filename + "a.png"));
+                    QRCode.GetBarCode(oen, Server.MapPath(filename+"a.png"));
                     ViewBag.RepastWay = mo.RepastWay;
                     ViewBag.img = "/ThumbnailsImages/a.png";
                 }

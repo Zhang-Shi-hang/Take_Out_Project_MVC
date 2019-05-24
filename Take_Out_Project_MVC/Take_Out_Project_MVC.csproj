@@ -114,6 +114,7 @@
     <Content Include="layer-v3.1.1\文档\layer文档.url" />
     <Content Include="layer-v3.1.1\文档\layui社区.url" />
     <Content Include="layer-v3.1.1\文档\获得layim.url" />
+    <Content Include="UserImg\wd.jpg" />
     <Content Include="Views\Default\Map.cshtml" />
     <None Include="Views\ZQ\UptShow.cshtml" />
     <Content Include="css\style.css" />
@@ -323,6 +324,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
