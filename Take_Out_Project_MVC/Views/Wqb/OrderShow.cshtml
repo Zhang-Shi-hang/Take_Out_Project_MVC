@@ -29,7 +29,7 @@
     })
     function Show() {
         $.ajax({
-            url: "http://localhost:50037/api/wqb/OrderShow?id=" + id,
+            url: "http://10.1.156.58:8089/api/wqb/OrderShow?id=" + id,
             Type: "get",
             dataType: "json",
             success: function (data) {
@@ -140,11 +140,11 @@
 
     }
     function Again() {
-        location.href = "/Default/classify";
+        top.location.href = "/Default/classify";
     }
     function Cancel(id) {
         $.ajax({
-            url: "http://localhost:50037/api/wqb/DelOrder?id=" + id,
+            url: "http://10.1.156.58:8089/api/wqb/DelOrder?id=" + id,
             Type: "get",
             dataType: "json",
             success: function (data) {

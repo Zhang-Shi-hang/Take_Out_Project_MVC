@@ -48,7 +48,7 @@
     //查询订单详情
     function GetOrder() {
         $.ajax({
-            url: "http://localhost:50037/api/Zrw/GetOrder?Oen=" + aaa,
+            url: "http://10.1.156.58:8089/api/Zrw/GetOrder?Oen=" + aaa,
             type: "get",
             dataType: "json",
             success: function (data) {
@@ -60,9 +60,9 @@
     }
         //付款(修改优惠券状态并跳转页面)
     function Payment() {
-        if (DiscountsId.length>5) {
+        if (DiscountsId.length > 5) {
             $.ajax({
-            url: "http://localhost:50037/api/Zrw/UpdateDiscounts",
+            url: "http://10.1.156.58:8089/api/Zrw/UpdateDiscounts",
             type: "get",
             data: {Uid:Uid,DiscountsId:DiscountsId},
             dataType: "json",
@@ -77,7 +77,7 @@
     //跳转页面
     function Jump() {
          $.ajax({
-            url: "http://localhost:50037/api/Zrw/UpdateOrder?Oen=" + aaa,
+            url: "http://10.1.156.58:8089/api/Zrw/UpdateOrder?Oen=" + aaa,
             type: "get",
             dataType: "json",
             success: function (data) {

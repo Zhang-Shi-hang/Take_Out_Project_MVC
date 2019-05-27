@@ -63,7 +63,7 @@
     })
     function Menu(OrderId) {
         $.ajax({
-            url: "http://localhost:50037/api/wqb/ShowMenu?OrderId=" + OrderId,
+            url: "http://10.1.156.58:8089/api/wqb/ShowMenu?OrderId=" + OrderId,
             type: "get",
             success: function (data) {
                 $("#td" + i).empty();

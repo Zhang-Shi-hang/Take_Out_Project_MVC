@@ -48,7 +48,7 @@
             </div>
 
 
-            <div class="aui-account-footer">
+            <div class="aui-account-footer" >
                 <div class="aui-account-footer-title">
                     <h2>其它登录方式</h2>
                 </div>
@@ -97,16 +97,16 @@
                 elesubmit: "login_submit",//提交按钮
                 funsubmit: function () {//验证通过可提交回调
                     $.ajax({
-                        url: "http://localhost:50037/api/MZGUser/Show",
+                        url: "http://10.1.156.58:8089/api/MZGUser/Show",
                         type: "get",
                         data: { UserPhone: $("#login_phone").val() },
                         success: function (data) {
                             if (data == true) {
                                 var date = $(".password").val();
-                                if (date == 123) {/*$("#dd").val()*/
+                                if (date == $("#dd").val()) {
                                     alert("登陆成功");
                                     $.ajax({
-                                        url: "http://localhost:50037/api/MZGUser/UserInfoShow",
+                                        url: "http://10.1.156.58:8089/api/MZGUser/UserInfoShow",
                                         type: "get",
                                         data: { UserPhone: $("#login_phone").val() },
                                         success: function (data) {
@@ -121,16 +121,16 @@
                             else {
 
                                 $.ajax({
-                                    url: "http://localhost:50037/api/MZGUser/UserAdd",
+                                    url: "http://10.1.156.58:8089/api/MZGUser/UserAdd",
                                     type: "post",
                                     data: { UserPhone: $("#login_phone").val() },
                                     success: function () {
                                         var date = $(".password").val();
-                                        if (date == 123) {/*$("#dd").val()*/
+                                        if (date == $("#dd").val() ) {
                                             alert("登陆成功");
 
                                             $.ajax({
-                                                url: "http://localhost:50037/api/MZGUser/UserInfoShow",
+                                                url: "http://10.1.156.58:8089/api/MZGUser/UserInfoShow",
                                                 type: "get",
                                                 data: { UserPhone: $("#login_phone").val() },
                                                 success: function (data) {
@@ -160,7 +160,7 @@
     });
     function ShowSid() {
         $.ajax({
-            url: "http://localhost:50037/api/MZGUser/ShopTableShow",
+            url: "http://10.1.156.58:8089/api/MZGUser/ShopTableShow",
             type: "get",
             success: function (data) {
                 $("#sid").val(data);
@@ -171,7 +171,7 @@
     function AddDiscounts() {
         if ($("#uid").val() != "" && $("#sid").val() != "") {
             $.ajax({
-                url: "http://localhost:50037/api/MZGUser/DiscountsTableAdd",
+                url: "http://10.1.156.58:8089/api/MZGUser/DiscountsTableAdd",
                 type: "post",
                 data: { Sid: $("#sid").val(), Uid: $("#uid").val() },
                 success: function (data) {
@@ -190,13 +190,13 @@
         //获取短信验证码
         var validCode = true;
         $(".msgs").click(function () {
-            //$.ajax({
-            //            url: "/MZGUser/YanZheng?Phone=" + $("#login_phone").val(),
-            //            type: "get",
-            //    success: function (date) {
-            //        $("#dd").val(date)
-            //            }
-            //        });
+            $.ajax({
+                        url: "/MZGUser/YanZheng?Phone=" + $("#login_phone").val(),
+                        type: "get",
+                success: function (date) {
+                    $("#dd").val(date)
+                        }
+                    });
             var time = 60;
             var code = $(this);
             if (validCode) {

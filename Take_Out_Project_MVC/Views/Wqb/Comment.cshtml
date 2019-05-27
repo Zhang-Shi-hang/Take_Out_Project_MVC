@@ -124,7 +124,7 @@
         obj.CommentContent = $("#TextArea1").val();
         obj.CommentScore = CommentScore;
         $.ajax({
-            url: "http://localhost:50037/api/wqb/Comment?str=" + JSON.stringify(obj),
+            url: "http://10.1.156.58:8089/api/wqb/Comment?str=" + JSON.stringify(obj),
             type: "get",
             dataType: "json",
             success: function (data) {
@@ -145,7 +145,7 @@
     function UpdateOrderType() {
         var oid = $("#oid").val();
         $.ajax({
-            url: "http://localhost:50037/api/wqb/UptComment?OrderId=" + oid,
+            url: "http://10.1.156.58:8089/api/wqb/UptComment?OrderId=" + oid,
             type: "get",
             dataType: "json",
             success: function (data) {

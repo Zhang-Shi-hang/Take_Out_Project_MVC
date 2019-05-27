@@ -116,6 +116,8 @@
     <Content Include="layer-v3.1.1\文档\获得layim.url" />
     <Content Include="UserImg\wd.jpg" />
     <Content Include="Views\Default\Map.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Views\ZQ\UptShow.cshtml" />
     <Content Include="css\style.css" />
     <Content Include="js\cityPicker.js" />
@@ -279,7 +281,9 @@
     <None Include="Views\Default\Order_notes.cshtml" />
     <None Include="Views\Default\Payment.cshtml" />
     <None Include="Views\Default\Payment_results.cshtml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -304,7 +308,9 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="images\.DS_Store" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Views\Wqb\OrderShow.cshtml" />

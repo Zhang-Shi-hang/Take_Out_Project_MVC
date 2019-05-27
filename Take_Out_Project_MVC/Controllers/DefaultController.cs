@@ -94,6 +94,10 @@ namespace Take_Out_Project_MVC.Controllers
             {
                 try
                 {
+                    HttpCookie cok = Request.Cookies["Phone"];
+                    ViewBag.phone = Server.UrlDecode(cok.Value);
+                    HttpCookie cok2 = Request.Cookies["UserId"];
+                    ViewBag.uid = Server.UrlDecode(cok2.Value);
                     string filename = "/ThumbnailsImages/";
                     QRCode.GetBarCode(oen, Server.MapPath(filename+"a.png"));
                     ViewBag.RepastWay = mo.RepastWay;
