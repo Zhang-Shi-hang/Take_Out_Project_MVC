@@ -17,7 +17,7 @@ namespace Take_Out_Project_MVC
         public static string Sender(string method, string path, string content=null)
         {
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://10.1.156.58:8089/api/");
+            client.BaseAddress = new Uri("http://localhost:50037/api/");
             HttpResponseMessage responseMessage = null;
             switch (method)
             {

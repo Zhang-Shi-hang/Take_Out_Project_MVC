@@ -169,7 +169,7 @@
                     obj.UserAddress = addre;
 
                     $.ajax({
-                        url: "http://10.1.156.58:8089/api/ZQApi/Upt?json=" + JSON.stringify(obj),
+                        url: "http://localhost:50037/api/ZQApi/Upt?json=" + JSON.stringify(obj),
                         type: "get",
                         dataType: "json",
                         success: function (data) {

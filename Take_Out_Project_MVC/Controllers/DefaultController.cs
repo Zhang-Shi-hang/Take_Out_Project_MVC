@@ -13,6 +13,7 @@ namespace Take_Out_Project_MVC.Controllers
 {
     public class DefaultController : Controller
     {
+       
         public string UserId = "";
         // GET: Default
         [AuthorFilter]
@@ -24,12 +25,14 @@ namespace Take_Out_Project_MVC.Controllers
         //[AuthorFilter]
         public ActionResult Home(string UserId = "", string Phone = "",int vv=0)
         {
+            
             if (UserId != "" && Phone != "")
             {
                 HttpCookie cookiePhone = new HttpCookie("Phone");
                 cookiePhone.Value = Server.UrlEncode(Phone);
                 Response.Cookies.Add(cookiePhone);
                 Session["UserId"] = UserId;
+                Session["Phone"] = Phone;
                 HttpCookie cookie = new HttpCookie("UserId");
                 cookie.Value = Server.UrlEncode(UserId);
                 Response.Cookies.Add(cookie);
@@ -87,6 +90,10 @@ namespace Take_Out_Project_MVC.Controllers
         [AuthorFilter]
         public ActionResult Payment_results(string oen,HttpPostedFileBase file)
         {
+            HttpCookie cokUser = Request.Cookies["UserId"];
+            ViewBag.uid = Server.UrlDecode(cokUser.Value);
+            HttpCookie cookiePhone = Request.Cookies["Phone"];
+            ViewBag.phone = Server.UrlDecode(cookiePhone.Value);
             ViewBag.oen = oen;
             string result = HttpClientHelper.Sender("get", "/api/Zrw/GetOrder?Oen=" + oen);
             var mo = JsonConvert.DeserializeObject<List<ViewModel>>(result).FirstOrDefault();

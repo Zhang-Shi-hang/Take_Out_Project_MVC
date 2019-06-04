@@ -6,7 +6,7 @@ $(function () {
 function GetTypeName() {
     var i = 0;
     $.ajax({
-        url: "http://10.1.156.58:8089/api/Zrw/GetGreensType",
+        url: "http://localhost:50037/api/Zrw/GetGreensType",
         type: "get",
         success: function (data) {
 
@@ -35,7 +35,7 @@ function GetTypeName() {
 }
 function GetGreens(TypeName) {
     $.ajax({
-        url: "http://10.1.156.58:8089/api/Zrw/GetGreensInType?TypeName=" + TypeName,
+        url: "http://localhost:50037/api/Zrw/GetGreensInType?TypeName=" + TypeName,
         type: "get",
         success: function (data) {
             $("#uu").empty();
@@ -285,14 +285,14 @@ function events() {
             Sid: "92E2E1F1-0CA8-476A-B376-4EF6D0677DE5"
         };
         $.ajax({
-            url: "http://10.1.156.58:8089/api/Zrw/InsertOrderTable",
+            url: "http://localhost:50037/api/Zrw/InsertOrderTable",
             type: "Post",
             data: obj1,
             success: function (data) {
                 if (data > 0) {
                     //查询最新订单Id
                     $.ajax({
-                        url: "http://10.1.156.58:8089/api/Zrw/GetOrderFirst",
+                        url: "http://localhost:50037/api/Zrw/GetOrderFirst",
                         type: "get",
                         success: function (data) {
                             $(data).each(function () {
@@ -316,7 +316,7 @@ function events() {
 }
 function DetailTable(obj, GreensIds) {
     $.ajax({
-        url: "http://10.1.156.58:8089/api/Zrw/InsertDetailTable",
+        url: "http://localhost:50037/api/Zrw/InsertDetailTable",
         type: "Post",
         data: JSON.stringify(obj),
         contentType: "application/json",

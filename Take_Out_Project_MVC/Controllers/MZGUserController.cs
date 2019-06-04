@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Caching;
 using System.Web.Mvc;
 using Take_Out_Project_MVC.Filter;
+using Redis;
 
 namespace Take_Out_Project_MVC.Controllers
 {
@@ -32,9 +33,9 @@ namespace Take_Out_Project_MVC.Controllers
             string url = "http://v.juhe.cn/sms/send";
             var parameters = new Dictionary<string, string>();
             parameters.Add("mobile", Phone); //接受短信的用户手机号码
-            parameters.Add("tpl_id", "159258"); //您申请的短信模板ID，根据实际情况修改
+            parameters.Add("tpl_id", "161335"); //您申请的短信模板ID，根据实际情况修改  161335
             parameters.Add("tpl_value", "#code#=" + yzm); //您设置的模板变量，根据实际情况修改
-            parameters.Add("key", "372d980ef4f4c8549b88dea0439860e6");//你申请的key
+            parameters.Add("key", "c9d16c07cad85d0a2c499e9fef1fe5b0");//你申请的key    c9d16c07cad85d0a2c499e9fef1fe5b0
 
             string result = sendPost(url, parameters, "post");
 
@@ -67,6 +68,7 @@ namespace Take_Out_Project_MVC.Controllers
 
         static string sendPost(string url, IDictionary<string, string> parameters, string method)
         {
+            
             if (method.ToLower() == "post")
             {
                 HttpWebRequest req = null;

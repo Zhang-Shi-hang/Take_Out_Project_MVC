@@ -59,7 +59,7 @@
         //查询订单详情
     function GetOrder11() {
         $.ajax({
-            url: "http://10.1.156.58:8089/api/Zrw/GetOrder?Oen=" + aaa,
+            url: "http://localhost:50037/api/Zrw/GetOrder?Oen=" + aaa,
             type: "get",
             dataType: "json",
             success: function (data) {
@@ -74,10 +74,8 @@
         })
     }
     function AddIntegral(uid, integral) {
-        console.log(uid);
-        console.log(integral);
         $.ajax({
-            url: "http://10.1.156.58:8089/api/Zrw/AddIntegral",
+            url: "http://localhost:50037/api/Zrw/AddIntegral",
             type: "get",
             data: { Uid: uid, integral: integral },
             success: function (data) {
@@ -87,7 +85,7 @@
     //查询订单详情
     function GetOrder() {
         $.ajax({
-            url: "http://10.1.156.58:8089/api/Zrw/GetOrder?Oen=" + aaa,
+            url: "http://localhost:50037/api/Zrw/GetOrder?Oen=" + aaa,
             type: "get",
             dataType: "json",
             success: function (data) {

@@ -169,7 +169,7 @@
                 GetShopTable: function () {
                     //ajax调用
                     $.ajax({
-                        url: "http://10.1.156.58:8089/api/Zrw/GetShopTable",
+                        url: "http://localhost:50037/api/Zrw/GetShopTable",
                         type: 'get',
                         dataType: "json",
                         success: function (data) {
@@ -190,7 +190,7 @@
     function Info() {
         //查询菜品信息
         $.ajax({
-            url: "http://10.1.156.58:8089/api/Zrw/GetGreens",
+            url: "http://localhost:50037/api/Zrw/GetGreens",
             type: 'get',
             dataType: "json",
             success: function (data) {

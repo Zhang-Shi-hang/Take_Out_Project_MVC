@@ -74,7 +74,7 @@
     //根据订单编号查询菜品明细
     function GetDetailInOen() {
         $.ajax({
-            url: "http://10.1.156.58:8089/api/Zrw/GetDetailInOen?OenNum=" + oen,
+            url: "http://localhost:50037/api/Zrw/GetDetailInOen?OenNum=" + oen,
             type: "get",
             dataType: "json",
             success: function (data) {
@@ -108,7 +108,7 @@
     //根据用户Id查询优惠券信息
     function GetDiscountsTable() {
         $.ajax({
-            url: "http://10.1.156.58:8089/api/Zrw/GetDiscountsTable?Uid=" + Uid,
+            url: "http://localhost:50037/api/Zrw/GetDiscountsTable?Uid=" + Uid,
             type: "get",
             dataType: "json",
             success: function (data) {
@@ -150,7 +150,7 @@
     //判断是否填写个人信息
     function ssss() {
         $.ajax({
-            url: "http://10.1.156.58:8089/api/Zrw/SearchAddress?Uid=" + Uid,
+            url: "http://localhost:50037/api/Zrw/SearchAddress?Uid=" + Uid,
             type: "get",
             dataType: "json",
             success: function (data) {
@@ -173,7 +173,7 @@
         obj.OrderPrice = $("#EndPrice").text();
         obj.Oen = oen
         $.ajax({
-            url: "http://10.1.156.58:8089/api/Zrw/UpdateOrderInSay?str=" + JSON.stringify(obj),
+            url: "http://localhost:50037/api/Zrw/UpdateOrderInSay?str=" + JSON.stringify(obj),
             type: "get",
             dataType: "json",
             success: function (data) {
@@ -185,7 +185,7 @@
     }
     function qu() {
         $.ajax({
-            url: "http://10.1.156.58:8089/api/Zrw/GetOrder?Oen=" + oen,
+            url: "http://localhost:50037/api/Zrw/GetOrder?Oen=" + oen,
             type: "get",
             dataType: "json",
             success: function (data) {
@@ -197,7 +197,7 @@
     }
     function Cancel(OrderId) {
         $.ajax({
-            url: "http://10.1.156.58:8089/api/wqb/DelOrder?id=" + OrderId,
+            url: "http://localhost:50037/api/wqb/DelOrder?id=" + OrderId,
             Type: "get",
             dataType: "json",
             success: function (data) {
