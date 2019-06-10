@@ -270,7 +270,7 @@ function events() {
             OrderTime: Date.now().toLocaleString(),
             OrderRemark: "",
             OrderPrice: 294,
-            RepastWay: "",
+            RepastWay: "",                                                                                                                                            
             Uid: $("#UserId").val(),
             Sid: "92E2E1F1-0CA8-476A-B376-4EF6D0677DE5"
         };
