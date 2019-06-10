@@ -60,7 +60,7 @@
     }
         //付款(修改优惠券状态并跳转页面)
     function Payment() {
-        if (DiscountsId.length>5) {
+        if (DiscountsId.length > 5) {
             $.ajax({
             url: "http://localhost:50037/api/Zrw/UpdateDiscounts",
             type: "get",

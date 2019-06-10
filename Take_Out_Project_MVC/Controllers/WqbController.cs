@@ -94,11 +94,11 @@ namespace Take_Out_Project_MVC.Controllers
         /// </summary>
         /// <param name="id">用户id</param>
         /// <returns></returns>
-        [AuthorFilter]
         public ActionResult RefundShow()
         {
             HttpCookie cookie = Request.Cookies["UserId"];
             string UserId = Server.UrlDecode(cookie.Value);
+            Session["id"] = UserId;
             ViewBag.uid = UserId;
             return View();
         }
@@ -107,14 +107,9 @@ namespace Take_Out_Project_MVC.Controllers
         /// </summary>
         /// <returns></returns>
         [AuthorFilter]
-        public ActionResult Refund(string OrderId)
+        public ActionResult Refund(Guid OrderId)
         {
-            HttpCookie cookie = Request.Cookies["UserId"];
-            ViewBag.uid = cookie.Value;
-
-            HttpCookie Orid = new HttpCookie("OrderId");
-            Orid.Value = OrderId;
-            ViewBag.oid = Orid.Value;
+            ViewBag.oid = OrderId;
             return View();
         }
     }

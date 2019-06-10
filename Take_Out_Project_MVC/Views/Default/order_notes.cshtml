@@ -63,7 +63,7 @@
     var PriceSum = 0;    //总价
     var oen = $("#oen").val();  //订单编号
     var Uid = $("#uid").val(); //用户ID
-    var DiscountsId = $("#Discounts").val();//优惠券Id
+
 
     //初始化函数
     $(function () {
@@ -131,6 +131,7 @@
         $("#Price").text(parseInt(PriceSum));
         var a = PriceSum;
         var b = $("#Discounts option:selected").text();
+
         if (b == "==请选择==") {
             b = 0;
         }
@@ -165,6 +166,7 @@
     }
     //修改订单备注和就餐方式
     function UpdateOrderInSay() {
+        var DiscountsId = $("#Discounts option:selected").val();//优惠券Id
         var obj = new Object();
         obj.RepastWay = $("#GreensType").val();
         obj.OrderRemark = $("#GreensSay").val();

@@ -37,6 +37,7 @@
                         <b>@item.SustainDay.ToString("yyyy-MM-dd")      </b><br />
                         <b>优惠劵使用规则      </b><br />
                         在购买商品时使用 <br />
+                        <input id="h@(ViewBag.count++)" type="hidden" value="@item.DiscountStatic" />
                         只能在规定时间内使用<input id="SustainDay@(ViewBag.s++)" type="hidden" value="@item.SustainDay" />
                         <input id="Id@(ViewBag.ss++)" type="hidden" value="@item.DiscountsId" />
                     </td>
@@ -55,7 +56,9 @@
         var myDate = new Date();
         var d1 = myDate.toLocaleDateString() + " " + myDate.getHours() + ":" + myDate.getMinutes() + ":" + myDate.getSeconds();
         $(".td").each(function (i, v) {
-            
+            if ($("#h" + i).val() == 0) {
+                $("#tb" + i).css('opacity', '0.5');
+            }
             var d2 = $("#SustainDay" + i).val();
             //console.log(d1);
             //console.log(d2);
@@ -76,14 +79,4 @@
             }
         })
     }
-</script>
-<script>
-    $(function () {
-        $(".td").each(function (i, v) {
-            if ($("#h" + i).val() == 0) {
-                $("#tb"+i).css('opacity', '0.5');
-            }
-        })
-
-    })
 </script>

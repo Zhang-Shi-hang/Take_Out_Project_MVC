@@ -35,112 +35,171 @@
             success: function (data) {
                 $("#dt1").empty();
                 $(data).each(function () {
-                    if (this.OrderStatic == 5) {
-                        var obj ='<div style="width:92%;height:175px;background-color:white;margin-left:4%;margin-bottom:20px;">'
-                                    +'<div style="float:left;margin-left:10px;margin-top:10px;">'
-                                        +'<img src="'+this.ShopImgUrl+'" style="width:50px;height:50px;" />'
-                                    +'</div>'
-                                    +'<div style="float:left;width:calc(100% - 90px);height:60px;margin-top:10px;margin-left:10px;border-bottom:1px solid #808080">'
-                                        +'<a href="#" style="font-size:18px;text-decoration:none;color:black;">'+this.ShopName+'&nbsp;></a>'
-                            + '<div style="border:1px solid #ea4141;color:#ea4141;width:60px;font-size:10px;margin-top:5px;border-radius:3px;">已领10元卷</div>'
-                            + '<span style="position:relative;top:-10px;color:#808080;font-size:15px;float:right;">退款完成</span>'
-                                    +'</div>'
-                                        +'<div style="position:relative;top:20px;width:calc(100% - 90px);clear:both;margin-left:60px;height:50px;">'
-                                            +'<span style="float:left;font-size:15px;color:#808080;">澳洲牛排&nbsp;等3件商品</span>'
-                                            +'<span style="float:right">￥'+this.OrderPrice+'.0</span>'
-                                        +'</div>'
-                                    +'</div>'
-                        $("#dt1").append(obj);
-                    }
-                    if (this.OrderStatic == 4) {
-                        var obj ='<div style="width:92%;height:175px;background-color:white;margin-left:4%;margin-bottom:20px;">'
-                                    +'<div style="float:left;margin-left:10px;margin-top:10px;">'
-                                        +'<img src="'+this.ShopImgUrl+'" style="width:50px;height:50px;" />'
-                                    +'</div>'
-                                    +'<div style="float:left;width:calc(100% - 90px);height:60px;margin-top:10px;margin-left:10px;border-bottom:1px solid #808080">'
-                                        +'<a href="#" style="font-size:18px;text-decoration:none;color:black;">'+this.ShopName+'&nbsp;></a>'
-                            + '<div style="border:1px solid #ea4141;color:#ea4141;width:60px;font-size:10px;margin-top:5px;border-radius:3px;">已领10元卷</div>'
-                            + '<span style="position:relative;top:-10px;color:#808080;font-size:15px;float:right;">退款中</span>'
-                                    +'</div>'
-                                        +'<div style="position:relative;top:20px;width:calc(100% - 90px);clear:both;margin-left:60px;height:50px;">'
-                                            +'<span style="float:left;font-size:15px;color:#808080;">澳洲牛排&nbsp;等3件商品</span>'
-                                            +'<span style="float:right">￥'+this.OrderPrice+'.0</span>'
+                    //等待取餐
+                        if (this.OrderStatic == 8) {
+                        var obj = '<div style="width:92%;height:175px;background-color:white;margin-left:4%;margin-bottom:20px;">'
+                            + '<div style="float:left;margin-left:10px;margin-top:10px;">'
+                            + '<img src="' + this.ShopImgUrl + '" style="width:50px;height:50px;" />'
                             + '</div>'
-                            +'<div style="float:right;margin-right:30px;margin-top:10px;">'
-                            + '<input id="Button1" type="button" value="退款中" class="btn btn-default"onclick="Refund()" />'
-                            +'</div>'
-                                    +'</div>'
-                        $("#dt1").append(obj);
-                    }
-                    if (this.OrderStatic == 3) {
-                        var obj ='<div style="width:92%;height:175px;background-color:white;margin-left:4%;margin-bottom:20px;">'
-                                    +'<div style="float:left;margin-left:10px;margin-top:10px;">'
-                                        +'<img src="'+this.ShopImgUrl+'" style="width:50px;height:50px;" />'
-                                    +'</div>'
-                                    +'<div style="float:left;width:calc(100% - 90px);height:60px;margin-top:10px;margin-left:10px;border-bottom:1px solid #808080">'
-                                        +'<a href="#" style="font-size:18px;text-decoration:none;color:black;">'+this.ShopName+'&nbsp;></a>'
+                            + '<div style="float:left;width:calc(100% - 90px);height:60px;margin-top:10px;margin-left:10px;border-bottom:1px solid #808080">'
+                            + '<a href="#" style="font-size:18px;text-decoration:none;color:black;">' + this.ShopName + '&nbsp;></a>'
                             + '<div style="border:1px solid #ea4141;color:#ea4141;width:60px;font-size:10px;margin-top:5px;border-radius:3px;">已领10元卷</div>'
-                            + '<span style="position:relative;top:-10px;color:#808080;font-size:15px;float:right;">订单已完成</span>'
-                                    +'</div>'
-                                        +'<div style="position:relative;top:20px;width:calc(100% - 90px);clear:both;margin-left:60px;height:50px;">'
-                                            +'<span style="float:left;font-size:15px;color:#808080;">澳洲牛排&nbsp;等3件商品</span>'
-                                            +'<span style="float:right">￥'+this.OrderPrice+'.0</span>'
+                            + '<span style="position:relative;top:-10px;color:#808080;font-size:15px;float:right;">等待取餐</span>'
                             + '</div>'
-                            +'<div style="float:right;margin-right:30px;margin-top:10px;">'
-                            + '<input id="Button1" type="button" value="再来一单" class="btn btn-default"onclick="Again()" />'
-                            +'</div>'
-                                    +'</div>'
-                        $("#dt1").append(obj);
-                    }
-                    if (this.OrderStatic == 2) {
-                        var obj ='<div style="width:92%;height:175px;background-color:white;margin-left:4%;margin-bottom:20px;">'
-                                    +'<div style="float:left;margin-left:10px;margin-top:10px;">'
-                                        +'<img src="'+this.ShopImgUrl+'" style="width:50px;height:50px;" />'
-                                    +'</div>'
-                                    +'<div style="float:left;width:calc(100% - 90px);height:60px;margin-top:10px;margin-left:10px;border-bottom:1px solid #808080">'
-                                        +'<a href="#" style="font-size:18px;text-decoration:none;color:black;">'+this.ShopName+'&nbsp;></a>'
-                            + '<div style="border:1px solid #ea4141;color:#ea4141;width:60px;font-size:10px;margin-top:5px;border-radius:3px;">已领10元卷</div>'
-                            + '<span style="position:relative;top:-10px;color:#808080;font-size:15px;float:right;">订单派送中</span>'
-                                    +'</div>'
-                                        +'<div style="position:relative;top:20px;width:calc(100% - 90px);clear:both;margin-left:60px;height:50px;">'
-                                            +'<span style="float:left;font-size:15px;color:#808080;">澳洲牛排&nbsp;等3件商品</span>'
-                                            +'<span style="float:right">￥'+this.OrderPrice+'.0</span>'
+                            + '<div style="position:relative;top:20px;width:calc(100% - 90px);clear:both;margin-left:60px;height:50px;">'
+                            + '<span style="float:left;font-size:15px;color:#808080;">澳洲牛排&nbsp;等3件商品</span>'
+                            + '<span style="float:right">￥' + this.OrderPrice + '.0</span>'
                             + '</div>'
-                            +'<div style="float:right;margin-right:30px;margin-top:10px;">'
-                            +'<input id="Button1" type="button" value="订单详情" class="btn btn-default" onclick="Particulars()" style="margin-right:15px;"/>'
-                            + '<input id="Button1" type="button" value="取消订单" class="btn btn-default"onclick="Cancel(id)" />'
-                            +'</div>'
-                                    +'</div>'
+                            + '</div>'
                         $("#dt1").append(obj);
                     }
-                    if (this.OrderStatic == 1) {
-                        var obj ='<div style="width:92%;height:175px;background-color:white;margin-left:4%;margin-bottom:20px;">'
-                                    +'<div style="float:left;margin-left:10px;margin-top:10px;">'
-                                        +'<img src="'+this.ShopImgUrl+'" style="width:50px;height:50px;" />'
-                                    +'</div>'
-                                    +'<div style="float:left;width:calc(100% - 90px);height:60px;margin-top:10px;margin-left:10px;border-bottom:1px solid #808080">'
-                                        +'<a href="#" style="font-size:18px;text-decoration:none;color:black;">'+this.ShopName+'&nbsp;></a>'
-                            + '<div style="border:1px solid #ea4141;color:#ea4141;width:60px;font-size:10px;margin-top:5px;border-radius:3px;">已领10元卷</div>'
-                            + '<span style="position:relative;top:-10px;color:#808080;font-size:15px;float:right;">待商家处理</span>'
-                                    +'</div>'
-                                        +'<div style="position:relative;top:20px;width:calc(100% - 90px);clear:both;margin-left:60px;height:50px;">'
-                                            +'<span style="float:left;font-size:15px;color:#808080;">澳洲牛排&nbsp;等3件商品</span>'
-                                            +'<span style="float:right">￥'+this.OrderPrice+'.0</span>'
-                            + '</div>' 
-                            + '<div style="float:right;margin-right:30px;margin-top:10px;">'
-                            + '<input id="' + this.OrderId +'" type="button" value="订单详情" class="btn btn-default" onclick="Particulars(id)" style="margin-right:15px;"/>'
-                            + '<input id="' + this.OrderId +'" type="button" value="取消订单" class="btn btn-default" onclick="Cancel(id)" />'
-                            +'</div>'
-                            +'</div>'
-                        $("#dt1").append(obj);
-                    }
-                })
+                        //退款失败
+                        if (this.OrderStatic == 7) {
+                            var obj = '<div style="width:92%;height:175px;background-color:white;margin-left:4%;margin-bottom:20px;">'
+                                + '<div style="float:left;margin-left:10px;margin-top:10px;">'
+                                + '<img src="' + this.ShopImgUrl + '" style="width:50px;height:50px;" />'
+                                + '</div>'
+                                + '<div style="float:left;width:calc(100% - 90px);height:60px;margin-top:10px;margin-left:10px;border-bottom:1px solid #808080">'
+                                + '<a href="#" style="font-size:18px;text-decoration:none;color:black;">' + this.ShopName + '&nbsp;></a>'
+                                + '<div style="border:1px solid #ea4141;color:#ea4141;width:60px;font-size:10px;margin-top:5px;border-radius:3px;">已领10元卷</div>'
+                                + '<span style="position:relative;top:-10px;color:#808080;font-size:15px;float:right;">退款失败</span>'
+                                + '</div>'
+                                + '<div style="position:relative;top:20px;width:calc(100% - 90px);clear:both;margin-left:60px;height:50px;">'
+                                + '<span style="float:left;font-size:15px;color:#808080;">澳洲牛排&nbsp;等3件商品</span>'
+                                + '<span style="float:right">￥' + this.OrderPrice + '.0</span>'
+                                + '</div>'
+                                + '</div>'
+                            $("#dt1").append(obj);
+                        }
+                        // 评价完成
+                        if (this.OrderStatic == 6) {
+                            var obj = '<div style="width:92%;height:175px;background-color:white;margin-left:4%;margin-bottom:20px;">'
+                                + '<div style="float:left;margin-left:10px;margin-top:10px;">'
+                                + '<img src="' + this.ShopImgUrl + '" style="width:50px;height:50px;" />'
+                                + '</div>'
+                                + '<div style="float:left;width:calc(100% - 90px);height:60px;margin-top:10px;margin-left:10px;border-bottom:1px solid #808080">'
+                                + '<a href="#" style="font-size:18px;text-decoration:none;color:black;">' + this.ShopName + '&nbsp;></a>'
+                                + '<div style="border:1px solid #ea4141;color:#ea4141;width:60px;font-size:10px;margin-top:5px;border-radius:3px;">已领10元卷</div>'
+                                + '<span style="position:relative;top:-10px;color:#808080;font-size:15px;float:right;">评价完成</span>'
+                                + '</div>'
+                                + '<div style="position:relative;top:20px;width:calc(100% - 90px);clear:both;margin-left:60px;height:50px;">'
+                                + '<span style="float:left;font-size:15px;color:#808080;">澳洲牛排&nbsp;等3件商品</span>'
+                                + '<span style="float:right">￥' + this.OrderPrice + '.0</span>'
+                                + '</div>'
+                                + '</div>'
+                            $("#dt1").append(obj);
+                        }
+                        // 退款完成
+                        if (this.OrderStatic == 5) {
+                            var obj = '<div style="width:92%;height:175px;background-color:white;margin-left:4%;margin-bottom:20px;">'
+                                + '<div style="float:left;margin-left:10px;margin-top:10px;">'
+                                + '<img src="' + this.ShopImgUrl + '" style="width:50px;height:50px;" />'
+                                + '</div>'
+                                + '<div style="float:left;width:calc(100% - 90px);height:60px;margin-top:10px;margin-left:10px;border-bottom:1px solid #808080">'
+                                + '<a href="#" style="font-size:18px;text-decoration:none;color:black;">' + this.ShopName + '&nbsp;></a>'
+                                + '<div style="border:1px solid #ea4141;color:#ea4141;width:60px;font-size:10px;margin-top:5px;border-radius:3px;">已领10元卷</div>'
+                                + '<span style="position:relative;top:-10px;color:#808080;font-size:15px;float:right;">退款完成</span>'
+                                + '</div>'
+                                + '<div style="position:relative;top:20px;width:calc(100% - 90px);clear:both;margin-left:60px;height:50px;">'
+                                + '<span style="float:left;font-size:15px;color:#808080;">澳洲牛排&nbsp;等3件商品</span>'
+                                + '<span style="float:right">￥' + this.OrderPrice + '.0</span>'
+                                + '</div>'
+                                + '</div>'
+                            $("#dt1").append(obj);
+                        }
+                        // 退款中
+                        if (this.OrderStatic == 4) {
+                            var obj = '<div style="width:92%;height:175px;background-color:white;margin-left:4%;margin-bottom:20px;">'
+                                + '<div style="float:left;margin-left:10px;margin-top:10px;">'
+                                + '<img src="' + this.ShopImgUrl + '" style="width:50px;height:50px;" />'
+                                + '</div>'
+                                + '<div style="float:left;width:calc(100% - 90px);height:60px;margin-top:10px;margin-left:10px;border-bottom:1px solid #808080">'
+                                + '<a href="#" style="font-size:18px;text-decoration:none;color:black;">' + this.ShopName + '&nbsp;></a>'
+                                + '<div style="border:1px solid #ea4141;color:#ea4141;width:60px;font-size:10px;margin-top:5px;border-radius:3px;">已领10元卷</div>'
+                                + '<span style="position:relative;top:-10px;color:#808080;font-size:15px;float:right;">退款中</span>'
+                                + '</div>'
+                                + '<div style="position:relative;top:20px;width:calc(100% - 90px);clear:both;margin-left:60px;height:50px;">'
+                                + '<span style="float:left;font-size:15px;color:#808080;">澳洲牛排&nbsp;等3件商品</span>'
+                                + '<span style="float:right">￥' + this.OrderPrice + '.0</span>'
+                                + '</div>'
+                                + '<div style="float:right;margin-right:30px;margin-top:10px;">'
+                                + '<input id="' + this.OrderId + '" type="button" value="订单详情" class="btn btn-default" onclick="Particulars(id)"/>'
+                                + '</div>'
+                                + '</div>'
+                            $("#dt1").append(obj);
+                        }
+                        // 订单已完成
+                        if (this.OrderStatic == 3) {
+                            var obj = '<div style="width:92%;height:175px;background-color:white;margin-left:4%;margin-bottom:20px;">'
+                                + '<div style="float:left;margin-left:10px;margin-top:10px;">'
+                                + '<img src="' + this.ShopImgUrl + '" style="width:50px;height:50px;" />'
+                                + '</div>'
+                                + '<div style="float:left;width:calc(100% - 90px);height:60px;margin-top:10px;margin-left:10px;border-bottom:1px solid #808080">'
+                                + '<a href="#" style="font-size:18px;text-decoration:none;color:black;">' + this.ShopName + '&nbsp;></a>'
+                                + '<div style="border:1px solid #ea4141;color:#ea4141;width:60px;font-size:10px;margin-top:5px;border-radius:3px;">已领10元卷</div>'
+                                + '<span style="position:relative;top:-10px;color:#808080;font-size:15px;float:right;">订单已完成</span>'
+                                + '</div>'
+                                + '<div style="position:relative;top:20px;width:calc(100% - 90px);clear:both;margin-left:60px;height:50px;">'
+                                + '<span style="float:left;font-size:15px;color:#808080;">澳洲牛排&nbsp;等3件商品</span>'
+                                + '<span style="float:right">￥' + this.OrderPrice + '.0</span>'
+                                + '</div>'
+                                + '<div style="float:right;margin-right:30px;margin-top:10px;">'
+                                + '<input id="Button1" type="button" value="再来一单" class="btn btn-default"onclick="Again()" />'
+                                + '</div>'
+                                + '</div>'
+                            $("#dt1").append(obj);
+                        }
+                        // 订单派送中
+                        if (this.OrderStatic == 2) {
+                            var obj = '<div style="width:92%;height:175px;background-color:white;margin-left:4%;margin-bottom:20px;">'
+                                + '<div style="float:left;margin-left:10px;margin-top:10px;">'
+                                + '<img src="' + this.ShopImgUrl + '" style="width:50px;height:50px;" />'
+                                + '</div>'
+                                + '<div style="float:left;width:calc(100% - 90px);height:60px;margin-top:10px;margin-left:10px;border-bottom:1px solid #808080">'
+                                + '<a href="#" style="font-size:18px;text-decoration:none;color:black;">' + this.ShopName + '&nbsp;></a>'
+                                + '<div style="border:1px solid #ea4141;color:#ea4141;width:60px;font-size:10px;margin-top:5px;border-radius:3px;">已领10元卷</div>'
+                                + '<span style="position:relative;top:-10px;color:#808080;font-size:15px;float:right;">订单派送中</span>'
+                                + '</div>'
+                                + '<div style="position:relative;top:20px;width:calc(100% - 90px);clear:both;margin-left:60px;height:50px;">'
+                                + '<span style="float:left;font-size:15px;color:#808080;">澳洲牛排&nbsp;等3件商品</span>'
+                                + '<span style="float:right">￥' + this.OrderPrice + '.0</span>'
+                                + '</div>'
+                                + '<div style="float:right;margin-right:30px;margin-top:10px;">'
+                                + '<input id="Button1" type="button" value="订单详情" class="btn btn-default" onclick="Particulars()" style="margin-right:15px;"/>'
+                                + '<input id="Button1" type="button" value="取消订单" class="btn btn-default"onclick="Cancel(id)" />'
+                                + '</div>'
+                                + '</div>'
+                            $("#dt1").append(obj);
+                        }
+                        // 待商家处理
+                        if (this.OrderStatic == 1) {
+                            var obj = '<div style="width:92%;height:175px;background-color:white;margin-left:4%;margin-bottom:20px;">'
+                                + '<div style="float:left;margin-left:10px;margin-top:10px;">'
+                                + '<img src="' + this.ShopImgUrl + '" style="width:50px;height:50px;" />'
+                                + '</div>'
+                                + '<div style="float:left;width:calc(100% - 90px);height:60px;margin-top:10px;margin-left:10px;border-bottom:1px solid #808080">'
+                                + '<a href="#" style="font-size:18px;text-decoration:none;color:black;">' + this.ShopName + '&nbsp;></a>'
+                                + '<div style="border:1px solid #ea4141;color:#ea4141;width:60px;font-size:10px;margin-top:5px;border-radius:3px;">已领10元卷</div>'
+                                + '<span style="position:relative;top:-10px;color:#808080;font-size:15px;float:right;">待商家处理</span>'
+                                + '</div>'
+                                + '<div style="position:relative;top:20px;width:calc(100% - 90px);clear:both;margin-left:60px;height:50px;">'
+                                + '<span style="float:left;font-size:15px;color:#808080;">澳洲牛排&nbsp;等3件商品</span>'
+                                + '<span style="float:right">￥' + this.OrderPrice + '.0</span>'
+                                + '</div>'
+                                + '<div style="float:right;margin-right:30px;margin-top:10px;">'
+                                + '<input id="' + this.OrderId + '" type="button" value="订单详情" class="btn btn-default" onclick="Particulars(id)" style="margin-right:15px;"/>'
+                                + '<input id="' + this.OrderId + '" type="button" value="取消订单" class="btn btn-default" onclick="Cancel(id)" />'
+                                + '</div>'
+                                + '</div>'
+                            $("#dt1").append(obj);
+                        }
+                    })
             }
         })
 
     }
     function Again() {
-        location.href = "/Default/classify";
+        top.location.href = "/Default/classify";
     }
     function Cancel(id) {
         $.ajax({
@@ -163,6 +222,9 @@
     }
     function Particulars(OrderId) {
         location.href = '/Wqb/OrderParticulars?OrderId='+OrderId;
+    }
+    function jump(id) {
+        location.href = "Payment_results?Oen=" + id;
     }
 
 </script>

@@ -40,17 +40,18 @@
     </div>
     <div style="margin: auto;" id="ss">
     </div>
+    <button style="width:200px;height:50px;border-radius:25px;margin-top:15px;cursor:pointer;margin-left:25%;"><a href="/Default/Home?UserId=@ViewBag.uid&Phone=@ViewBag.phone">返回首页</a></button>
 </body>
 </html>
 <script>
     //全局变量
     var aaa = $("#oen").val();
-
+    var Integral = 0;
     //初始化函数
     $(function () {
         if ($("#RepastWay").val()=="false") { }
         else {
-            var s = '<h3>到店取餐码</h3><img src="' + $("#img").val() + '" style="margin: auto;margin-top: 20px;" />';
+            var s = '<h3 style="text-align:center;">到店取餐码</h3><img src="' + $("#img").val() + '" style="margin: auto;margin-top: 20px;" />';
             $("#ss").append(s);
         }
         GetOrder11();
@@ -66,7 +67,18 @@
                     $("#Price").text(this.OrderPrice);
                     $("#Time").text(this.OrderTime);
                     $("#Oen").text(aaa);
+                    Integral = this.OrderPrice / 10;
+                    AddIntegral(this.Uid, Math.round(Integral));
                 })
+            }
+        })
+    }
+    function AddIntegral(uid, integral) {
+        $.ajax({
+            url: "http://localhost:50037/api/Zrw/AddIntegral",
+            type: "get",
+            data: { Uid: uid, integral: integral },
+            success: function (data) {
             }
         })
     }

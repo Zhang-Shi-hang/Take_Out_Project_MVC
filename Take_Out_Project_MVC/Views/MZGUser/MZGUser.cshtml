@@ -48,7 +48,7 @@
             </div>
 
 
-            <div class="aui-account-footer">
+            <div class="aui-account-footer" >
                 <div class="aui-account-footer-title">
                     <h2>其它登录方式</h2>
                 </div>
@@ -103,7 +103,7 @@
                         success: function (data) {
                             if (data == true) {
                                 var date = $(".password").val();
-                                if (date == 123) {/*$("#dd").val()*/
+                                if (date == $("#dd").val()) {
                                     alert("登陆成功");
                                     $.ajax({
                                         url: "http://localhost:50037/api/MZGUser/UserInfoShow",
@@ -126,7 +126,7 @@
                                     data: { UserPhone: $("#login_phone").val() },
                                     success: function () {
                                         var date = $(".password").val();
-                                        if (date == 123) {/*$("#dd").val()*/
+                                        if (date == $("#dd").val() ) {
                                             alert("登陆成功");
 
                                             $.ajax({
@@ -190,13 +190,15 @@
         //获取短信验证码
         var validCode = true;
         $(".msgs").click(function () {
-            //$.ajax({
-            //            url: "/MZGUser/YanZheng?Phone=" + $("#login_phone").val(),
-            //            type: "get",
-            //    success: function (date) {
-            //        $("#dd").val(date)
-            //            }
-            //        });
+
+            $.ajax({
+                        url: "/MZGUser/YanZheng?Phone=" + $("#login_phone").val(),
+                        type: "get",
+                success: function (date) {
+                    $("#dd").val(date)
+                    $(".msgs").attr("disabled", "true");
+                        }
+                    });
             var time = 60;
             var code = $(this);
             if (validCode) {
@@ -205,8 +207,9 @@
                 var t = setInterval(function () {
                     time--;
                     code.html(time + "秒");
-                    if (time == 0) {
+                    if (time <= 0) {
                         clearInterval(t);
+                        $(".msgs").removeAttr("disabled");
                         code.html("重新获取");
                         validCode = true;
                         code.removeClass("msgs1");

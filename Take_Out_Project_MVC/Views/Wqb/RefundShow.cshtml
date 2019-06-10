@@ -15,7 +15,6 @@
 </head>
 <body style="width:100%;height:100%;background-color:#fbf7f7">
     <div>
-        <input id="uid" type="hidden" value="@ViewBag.uid" />
         <div style="margin-top:-30px;" id="dd">
         </div>
     </div>
@@ -23,7 +22,7 @@
 </body>
 </html>
 <script>
-     var id = $("#uid").val();
+     var id = "@Session["id"]";
     $(function () {
         Show();
     })
@@ -50,7 +49,7 @@
                                             +'<span style="float:right">￥'+this.OrderPrice+'.0</span>'
                             + '</div>'
                             +'<div style="float:right;margin-right:30px;margin-top:10px;">'
-                            + '<input id="Button1" type="button" value="申请退款" class="btn btn-default"onclick="refund()" />'
+                            + '<input id="'+this.OrderId+'" type="button" value="申请退款" class="btn btn-default"onclick="refund(id)" />'
                             +'</div>'
                             + '</div>'
                         
@@ -60,7 +59,7 @@
             }
         })
     }
-    function refund(id) {
-        top.location.href = "Refund";
+    function refund(oid) {
+        top.location.href = "/Wqb/Refund?OrderId=" + oid;
     }
 </script>

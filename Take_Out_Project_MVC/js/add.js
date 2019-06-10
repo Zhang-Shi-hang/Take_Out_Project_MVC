@@ -4,25 +4,36 @@ $(function () {
 
 });
 function GetTypeName() {
+    var i = 0;
     $.ajax({
         url: "http://localhost:50037/api/Zrw/GetGreensType",
         type: "get",
         success: function (data) {
+
             $("#u").empty();
             $(data).each(function () {
-                var line = '<li ><span id="' + this.GreensType + '" onclick="GetGreens(id)" >' + this.GreensType + '</span></li>'
+                var line = '<li id="a' + i + '" ><span id="b' + i + '" >' + this.GreensType + '</span></li>'
                 $("#u").append(line);
+                i++;
             })
             GetGreens("蛋及三明治");
+            $('.left-menu ul li').each(function (ind) {
+                $("#left li:first-child").addClass("active");
+                $(this).on('click', function () {
+                    $(this).addClass("active").siblings().removeClass("active");
+                    var n = $(".left-menu ul li").index(this);
+                    $(".left-menu ul li").index(this);
+                    $(".con>div:eq(" + n + ")").show();
+                    GetGreens($("#b" + ind).text());
+                });
+
+            });
         }
     })
+
+
 }
 function GetGreens(TypeName) {
-        $("#u li").addClass("active").siblings().removeClass("active");
-        var n = $(".left-menu li").index("#u li");
-        $(".left-menu li").index("#u li");
-        $(".con>div").hide();
-        $(".con>div:eq(" + n + ")").show();
     $.ajax({
         url: "http://localhost:50037/api/Zrw/GetGreensInType?TypeName=" + TypeName,
         type: "get",
@@ -226,7 +237,6 @@ function events() {
     //选项卡
     $(".con>div").hide();
     $(".con>div:eq(0)").show();
-
     $(".subFly").hide();
     $(".close").click(function () {
         $(".subFly").hide();
@@ -318,7 +328,6 @@ function DetailTable(obj, GreensIds) {
     })
 }
 function InsertOrderTable() {
-    $("#left li:first-child").addClass("active");
     //商品点击增加
     $(".add").click(function () {
         $(".subFly").show();
